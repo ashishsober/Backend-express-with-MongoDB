@@ -21,7 +21,7 @@ require('./app/service/routes/api.js')(app);
 /**
 * Creating the server
 */
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 
