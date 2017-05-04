@@ -12,13 +12,16 @@ var cors = require('cors');
 		app.use(express.static(__dirname));
 		app.use(cors());
 		app.use(validator());
-        
+
+  
+
 require('./app/service/routes/api.js')(app);
 
 /**
 * Creating the server
 */
-var server = app.listen(8080, function () {
+var port = process.env.port || 3000;
+var server = app.listen(port, function () {
 	var host = server.address().address
 	var port = server.address().port
 	console.log("App listening at http://%s:%s", host, port)
