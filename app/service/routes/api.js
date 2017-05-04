@@ -1,4 +1,4 @@
-const userController= require('../controllers/user.Register.Controller.js');
+var userController= require('../controllers/user.Register.Controller.js');
 /**
 * Routes
 */

@@ -1,10 +1,10 @@
-const dbobj = require('./db.js');
-const crypto = require('crypto');
-const schema = require('../../schemas/userSchema.js');
+var dbobj = require('./db.js');
+var crypto = require('crypto');
+var schema = require('../../schemas/userSchema.js');
 
 exports.register = function(req, res){
-         let post=req.body;
-		 let db =dbobj.db;
+         var post=req.body;
+		 var db =dbobj.db;
 		 
          db.collection('users').save(post, function(err, result){
 		    if (err) return console.log(err)
@@ -15,7 +15,7 @@ exports.register = function(req, res){
 };
 
 exports.getUser = function(req, res){
-        let db =dbobj.db;
+        var db =dbobj.db;
 		//console.log(db.collection('users').find());
         db.collection('users').find().toArray(function(err,results){
         	console.log(results);
