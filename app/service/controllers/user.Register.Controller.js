@@ -18,7 +18,7 @@ exports.getUser = function(req, res){
         var db =dbobj.db;
 		//console.log(db.collection('users').find());
         db.collection('users').find().toArray(function(err,results){
-        	console.log(results);
+        	//console.log(results);
         	res.send(results);
         })
 };
