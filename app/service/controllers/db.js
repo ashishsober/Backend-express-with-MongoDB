@@ -3,6 +3,7 @@ var mongoose= require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 
 //while calling mongoose.connect we pass two parameters first is the data we created and the second is the function
+//prod_url
 MongoClient.connect(configDB.prod_url, function(err, database){
         if(err)
 			console.log(err);
