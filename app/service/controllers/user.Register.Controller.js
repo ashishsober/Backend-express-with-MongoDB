@@ -8,8 +8,8 @@ exports.tripSummary = function(req, res){
 		 
          db.collection('tripSummary').save(post, function(err, result){
 		    if (err) return console.log(err)
-               res.set('Content-Type', 'application/json');
-               res.send('saved to database');
+               res.status(200);
+               res.json({ message: 'Saved to database successfully' });
 		  })
         
 };
