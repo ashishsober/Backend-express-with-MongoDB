@@ -8,6 +8,7 @@ exports.tripSummary = function(req, res){
 		 
          db.collection('tripSummary').save(post, function(err, result){
 		    if (err) return console.log(err)
+               res.set('Content-Type', 'application/json');
                res.send('saved to database');
 		  })
         
@@ -18,13 +19,15 @@ exports.getUser = function(req, res){
 		//console.log(db.collection('users').find());
         db.collection('users').find().toArray(function(err,results){
         	//console.log(results);
-        	res.send(results);
+        	res.set('Content-Type', 'application/json');
+            res.send(results);
         })
 };
 
 exports.getTripSummary = function(req, res){
         var db =dbobj.db;
 		db.collection('tripSummary').find().toArray(function(err,results){
+            res.set('Content-Type', 'application/json');
            	res.send(results);
         })
 };
