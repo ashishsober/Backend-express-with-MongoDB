@@ -13,7 +13,7 @@
 
 	Log in from putty
 
-		* ubuntu@ ec2-34-209-31-131.us-west-2.compute.amazonaws.com
+		* ubuntu@ec2-34-209-31-131.us-west-2.compute.amazonaws.com
 		* and browse the .ppk file and hit OPEN
 
 	In cmd prompt,steps to be followed
