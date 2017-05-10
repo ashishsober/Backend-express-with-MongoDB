@@ -1,5 +1,4 @@
 var express = require('express');
-var mongo = require('./app/service/controllers/db.js');
 var bodyParser = require('body-parser');
 var validator =require('express-validator');
 var cors = require('cors');
@@ -14,9 +13,8 @@ var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
 		app.use(cors());
 		app.use(validator());
 
-  
-
-require('./app/service/routes/api.js')(app);
+ 
+require('./app/routes/api.js')(app);
 
 /**
 * Creating the server
