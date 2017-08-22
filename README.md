@@ -20,6 +20,7 @@
 
 		* cd /home/ubuntu/project/Backend-express-with-mongo
 		* git pull to get the latest
+		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo node server.js &(to run in backgroud)
 
