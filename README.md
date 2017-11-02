@@ -5,9 +5,9 @@
 
 ## API's Created and deployed in AWS environment
 
-1) GET Api of trip summary http://ec2-34-209-31-131.us-west-2.compute.amazonaws.com/truck/tripSummary
-2) POST Api of trip summary http://ec2-34-209-31-131.us-west-2.compute.amazonaws.com/truck/tripSummary
-3) GET Api to get All user http://ec2-34-209-31-131.us-west-2.compute.amazonaws.com/register/user
+1) GET Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
+2) POST Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
+3) GET Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
 
 ## Steps to be followed while giving build in AWS environment.
 
@@ -24,4 +24,9 @@
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo nohup node server.js &(to run in backgroud)
 
-*check in db.js file ,db should point to the mLab database as a prod_url
+* check in db.js file ,db should point to the mLab database as a prod_url
+
+
+     cd /home/ubuntu/bACKEND...
+     ubuntu@ec2-52-42-15-201.us-west-2.compute.amazonaws.com
+     sudo nohup node server.js 80 &+
