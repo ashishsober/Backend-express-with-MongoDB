@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var validator =require('express-validator');
 var cors = require('cors');
 var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
+
+
+
 /**
 * Data Parsing
 */
@@ -15,6 +18,8 @@ var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
 
  
 require('./app/routes/api.js')(app);
+
+
 
 /**
 * Creating the server
@@ -51,6 +56,8 @@ function normalizePort(val) {
 }
 
 
+
+
 /**
  * Event listener for HTTP server.js "error" event.
  */
@@ -78,6 +85,8 @@ function onError(error) {
       throw error;
   }
 }
+
+
 
 
 

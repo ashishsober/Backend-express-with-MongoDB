@@ -6,4 +6,5 @@ module.exports = function(app) {
 	app.post('/truck/tripSummary', myServices.tripSummary);
 	app.get('/truck/tripSummary', myServices.getTripSummary);
 	app.get('/register/user', myServices.getUser);
+	app.post('/register/user', myServices.postUser);
 }

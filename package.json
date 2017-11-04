@@ -20,5 +20,11 @@
     "pg": "^6.1.5",
     "typescript": "^2.3.2",
     "debug": "~2.2.0"
+  },
+  "devDependencies": {
+    "bcrypt": "^1.0.3",
+    "connect-mongo": "^2.0.0",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.0"
   }
 }
