@@ -1,4 +1,4 @@
-var configDB = require('../../config/db.js');
+var configDB = require('../../config/database');
 var mongoose= require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 
@@ -14,6 +14,18 @@ MongoClient.connect(configDB.prod_url, function(err, database){
 		}
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 // mongoose.connection.on('open', function (ref) {
 // 	mongoose.connection.db.listCollections().toArray(function(err, names) {
 //     if (err) {
@@ -26,5 +38,4 @@ MongoClient.connect(configDB.prod_url, function(err, database){
 //         });
 //     }
 // });
-
 // });

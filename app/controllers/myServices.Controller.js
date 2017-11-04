@@ -1,4 +1,4 @@
-var dbobj = require('./db.js');
+var dbobj = require('./db');
 var crypto = require('crypto');
 var User = require('../schemas/userSchema');
 
