@@ -3,7 +3,8 @@ var bodyParser = require('body-parser');
 var validator =require('express-validator');
 var cors = require('cors');
 var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
-var logger = require('morgan');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
@@ -16,8 +17,24 @@ var MongoStore = require('connect-mongo')(session);
 		app.use(express.static(__dirname));
 		app.use(cors());
 		app.use(validator());
+    
+    app.use(morgan('dev'));
+    app.use(cookieParser());
+    app.use(session({
+            secret:'anystringoftext',
+            saveUninitialized:true,
+            resave:true
+    }));
 
+    // app.use('/',function(req,res){
+    //   res.send("Our first express program");
+    //   console.log(req.cookies);
+    //   console.log('===============');
+    //   console.log(req.session);
+    // })
  
+
+
 require('./app/routes/api')(app);
 
 
