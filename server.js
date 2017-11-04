@@ -17,7 +17,7 @@ var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
 		app.use(validator());
 
  
-require('./app/routes/api.js')(app);
+require('./app/routes/api')(app);
 
 
 
