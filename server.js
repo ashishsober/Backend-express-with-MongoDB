@@ -3,8 +3,9 @@ var bodyParser = require('body-parser');
 var validator =require('express-validator');
 var cors = require('cors');
 var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
-
-
+var logger = require('morgan');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 /**
 * Data Parsing
@@ -35,6 +36,10 @@ var server = app.listen(port, function () {
 
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+
+
 
 /**
  * Normalize a port into a number, string, or false.
