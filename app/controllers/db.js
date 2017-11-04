@@ -7,11 +7,9 @@ var mongoose= require('mongoose');
 mongoose.connect(configDB.prod_url, function(err, database){
         if(err)
 			console.log(err);
-		else {
-			//console.log("my client from MongoClient " + database.listCollections());
-			module.exports.db = database;
-			console.log("i m connected");
-		}
+		else 
+			console.log("i m connected to database");
+		
 });
 
 

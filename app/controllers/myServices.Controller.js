@@ -1,10 +1,8 @@
-var dbobj = require('./db');
-//var crypto = require('crypto');
 var User = require('../schemas/userSchema');
 var Trip = require('../schemas/tripSchema');
 
 
-     exports.postTripSummary = function(req, res){
+    exports.postTripSummary = function(req, res){
             var newTrip = new Trip();
             newTrip.truckNo=req.body.truckNo;
             newTrip.status=req.body.status;
@@ -40,8 +38,6 @@ var Trip = require('../schemas/tripSchema');
      };
 
     
-
-
 
 
     exports.getUser = function(req, res){
