@@ -13,15 +13,10 @@
 
 	In cmd prompt,steps to be followed
 
-		* cd /project/Backend-express-with-mongo
+		* cd /home/ubuntu/Backend-express-with-mongo
 		* git pull to get the latest
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo nohup node server.js &(to run in backgroud)
 
 * check in db.js file ,db should point to the mLab database as a prod_url
-
-
-        cd /home/ubuntu/bACKEND...
-        ubuntu@ec2-52-42-15-201.us-west-2.compute.amazonaws.com
-        sudo nohup node server.js 80 &+
