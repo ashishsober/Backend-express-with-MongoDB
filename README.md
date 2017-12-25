@@ -33,8 +33,8 @@
 	      content-type: application/json 	
    
 3) GET Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
-3) POST Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
-       * schema to use or sent the data:
+3) POST Api of user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
+    * schema to use or sent the data:
        
 	Mock data ,set in body section :
 
