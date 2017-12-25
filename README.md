@@ -22,6 +22,6 @@
 * check in db.js file ,db should point to the mLab database as a prod_url
 
 
-     cd /home/ubuntu/bACKEND...
-     ubuntu@ec2-52-42-15-201.us-west-2.compute.amazonaws.com
-     sudo nohup node server.js 80 &+
+        cd /home/ubuntu/bACKEND...
+        ubuntu@ec2-52-42-15-201.us-west-2.compute.amazonaws.com
+        sudo nohup node server.js 80 &+
