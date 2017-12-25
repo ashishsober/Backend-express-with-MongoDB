@@ -7,6 +7,30 @@
 
 1) GET Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
 2) POST Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
+    schema to use or sent the data:
+
+    Mock date ,set in body section :   
+	    {
+			"truckNo": "UP78-1190",
+			"status": "Completed",
+			"tripDetails": {
+				"from": "Bangalore",
+				"to": "Kanpur",
+				"startDate": "26-12-2018",
+				"endDate": "29-12-2018"
+			},
+			"partyDetails": {
+				"soldToParty": "Laxmi Enterprises",
+				"contactDetails": 9900543957,
+				"amount": 420,
+				"paid": "unPaid"
+			}
+		}
+
+	Headers :
+
+	      content-type: application/json 	
+   
 3) GET Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
 
 ## Steps to be followed while giving build in AWS environment.
