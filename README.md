@@ -7,7 +7,7 @@
 
 1) GET Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
 2) POST Api of trip summary http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/truck/tripSummary
-    schema to use or sent the data:
+    * schema to use or sent the data:
 
     Mock data ,set in body section :   
 	    
@@ -33,7 +33,22 @@
 	      content-type: application/json 	
    
 3) GET Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
+3) POST Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
 
+       * schema to use or sent the data:
+        Mock data ,set in body section :
+		
+	       {
+				"first_name":"ajhjhjhkjhkj",
+				"last_name":"asasdsdsd",
+				"email":"tulli123@gmail.com",
+				"username":"tull123i",
+				"password":"sdss",
+				"passwordConf":"sd"
+			}
+	Headers :
+
+	      content-type: application/json		
 ## Steps to be followed while giving build in AWS environment.
 
 	In cmd prompt,steps to be followed
