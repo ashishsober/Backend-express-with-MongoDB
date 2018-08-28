@@ -1,3 +1,4 @@
+//@ts-check
 var express = require('express');
 var bodyParser = require('body-parser');
 var validator =require('express-validator');
@@ -49,7 +50,7 @@ var dbobj = require('./app/controllers/db'); //u can see the database connection
       /**
       * Creating the server
       */
-      var port = normalizePort(process.env.PORT || '80');
+      var port = normalizePort(process.env.PORT || '1337');
       app.set('port', port);
 
 
