@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-var dbobj = require('./app/controllers/db'); //u can see the database connection here
+var dbobj = require('./controllers/db'); //u can see the database connection here
 
 
 
@@ -43,7 +43,7 @@ var dbobj = require('./app/controllers/db'); //u can see the database connection
 
 
       //Here we can see the API'S
-      require('./app/routes/api')(app); 
+      require('./routes/api')(app); 
 
 
 

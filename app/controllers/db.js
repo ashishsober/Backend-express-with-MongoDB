@@ -1,4 +1,4 @@
-var configDB = require('../../config/database');
+var configDB = require('../config/database');
 var mongoose= require('mongoose');
 //var MongoClient = require('mongodb').MongoClient;
 

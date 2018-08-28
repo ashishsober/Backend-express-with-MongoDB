@@ -2,10 +2,10 @@
   "name": "backend-express-with-mongodb",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app/server.js"
   },
   "author": "Anandharajan",
   "license": "ISC",
