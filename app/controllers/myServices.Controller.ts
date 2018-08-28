@@ -1,9 +1,9 @@
-var User = require('../schemas/userSchema');
-var Trip = require('../schemas/tripSchema');
+const User = require('../schemas/userSchema');
+const Trip = require('../schemas/tripSchema');
 
 
     exports.postTripSummary = function(req, res){
-            var newTrip = new Trip();
+            const newTrip = new Trip();
             newTrip.truckNo=req.body.truckNo;
             newTrip.status=req.body.status;
            
@@ -52,7 +52,7 @@ var Trip = require('../schemas/tripSchema');
 
 
     exports.postUser = function(req, res){
-       var newUser = new User();
+       const newUser = new User();
         if (req.body.first_name &&
             req.body.last_name &&
             req.body.email &&

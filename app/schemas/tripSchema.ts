@@ -1,6 +1,6 @@
-var mongoose= require('mongoose');
+import * as mongoose from "mongoose"
 
-var tripSchema = new mongoose.Schema({
+const tripSchema = new mongoose.Schema({
 							truckNo:{ 
 								        type: String,
 								        required:true,
@@ -26,5 +26,5 @@ var tripSchema = new mongoose.Schema({
 						 
 							});
 
-var Trip = mongoose.model('tripsummaries', tripSchema);
+const Trip = mongoose.model('tripsummaries', tripSchema);
 module.exports=Trip;

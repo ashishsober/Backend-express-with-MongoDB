@@ -1,4 +1,4 @@
-var myServices= require('../controllers/myServices.Controller.js');
+const myServices= require('../controllers/myServices.Controller.js');
 /**
 * Routes
 */

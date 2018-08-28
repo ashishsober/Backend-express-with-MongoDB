@@ -1,6 +1,6 @@
-var configDB = require('../config/database');
-var mongoose= require('mongoose');
-//var MongoClient = require('mongodb').MongoClient;
+const configDB = require('../config/database');
+import * as mongoose from "mongoose"
+//const MongoClient = require('mongodb').MongoClient;
 
 //while calling mongoose.connect we pass two parameters first is the data we created and the second is the function
 //prod_url

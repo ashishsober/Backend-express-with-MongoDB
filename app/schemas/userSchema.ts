@@ -1,7 +1,7 @@
-var mongoose= require('mongoose');
-var bcrypt = require('bcrypt');
+import * as mongoose from "mongoose"
+const bcrypt = require('bcrypt');
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 							first_name:{ 
 								        type: String,
 								        required:true,
@@ -37,7 +37,7 @@ var userSchema = new mongoose.Schema({
 //hashing a password before saving it to the database
 
 // userSchema.pre('save', function (next) {
-//   var user = this;
+//   const user = this;
 //   console.log("inside bycrypt---"+user.password);
 //   bcrypt.hash(user.password, 10, function (err, hash){
 //     if (err) {
@@ -48,6 +48,6 @@ var userSchema = new mongoose.Schema({
 //   })
 // });
 
-var User = mongoose.model('users', userSchema);
+const User = mongoose.model('users', userSchema);
 module.exports=User;
 

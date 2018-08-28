@@ -1,14 +1,14 @@
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var validator =require('express-validator');
-var cors = require('cors');
-var debug = require('debug')('Backend-Express-with-mongoDB:server.js');
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var dbobj = require('./controllers/db'); //u can see the database connection here
+const express = require('express');
+const bodyParser = require('body-parser');
+const validator =require('express-validator');
+const cors = require('cors');
+const debug = require('debug')('Backend-Express-with-mongoDB:server.js');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const dbobj = require('./controllers/db'); //u can see the database connection here
 
 
 
@@ -16,7 +16,7 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
 /**
 * Data Parsing
 */
-	  var app = express();
+const app = express();
 		app.use(bodyParser.urlencoded({ extended: true }));
 		app.use(bodyParser.json());
 		app.use(express.static(__dirname));
@@ -50,12 +50,12 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
       /**
       * Creating the server
       */
-      var port = normalizePort(process.env.PORT || '1337');
+     const port = normalizePort(process.env.PORT || '1337');
       app.set('port', port);
 
 
-      var server = app.listen(port, function () {
-      	var host = server.address().address
+      const server = app.listen(port, function () {
+      	const host = server.address().address
       	console.log("App listening at http://%s:%s", host, port)
       });
 
@@ -70,7 +70,7 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
        * Normalize a port into a number, string, or false.
        */
       function normalizePort(val) {
-        var port = parseInt(val, 10);
+        const port = parseInt(val, 10);
 
         if (isNaN(port)) {
           // named pipe
@@ -125,7 +125,7 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
          */
 
         function onListening() {
-          var addr = server.address();
+          const addr = server.address();
           var bind = typeof addr === 'string'
             ? 'pipe ' + addr
             : 'port ' + addr.port;
