@@ -54,28 +54,26 @@ var Trip = require('../schemas/tripSchema');
     exports.postUser = function(req, res){
        var newUser = new User();
         if (req.body.first_name &&
-            req.body.last_name &&
             req.body.email &&
-            req.body.username &&
-            req.body.password &&
-            req.body.passwordConf) {
-
+            req.body.mobile 
+            ) {
         
             newUser.first_name=req.body.first_name;
             newUser.last_name=req.body.last_name;
             newUser.email= req.body.email;
-            newUser.username= req.body.username;
-            newUser.password= req.body.password;
-            newUser.passwordConf= req.body.passwordConf;
-         
+            newUser.mobile= req.body.mobile;
 
-       
-          
-           newUser.save(function(error, result){
-              if (error) 
-                return console.log(error)
+
+            newUser.save(function(error, result){
+              if (error) {
+                console.log(error);
+                res.status(400);
+                res.json(error);
+              } else {
+                  console.log("success");
                 res.status(200);
                 res.json({ message: 'Saved to database successfully' });
+              }
            });
         
       }
