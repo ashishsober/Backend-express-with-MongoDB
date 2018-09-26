@@ -7,4 +7,5 @@ module.exports = function(app) {
 	app.get('/truck/tripSummary', myServices.getTripSummary);
 	app.get('/register/user', myServices.getUser);
 	app.post('/register/user', myServices.postUser);
+	app.get('/register/users/count', myServices.getUsersCount);
 }

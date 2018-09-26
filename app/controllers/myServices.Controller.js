@@ -2,6 +2,15 @@ var User = require('../schemas/userSchema');
 var Trip = require('../schemas/tripSchema');
 
 
+let myObj = {
+    applicants: "",
+    application: {
+        "message": "",
+        "response_type": "",
+        "response_action": ""
+    }
+};
+
 exports.postTripSummary = function (req, res) {
     var newTrip = new Trip();
     newTrip.truckNo = req.body.truckNo;
@@ -49,20 +58,20 @@ exports.getUser = function (req, res) {
     })
 };
 
-
-
+exports.getUsersCount = function (req, res) {
+    User.find().count(function (err, results) {
+        let obj = {
+            count: results
+        };
+        // res.set('Content-Type', 'text');
+        // res.status(202);
+        res.send(obj);
+    })
+};
 
 
 exports.postUser = function (req, res) {
     var newUser = new User();
-    let myObj = {
-        applicants: "",
-        application: {
-            "message": "",
-            "response_type": "",
-            "response_action": ""
-        }
-    };
 
     if (req.body.first_name &&
         req.body.email &&
@@ -72,20 +81,22 @@ exports.postUser = function (req, res) {
         newUser.last_name = req.body.last_name;
         newUser.email = req.body.email;
         newUser.mobile = req.body.mobile;
+        newUser.pan_no = req.body.pan_no;
+
 
         newUser.save(function (error, result) {
             if (error) {
                 myObj.application.message = error.message;
-                myObj.application.response_type = "stop";
-                myObj.application.response_action = "hard";
-                res.status(400);
+                myObj.application.response_type = "hard";
+                myObj.application.response_action = "stop";
+                res.status(200);
                 res.json(myObj);
             } else {
                 myObj.applicants = result._doc;
-                myObj.application.message = "Successfully Save";
-                myObj.application.response_type = "continue";
-                myObj.application.response_action = "info";
-                res.status(200);
+                myObj.application.message = "Successfully Saved";
+                myObj.application.response_type = "info";
+                myObj.application.response_action = "continue";
+                res.status(202);
                 res.json(myObj);
             }
         });
