@@ -61,10 +61,10 @@
 
 * check in db.js file ,db should point to the mLab database as a prod_url
 
-How to run the node inspector
-chrome://inspect/#devices
-Open dedicated DevTools for Node
-node --inspect app/server.js
+* How to run the node inspector
+     chrome://inspect/#devices
+* Open dedicated DevTools for Node
+      node --inspect app/server.js
 
 
 Important link https://nodejs.org/en/docs/guides/debugging-getting-started/#enabling-remote-debugging-scenarios
