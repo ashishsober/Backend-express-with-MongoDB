@@ -32,8 +32,8 @@
 
 	      content-type: application/json 	
    
-3) GET Api to get All user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
-3) POST Api of user http://ec2-52-42-15-201.us-west-2.compute.amazonaws.com/register/user
+3) GET Api to get All user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
+3) POST Api of user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
     * schema to use or sent the data:
        
 	Mock data ,set in body section :
@@ -57,7 +57,7 @@
 		* git pull to get the latest
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
-		* sudo nohup node server.js &(to run in backgroud)
+		* sudo nohup node app/server.js 80 &(to run in backgroud)
 
 * check in db.js file ,db should point to the mLab database as a prod_url
 
