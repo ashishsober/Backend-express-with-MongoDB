@@ -33,7 +33,8 @@
 	      content-type: application/json 	
    
 3) GET Api to get All user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
-3) POST Api of user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
+4) POST Api of user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
+5) GET http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/users/count
     * schema to use or sent the data:
        
 	Mock data ,set in body section :
@@ -62,8 +63,12 @@
 * check in db.js file ,db should point to the mLab database as a prod_url
 
 * How to run the node inspector
+
      chrome://inspect/#devices
+
 * Open dedicated DevTools for Node
+
+
       node --inspect app/server.js
 
 
