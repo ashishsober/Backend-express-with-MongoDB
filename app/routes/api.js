@@ -1,4 +1,5 @@
 var myServices= require('../controllers/myServices.Controller.js');
+var contactController= require('../controllers/contact-vrd/contact.controller');
 /**
 * Routes
 */
@@ -8,4 +9,6 @@ module.exports = function(app) {
 	app.get('/register/user', myServices.getUser);
 	app.post('/register/user', myServices.postUser);
 	app.get('/register/users/count', myServices.getUsersCount);
+
+	app.post('/application/contactVrd', contactController.postContact);
 }

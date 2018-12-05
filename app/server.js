@@ -55,7 +55,7 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
 
 
       var server = app.listen(port, function () {
-      	var host = server.address().address
+      	var host = server.address();
       	console.log("App listening at http://%s:%s", host, port)
       });
 
