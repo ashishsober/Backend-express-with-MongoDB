@@ -59,6 +59,7 @@
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo nohup node app/server.js 80 &(to run in backgroud)
+		* sudo node server.js & (to rum in the mentioned port 1337)
 
 * check in db.js file ,db should point to the mLab database as a prod_url
 
@@ -73,3 +74,9 @@
 
 
 Important link https://nodejs.org/en/docs/guides/debugging-getting-started/#enabling-remote-debugging-scenarios
+
+# Status Code 
+   
+    https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+
+	https://myaccount.google.com/lesssecureapps---to remove the security for the nodemailer
