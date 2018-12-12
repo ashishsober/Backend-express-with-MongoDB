@@ -6,6 +6,9 @@ exports.sendMessage = (data) => {
     console.log("inside send email message controller--"+data);
     let transporter = nodemailer.createTransport({
       service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
         user: 'ashishguptawaiting@gmail.com',
         pass: 'anjanibhai1@lux1'
