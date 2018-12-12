@@ -1,6 +1,6 @@
 'use strict';
 const Contact = require('../../schemas/contactSchema');
-const nodemailer = require('nodemailer')
+const contactMail = require('./contact-mail.controller');
 
 let myObj = {
     applicants: "",
@@ -28,7 +28,7 @@ exports.postContact = (req, res, next) => {
         myObj.application.response_action = "continue";
         res.status(201);
         res.json(myObj).end();
-        sendMessage(response);
+        contactMail.sendMessage(response);
     },(error) => {
         myObj.application.message = error.message;
         myObj.application.response_type = "hard";
@@ -37,28 +37,3 @@ exports.postContact = (req, res, next) => {
         res.json(myObj).end();
     });
 };
-
-
-function sendMessage(res){
-  let mailOptions = {
-    from: 'ashishguptawaiting@gmail.com',
-    to: 'ashishguptawaiting@gmail.com',
-    subject: 'Notification from VRD-Network contact page',
-    html: '<p><b>That was easy! BOLD</b></p>'
-   };
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'ashishguptawaiting@gmail.com',
-      pass: 'anjanibhai1@lux1'
-    }
-   });
-  
-   transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-        console.log(error);
-        } else {
-        console.log('Email sent: ' + info.response);
-        }
-   });
-}
