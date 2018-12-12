@@ -1,18 +1,31 @@
 'use strict';
 const Career = require('../../schemas/careerSchema');
 
-let myObj = {
-    applicants: "",
-    application: {
-        "message": "",
-        "response_type": "",
-        "response_action": "",
-        "vrd_ref_number":""
-    }
-};
+
 
 exports.postCareer = (req, res, next) => {
-    var newCareer = new Career(req.body);
+
+    let myObj = {
+        applicants: "",
+        application: {
+            "message": "",
+            "response_type": "",
+            "response_action": "",
+            "vrd_ref_number":""
+        }
+    };
+
+    let newCareer = new Career(req.body);
+    let d = new Date();
+    let date = d.getDate();
+    let dateStr =date.toString();
+    let month = d.getMonth()+1;
+    let monthStr = month.toString();
+    let year = d.getFullYear();
+    let yearStr = year.toString();
+    let concat = dateStr.concat(monthStr);
+    let dateinStr =concat.concat(yearStr);
+    newCareer.vrd_ref_number ="VRD"+dateinStr+"001"
     
     var promise = newCareer.save();
     promise.then((response) => {
@@ -20,6 +33,7 @@ exports.postCareer = (req, res, next) => {
         myObj.application.message = "Successfully Saved";
         myObj.application.response_type = "info";
         myObj.application.response_action = "continue";
+        //myObj.application.vrd_ref_number = "VRD"+dateinStr+"1";
         res.status(201);
         res.json(myObj).end();
         contactMail.sendMessage(response);

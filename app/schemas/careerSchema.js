@@ -35,8 +35,8 @@ var careerSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
-	date_of_birth: {
-		type: Date,
+	vrd_ref_number: {
+		type: String,
 		trim: true
     },
     currentLocation:{
