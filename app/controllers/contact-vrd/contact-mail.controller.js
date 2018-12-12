@@ -36,7 +36,7 @@ exports.sendMessage = (data) => {
            };
          transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-            console.log(error);
+            console.log("Error in sending mail"+error);
             } else {
             console.log('Email sent: ' + info.response);
             }
