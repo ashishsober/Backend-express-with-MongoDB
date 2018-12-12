@@ -81,3 +81,6 @@ Important link https://nodejs.org/en/docs/guides/debugging-getting-started/#enab
     https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 
 	https://myaccount.google.com/lesssecureapps---to remove the security for the nodemailer
+# AMazon SES MAIL SERVICE
+    
+	  * https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
