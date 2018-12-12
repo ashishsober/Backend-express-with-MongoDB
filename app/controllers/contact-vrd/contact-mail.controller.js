@@ -7,20 +7,25 @@ var aws = require('aws-sdk');
 
 exports.sendMessage = (data) => {
     console.log("inside send email message controller--"+data);
-    aws.config.loadFromPath(__dirname + '/../../../config.json');
+     aws.config.loadFromPath(__dirname + '/../../../config.json');
     // Instantiate SES.
-    var ses = new aws.SES();
-    console.log("my ses"+ses);
+    //var ses = new aws.SES();
+    //console.log("my ses"+ses);
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: 'ashishguptawaiting@gmail.com',
-        pass: 'anjanibhai1@lux1'
-      }
-     });
+        SES: new aws.SES({
+            apiVersion: '2010-12-01'
+        })
+    });
+    // let transporter = nodemailer.createTransport({
+    //   service: 'email-smtp.us-east-1.amazonaws.com',
+    //   host: 'email.us-east-1.amazonaws.com',
+    //   port: 465,
+    //   secure: true,
+    //   auth: {
+    //     user: 'AKIAIX4YPNR364SO7LSQ',
+    //     pass: 'Ap4uUdPzdB2DXA+i341S74Bdi/dwOcyPS4RmXOV7PZVl'
+    //   }
+    //  });
      
      let readHTMLFile = function(path, callback) {
         fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
@@ -39,18 +44,30 @@ exports.sendMessage = (data) => {
         let template = handlebars.compile(html);
         var replacements = data;
         var htmlToSend = template(replacements);
-        let mailOptions = {
+        // let mailOptions = {
+        //     from: 'ashishguptawaiting@gmail.com',
+        //     to: 'ashishguptawaiting@gmail.com',
+        //     subject: 'Notification from VRD-Network contact page',
+        //     html: htmlToSend
+        //    };
+        transporter.sendMail({
             from: 'ashishguptawaiting@gmail.com',
             to: 'ashishguptawaiting@gmail.com',
             subject: 'Notification from VRD-Network contact page',
             html: htmlToSend
-           };
-         transporter.sendMail(mailOptions, (error, info) => {
+            }, (error, info) => {
             if (error) {
-            console.log("Error in sending mail"+error);
+               console.log("Error in sending mail"+error.message);
             } else {
-            console.log('Email sent: ' + info.response);
+               console.log('Email sent: ' + info.envelope);
             }
-         });
+        });
+        //  transporter.sendMail(mailOptions, (error, info) => {
+        //     if (error) {
+        //     console.log("Error in sending mail"+error);
+        //     } else {
+        //     console.log('Email sent: ' + info.response);
+        //     }
+        //  });
     });
   };
