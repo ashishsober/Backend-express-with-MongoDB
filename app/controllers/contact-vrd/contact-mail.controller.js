@@ -1,19 +1,27 @@
 const nodemailer = require('nodemailer');
 const fs =require('fs');
 const handlebars = require('handlebars');
+var aws     = require('aws-sdk');
+
+
 
 exports.sendMessage = (data) => {
     console.log("inside send email message controller--"+data);
+    aws.config.loadFromPath(__dirname + '/config.json');
+    // Instantiate SES.
+    var ses = new aws.SES();
+  console.log("my SES---"+ses);
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      host: 'smtp.gmail.com',
+      service: 'email-smtp.us-east-1.amazonaws.com',
+      host: 'ec2-3-16-206-69.us-east-2.compute.amazonaws.com',
       port: 465,
       secure: true,
       auth: {
-        user: 'ashishguptawaiting@gmail.com',
-        pass: 'anjanibhai1@lux1'
+        user: 'AKIAIP2H7RCAZVW2X7MA',
+        pass: 'AocFgMGTnXv8chQAVwUb+gTeoAr3ey0tR4UeMVWSUe7w'
       }
      });
+
      let readHTMLFile = function(path, callback) {
         fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
             if (err) {
