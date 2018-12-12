@@ -24,7 +24,7 @@ exports.sendMessage = (data) => {
     };
      
     readHTMLFile(__dirname + '/contact-mail.html', function(err, html) {
-        console.log("my html"+html);
+        //console.log("my html"+html);
         let template = handlebars.compile(html);
         var replacements = data;
         var htmlToSend = template(replacements);
