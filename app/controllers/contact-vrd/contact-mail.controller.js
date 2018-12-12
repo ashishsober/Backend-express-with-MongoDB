@@ -10,18 +10,18 @@ exports.sendMessage = (data) => {
     aws.config.loadFromPath(__dirname + '/config.json');
     // Instantiate SES.
     var ses = new aws.SES();
-  console.log("my SES---"+ses);
+    console.log("my ses"+ses);
     let transporter = nodemailer.createTransport({
-      service: 'email-smtp.us-east-1.amazonaws.com',
-      host: 'ec2-3-16-206-69.us-east-2.compute.amazonaws.com',
+      service: 'gmail',
+      host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
-        user: 'AKIAIP2H7RCAZVW2X7MA',
-        pass: 'AocFgMGTnXv8chQAVwUb+gTeoAr3ey0tR4UeMVWSUe7w'
+        user: 'ashishguptawaiting@gmail.com',
+        pass: 'anjanibhai1@lux1'
       }
      });
-
+     
      let readHTMLFile = function(path, callback) {
         fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
             if (err) {
