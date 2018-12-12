@@ -10,6 +10,7 @@
   "author": "Anandharajan",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.374.0",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "debug": "^4.1.0",
