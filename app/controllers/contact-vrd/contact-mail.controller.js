@@ -1,13 +1,13 @@
 const nodemailer = require('nodemailer');
 const fs =require('fs');
 const handlebars = require('handlebars');
-var aws     = require('aws-sdk');
+var aws = require('aws-sdk');
 
 
 
 exports.sendMessage = (data) => {
     console.log("inside send email message controller--"+data);
-    aws.config.loadFromPath(__dirname + '/config.json');
+    aws.config.loadFromPath(__dirname + '/../../../config.json');
     // Instantiate SES.
     var ses = new aws.SES();
     console.log("my ses"+ses);
