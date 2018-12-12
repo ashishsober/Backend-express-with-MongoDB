@@ -4,7 +4,13 @@ const Career = require('../../schemas/careerSchema');
 
 
 exports.postCareer = (req, res, next) => {
+    
+    Career.find().count(function (err, results) {
+        saveDataCall(results,req,res);
+    });
+};
 
+function saveDataCall(count,req,res){
     let myObj = {
         applicants: "",
         application: {
@@ -14,7 +20,6 @@ exports.postCareer = (req, res, next) => {
             "vrd_ref_number":""
         }
     };
-
     let newCareer = new Career(req.body);
     let d = new Date();
     let date = d.getDate();
@@ -25,8 +30,10 @@ exports.postCareer = (req, res, next) => {
     let yearStr = year.toString();
     let concat = dateStr.concat(monthStr);
     let dateinStr =concat.concat(yearStr);
-    newCareer.vrd_ref_number ="VRD"+dateinStr+"001"
-    
+    let totalCount = count+1;
+    let totalCountStr =totalCount.toString();
+    newCareer.vrd_ref_number ="VRD"+dateinStr+"00"+totalCountStr;
+
     var promise = newCareer.save();
     promise.then((response) => {
         myObj.applicants = response._doc;
