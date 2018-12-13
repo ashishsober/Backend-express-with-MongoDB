@@ -35,21 +35,7 @@
 3) GET Api to get All user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
 4) POST Api of user http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/user
 5) GET http://ec2-3-16-206-69.us-east-2.compute.amazonaws.com:1337/register/users/count
-    * schema to use or sent the data:
-       
-	Mock data ,set in body section :
-
-	       {
-				"first_name":"ajhjhjhkjhkj",
-				"last_name":"asasdsdsd",
-				"email":"tulli123@gmail.com",
-				"username":"tull123i",
-				"password":"sdss",
-				"passwordConf":"sd"
-			}
-	Headers :
-
-	      content-type: application/json		
+   	
 ## Steps to be followed while giving build in AWS environment.
 
 	In cmd prompt,steps to be followed
