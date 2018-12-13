@@ -45,7 +45,7 @@
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo nohup node app/server.js 80 &(to run in backgroud)
-		* sudo node server.js & (to rum in the mentioned port 1337)
+		* sudo nohup node server.js & (to rum in the mentioned port 1337)
 		* https://github.com/andrewpuch/aws-ses-node-js-examples
 
 * check in db.js file ,db should point to the mLab database as a prod_url
