@@ -4,23 +4,21 @@ const Career = require('../../schemas/careerSchema');
 
 
 exports.postCareer = (req, res, next) => {
+    let myObj = req.body;
+    if(myObj.application.stage ==='bd' && myObj.applicants.vrd_ref_number === ''){
+        Career.find().count(function (err, results) {
+            saveDataCall(results,req,res,myObj);
+        });
+    } else {
+        console.log(req.body.application.vrd_ref_number);
+        res.status(201);
+        res.json(myObj).end();
+    }
     
-    Career.find().count(function (err, results) {
-        saveDataCall(results,req,res);
-    });
 };
 
-function saveDataCall(count,req,res){
-    let myObj = {
-        applicants: "",
-        application: {
-            "message": "",
-            "response_type": "",
-            "response_action": "",
-            "vrd_ref_number":""
-        }
-    };
-    let newCareer = new Career(req.body);
+function saveDataCall(count,req,res, myObj){
+    let newCareer = new Career(req.body.applicants);
     let d = new Date();
     let date = d.getDate();
     let dateStr =date.toString();
@@ -40,10 +38,9 @@ function saveDataCall(count,req,res){
         myObj.application.message = "Successfully Saved";
         myObj.application.response_type = "info";
         myObj.application.response_action = "continue";
-        //myObj.application.vrd_ref_number = "VRD"+dateinStr+"1";
         res.status(201);
         res.json(myObj).end();
-        contactMail.sendMessage(response);
+        //contactMail.sendMessage(response);
     },(error) => {
         myObj.application.message = error.message;
         myObj.application.response_type = "hard";

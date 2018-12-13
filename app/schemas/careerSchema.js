@@ -46,6 +46,30 @@ var careerSchema = new mongoose.Schema({
 	gender: {
 		type: String,
 		trim: true
+	},
+	currentEmpName: {
+		type: String,
+		trim: true
+	},
+	jobTitle: {
+		type: String,
+		trim: true
+	},
+	nightShift: {
+		type: String,
+		trim: true
+	},
+	totalExp: {
+		type: String,
+		trim: true
+	},
+	keySkills: {
+		type: String,
+		trim: true
+	},
+	references: {
+		type: String,
+		trim: true
 	}
 },{
     versionKey: false // You should be aware of the outcome after set to false
