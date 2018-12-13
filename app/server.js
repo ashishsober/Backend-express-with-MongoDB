@@ -43,7 +43,7 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
 
 
       //Here we can see the API'S
-      require('./routes/api')(app); 
+      require('./api')(app); 
 
 
 

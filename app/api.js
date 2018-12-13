@@ -1,6 +1,6 @@
-var myServices= require('../controllers/myServices.Controller.js');
-var contactController= require('../controllers/contact-vrd/contact.controller');
-var careerController= require('../controllers/career-vrd/career.controller');
+var myServices= require('./controllers/myServices.Controller.js');
+var contactController= require('./controllers/contact-vrd/contact.controller');
+var careerController= require('./controllers/career-vrd/career.controller');
 /**
 * Routes
 */
