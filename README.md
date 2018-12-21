@@ -52,22 +52,24 @@
 
 * How to run the node inspector
 
-     chrome://inspect/#devices
+        chrome://inspect/#devices
 
 * Open dedicated DevTools for Node
 
 
-      node --inspect app/server.js
+        node --inspect app/server.js
 
 
-Important link https://nodejs.org/en/docs/guides/debugging-getting-started/#enabling-remote-debugging-scenarios
+Important link
+       
+	    https://nodejs.org/en/docs/guides/debugging-getting-started/#enabling-remote-debugging-scenarios
 
 # Status Code 
    
-    https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+        https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 
-	https://myaccount.google.com/lesssecureapps---to remove the security for the nodemailer
+	    https://myaccount.google.com/lesssecureapps---to remove the security for the nodemailer
 	
-# AMazon SES MAIL SERVICE
+# Amazon SES MAIL SERVICE
     
 	  * https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
