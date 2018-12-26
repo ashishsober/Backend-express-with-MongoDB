@@ -73,3 +73,4 @@ Important link
 # Amazon SES MAIL SERVICE
     
 	  * https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
+	  * https://aws.amazon.com/premiumsupport/knowledge-center/?icmpid=support_email_category
