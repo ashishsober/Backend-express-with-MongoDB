@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/server.js"
+    "start": "tsc && node ./dist/index.js",
+    "ts": "tsc -w",
+    "server": "nodemon ./dist/index.js "
   },
   "author": "Anandharajan",
   "license": "ISC",
@@ -13,8 +14,17 @@
     "@types/express": "^4.16.0",
     "@types/mongoose": "^5.3.5",
     "@types/node": "^10.12.18",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0",
     "typescript": "^3.2.2",
     "typescript-eslint-parser": "^21.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "helmet": "^3.15.0",
+    "morgan": "^1.9.1",
+    "cors": "^2.8.5",
+    "nodemon": "^1.18.9"
+  }
 }
