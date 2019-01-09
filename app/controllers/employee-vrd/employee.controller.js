@@ -39,6 +39,7 @@ exports.postEmployee = (req, res, next) => {
         res.json(result).end();  
     },(error) => {
         if(error.code === 11000 || error.code === 11001 ){
+             console.log("access token to deleted")
              deleteAccessToken(data,res);
         } else {
             res.status(400);
@@ -49,9 +50,13 @@ exports.postEmployee = (req, res, next) => {
 
 //deleting the previous accessToken and inserting the new one
 function deleteAccessToken(data,res){
-  access.deleteOne({uid:data.providerData[0].uid} , function(error,result){
-    console.log("Deleted accessToken successfully---- "+result);
-    res.status(201);
-    res.json(result).end(); 
+  access.deleteOne({uid:data.providerData[0].uid} ,(error,result) => {
+    if(error) {
+        res.status(400);
+        res.json(error).end();
+    } else {
+        console.log("Deleted accessToken successfully---- "+result);
+        setAccesstoken(data,res);
+    }
   });
 }
