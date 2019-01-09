@@ -15,4 +15,6 @@ module.exports = function(app) {
 	app.post('/application/careerVrd', careerController.postCareer);
 	app.post('/application/contactVrd', contactController.postContact);
 	app.post('/application/employee', employeeController.postEmployee);
+	app.post('/application/auth', employeeController.authEmployee);
+	app.post('/application/logout', employeeController.logout);
 }
