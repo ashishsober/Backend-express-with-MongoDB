@@ -1,6 +1,7 @@
 var myServices= require('./controllers/myServices.Controller.js');
 var contactController= require('./controllers/contact-vrd/contact.controller');
 var careerController= require('./controllers/career-vrd/career.controller');
+var employeeController= require('./controllers/employee-vrd/employee.controller');
 /**
 * Routes
 */
@@ -12,5 +13,5 @@ module.exports = function(app) {
 	app.get('/register/users/count', myServices.getUsersCount);
 
 	app.post('/application/contactVrd', contactController.postContact);
-	app.post('/application/careerVrd', careerController.postCareer);
+	app.post('/application/employee', employeeController.postEmployee);
 }
