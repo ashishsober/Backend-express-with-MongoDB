@@ -12,6 +12,7 @@ module.exports = function(app) {
 	app.post('/register/user', myServices.postUser);
 	app.get('/register/users/count', myServices.getUsersCount);
 
+	app.post('/application/careerVrd', careerController.postCareer);
 	app.post('/application/contactVrd', contactController.postContact);
 	app.post('/application/employee', employeeController.postEmployee);
 }
