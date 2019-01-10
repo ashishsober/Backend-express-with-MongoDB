@@ -34,9 +34,15 @@ function setAccesstoken(data, res) {
     accessToken.uid = data.providerData[0].uid;
     var promise = accessToken.save();
     promise.then((result) => {
-        console.log("------Created accessToken successfully")
+        console.log("----------Created accessToken successfully----------------");
+        let responseToSend = {
+            accessToken:result.accessToken,
+            uid:result.uid,
+            email:data.providerData[0].email,
+            photoURL:data.providerData[0].photoURL
+        }
         res.status(201);
-        res.json(result).end();
+        res.json(responseToSend).end();
     }, (error) => {
         if (error.code === 11000 || error.code === 11001) {
             console.log("access token to deleted")
@@ -57,7 +63,7 @@ function deleteAccessToken(data, res) {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("Deleted accessToken successfully---- " + result);
+            console.log("-----Deleted accessToken successfully---- ");
             setAccesstoken(data, res);
         }
     });
@@ -72,9 +78,16 @@ exports.authEmployee = (req, res, next) => {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("Finded the accesToken in  the database");
+            console.log("-------Finded the accesToken in  the database---------");
+            let responseToSend = {
+                accessToken:result[0]._doc.accessToken,
+                uid:result[0]._doc.uid,
+                email:req.body.emailId,
+                photoURL:req.body.photoURL,
+                message:"Successfully Authenticated"
+            }
             res.status(201);
-            res.json(result).end();
+            res.json(responseToSend).end();
         }
     })
 };
@@ -90,7 +103,6 @@ exports.logout = (req, res, next) => {
             console.log("successfully deleted the session");
             res.status(201);
             res.json(result).end();
-
         }
     });
 };
