@@ -21,11 +21,11 @@ module.exports = function(app,passport) {
 	app.post('/application/auth', employeeController.authEmployee);
 	app.post('/application/logout', employeeController.logout);
 
-	app.get('/auth/google',passport.authenticate('google', { scope: google.defaultScope } ));
+	app.get('/auth/google',employeeController.googleAuth);
 
     app.get('/auth/google/callback',
-            passport.authenticate('google', (user_data,req,res) => {
-				console.log("user_data")
+            passport.authenticate('google', (user_data) => {
+				console.log(user_data);
 				//employeeController.authEmployee(user_data);
 			}));
 }

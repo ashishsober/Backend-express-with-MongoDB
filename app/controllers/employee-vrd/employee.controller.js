@@ -5,8 +5,10 @@ var passport =require('passport');
 var google = require('../../config/auth');
 
 
-exports.googleAuth = (req, res) => { 
-    passport.authenticate('google', { scope: google.defaultScope } );
+exports.googleAuth = (req, res,next) => { 
+    passport.authenticate('google',{ scope: ['profile']})(req, res, next);
+   // res.status(201);
+    // res.send('you hit the authentication endpoint\n');
 }
 
 
