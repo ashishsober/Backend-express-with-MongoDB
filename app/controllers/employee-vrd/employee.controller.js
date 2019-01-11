@@ -1,6 +1,15 @@
 'use strict';
 const Employee = require('../../schemas/employeeSchema');
 const access = require('../../schemas/accessToken');
+var passport =require('passport');
+var google = require('../../config/auth');
+
+
+exports.googleAuth = (req, res) => { 
+    passport.authenticate('google', { scope: google.defaultScope } );
+}
+
+
 
 
 
@@ -68,6 +77,25 @@ function deleteAccessToken(req, res) {
         }
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exports.authEmployee = (req, res) => {
     access.find({

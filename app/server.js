@@ -9,8 +9,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var dbobj = require('./controllers/db'); //u can see the database connection here
+var passport =require('passport');
 
-
+var passAuth = require('./config/passport');
 
 
 /**
@@ -31,19 +32,19 @@ var dbobj = require('./controllers/db'); //u can see the database connection her
             resave:true
     }));
 
-    // app.use('/',function(req,res){
-    //   res.send("Our first express program");
-    //   console.log(req.cookies);
-    //   console.log('===============');
-    //   console.log(req.session);
-    // })
- 
+    passport.serializeUser(function(user, done) {
+      done(null, user);
+    });
+    
+    passport.deserializeUser(function(obj, done) {
+      done(null, obj);
+    });
 
-
-
+    //app.use(passport.initialize());
+    //app.use(passport.session());
 
       //Here we can see the API'S
-      require('./api')(app); 
+      require('./api')(app,passport); 
 
 
 
