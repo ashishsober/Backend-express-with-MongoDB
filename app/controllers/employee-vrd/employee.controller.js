@@ -1,19 +1,22 @@
 'use strict';
 const Employee = require('../../schemas/employeeSchema');
 const access = require('../../schemas/accessToken');
-var passport =require('passport');
+var passport = require('passport');
 var google = require('../../config/auth');
 
 
-exports.googleAuth = (req, res,next) => { 
-    passport.authenticate('google',{ scope: ['profile']})(req, res, next);
-   // res.status(201);
-    // res.send('you hit the authentication endpoint\n');
+exports.googleAuth = (req, res, next) => {
+    passport.authenticate('google', {
+        access_type: 'offline',
+        prompt: 'consent',
+        session: false,
+        scope: ['profile', 'email']
+    })(req, res, next);
 }
 
-exports.googleAuthCallback = (req, res,next) => { 
-    passport.authenticate('google', (error,user_data) => {
-        console.log(error,user_data);
+exports.googleAuthCallback = (req, res, next) => {
+    passport.authenticate('google', (error, user_data) => {
+        console.log(error, user_data);
         res.status(201).json(user_data);
     })(req, res, next);
 }
@@ -53,10 +56,10 @@ function setAccesstoken(req, res) {
     promise.then((result) => {
         console.log("----------Created accessToken successfully----------------");
         let responseToSend = {
-            accessToken:result.accessToken,
-            uid:result.uid,
-            email:req.body.providerData[0].email,
-            photoURL:req.body.providerData[0].photoURL
+            accessToken: result.accessToken,
+            uid: result.uid,
+            email: req.body.providerData[0].email,
+            photoURL: req.body.providerData[0].photoURL
         }
         res.status(201);
         res.json(responseToSend).end();
@@ -115,49 +118,49 @@ exports.authEmployee = (req, res) => {
             res.json(error).end();
         } else {
             console.log("-------Finded the accesToken in  the database---------");
-            if(result.length === 1) {
+            if (result.length === 1) {
                 let responseToSend = {
-                    accessToken:result[0]._doc.accessToken,
-                    uid:result[0]._doc.uid,
-                    email:"",
-                    photoURL:"",
-                    message:"Successfully Authenticated",
-                    responseAction:"info"
+                    accessToken: result[0]._doc.accessToken,
+                    uid: result[0]._doc.uid,
+                    email: "",
+                    photoURL: "",
+                    message: "Successfully Authenticated",
+                    responseAction: "info"
                 }
-                findUid(responseToSend,res);
+                findUid(responseToSend, res);
             } else {
                 let responseToSend = {
-                    accessToken:"",
-                    uid:"",
-                    email:"",
-                    photoURL:"",
-                    message:"Authentication Failed",
-                    responseAction:"hard"
+                    accessToken: "",
+                    uid: "",
+                    email: "",
+                    photoURL: "",
+                    message: "Authentication Failed",
+                    responseAction: "hard"
                 }
                 res.status(201);
                 res.json(responseToSend).end();
             }
-            
+
         }
     })
 };
 
-function findUid(responseToSend, res){
+function findUid(responseToSend, res) {
     Employee.find({
-        uid:responseToSend.uid,
+        uid: responseToSend.uid,
     }, (error, result) => {
         if (error) {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("finded the user id in employee table---"+result);
+            console.log("finded the user id in employee table---" + result);
             responseToSend.email = result[0]._doc.email;
             responseToSend.photoURL = result[0]._doc.photoURL;
             res.status(201);
             res.json(responseToSend).end();
         }
     });
-    
+
 };
 
 exports.logout = (req, res) => {

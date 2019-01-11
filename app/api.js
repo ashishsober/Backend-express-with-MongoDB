@@ -10,6 +10,7 @@ const Window = require('window');
 module.exports = function (app, passport) {
 	const window = new Window();
 	app.use(passport.initialize());
+	app.use(passport.session())
 	app.post('/truck/tripSummary', myServices.postTripSummary);
 	app.get('/truck/tripSummary', myServices.getTripSummary);
 	app.get('/register/user', myServices.getUser);
