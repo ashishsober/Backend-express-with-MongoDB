@@ -11,6 +11,12 @@ exports.googleAuth = (req, res,next) => {
     // res.send('you hit the authentication endpoint\n');
 }
 
+exports.googleAuthCallback = (req, res,next) => { 
+    passport.authenticate('google', (error,user_data) => {
+        console.log(error,user_data);
+       
+    })(req, res, next);
+}
 
 
 

@@ -8,7 +8,7 @@ passport.use(new GoogleStrategy({
         callbackURL     : configAuth.googleAuth.redirect
         },(token, refreshToken, profile, done) =>{
             console.log("my google data-----------"+profile);
-            return done(profile);
+            return done(null,profile);
                        //process.nextTick(function() {});
         }
 ));
