@@ -14,7 +14,7 @@ exports.googleAuth = (req, res,next) => {
 exports.googleAuthCallback = (req, res,next) => { 
     passport.authenticate('google', (error,user_data) => {
         console.log(error,user_data);
-       
+        res.status(201).json(user_data);
     })(req, res, next);
 }
 
