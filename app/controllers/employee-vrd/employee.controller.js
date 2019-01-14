@@ -103,7 +103,8 @@ exports.authEmployee = (req, res) => {
                     emailId: "",
                     photoUrl: "",
                     message: "Successfully Authenticated",
-                    responseAction: "info"
+                    responseAction: "info",
+                    action:"authenticated"
                 }
                 findUid(responseToSend, res);
             } else {
@@ -113,7 +114,8 @@ exports.authEmployee = (req, res) => {
                     emailId: "",
                     photoUrl: "",
                     message: "Authentication Failed",
-                    responseAction: "hard"
+                    responseAction: "hard",
+                    action:"authenticated"
                 }
                 res.status(201).send(responseToSend);
             }
@@ -148,8 +150,17 @@ exports.logout = (req, res) => {
             res.json(error).end();
         } else {
             console.log("successfully deleted the session from backend");
+            let responseToSend = {
+                accessToken: "",
+                id: req.body.uid,
+                emailId: "",
+                photoUrl: "",
+                message: "Successfully Logout",
+                responseAction: "info",
+                action:"logout"
+            }
             res.status(201);
-            res.json(result).end();
+            res.json(responseToSend).end();
         }
     });
 };
