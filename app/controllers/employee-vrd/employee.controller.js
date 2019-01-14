@@ -102,10 +102,10 @@ exports.authEmployee = (req, res) => {
                     id: result[0]._doc.uid,
                     emailId: "",
                     photoUrl: "",
-                    displayName:"",
+                    displayName: "",
                     message: "Successfully Authenticated",
                     responseAction: "info",
-                    action:"authenticated"
+                    action: "authenticated"
                 }
                 findUid(responseToSend, res);
             } else {
@@ -114,10 +114,10 @@ exports.authEmployee = (req, res) => {
                     id: "",
                     emailId: "",
                     photoUrl: "",
-                    displayName:"",
+                    displayName: "",
                     message: "Authentication Failed",
                     responseAction: "hard",
-                    action:"authenticated"
+                    action: "authenticated"
                 }
                 res.status(201).send(responseToSend);
             }
@@ -158,10 +158,10 @@ exports.logout = (req, res) => {
                 id: req.body.uid,
                 emailId: "",
                 photoUrl: "",
-                displayName:"",
+                displayName: "",
                 message: "Successfully Logout",
                 responseAction: "info",
-                action:"logout"
+                action: "logout"
             }
             res.status(201);
             res.json(responseToSend).end();
