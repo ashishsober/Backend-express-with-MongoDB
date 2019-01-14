@@ -23,7 +23,7 @@ exports.googleAuthCallback = (req, res, next) => {
 
 
 //save the login user details in our database for the future reference
-exports.postEmployee = (profileData,done) => {
+exports.postEmployee = (profileData, done) => {
     let newEmployee = new Employee();
     let date = new Date();
     newEmployee.displayName = profileData.displayName;
@@ -31,17 +31,17 @@ exports.postEmployee = (profileData,done) => {
     newEmployee.photoURL = profileData.photos[0].value
     newEmployee.uid = profileData.id;
     newEmployee.creationTime = date;
-    newEmployee.providerId =profileData.provider;
+    newEmployee.providerId = profileData.provider;
     var promise = newEmployee.save();
     promise.then((result) => {
         console.log("successfuuly created");
-        setAccesstoken(profileData,done);
+        setAccesstoken(profileData, done);
     }, (error) => {
         /****  no need to save if it is duplicate.
          create a session in backend with the userid,createdDate and the access token to the access token table
         *****/
         if (error.code === 11000 || error.code === 11001) {
-            setAccesstoken(profileData,done);
+            setAccesstoken(profileData, done);
         } else {
             res.status(400);
             res.json(error).end();
@@ -51,7 +51,7 @@ exports.postEmployee = (profileData,done) => {
 
 
 //saving access token to database
-function setAccesstoken(profileData,done) {
+function setAccesstoken(profileData, done) {
     let accessToken = new access();
     let date = new Date();
     accessToken.accessToken = profileData.accessToken;
@@ -64,7 +64,7 @@ function setAccesstoken(profileData,done) {
     }, (error) => {
         if (error.code === 11000 || error.code === 11001) {
             console.log("access token already present need to delete")
-            deleteAccessToken(profileData,done);
+            deleteAccessToken(profileData, done);
         } else {
             return false;
         }
@@ -95,7 +95,7 @@ exports.authEmployee = (req, res) => {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("-------Finded the accesToken in  the database---------");
+            console.log("-------Finded the accesToken in the database---------");
             if (result.length === 1) {
                 let responseToSend = {
                     accessToken: result[0]._doc.accessToken,
@@ -130,7 +130,7 @@ function findUid(responseToSend, res) {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("finded the user id in employee table---" + result);
+            console.log("finded the user id in employee table---");
             responseToSend.emailId = result[0]._doc.email;
             responseToSend.photoUrl = result[0]._doc.photoURL;
             res.status(201).send(responseToSend);
@@ -147,7 +147,7 @@ exports.logout = (req, res) => {
             res.status(400);
             res.json(error).end();
         } else {
-            console.log("successfully deleted the session");
+            console.log("successfully deleted the session from backend");
             res.status(201);
             res.json(result).end();
         }
