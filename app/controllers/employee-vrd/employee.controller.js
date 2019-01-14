@@ -102,6 +102,7 @@ exports.authEmployee = (req, res) => {
                     id: result[0]._doc.uid,
                     emailId: "",
                     photoUrl: "",
+                    displayName:"",
                     message: "Successfully Authenticated",
                     responseAction: "info",
                     action:"authenticated"
@@ -113,6 +114,7 @@ exports.authEmployee = (req, res) => {
                     id: "",
                     emailId: "",
                     photoUrl: "",
+                    displayName:"",
                     message: "Authentication Failed",
                     responseAction: "hard",
                     action:"authenticated"
@@ -135,6 +137,7 @@ function findUid(responseToSend, res) {
             console.log("finded the user id in employee table---");
             responseToSend.emailId = result[0]._doc.email;
             responseToSend.photoUrl = result[0]._doc.photoURL;
+            responseToSend.displayName = result[0]._doc.displayName;
             res.status(201).send(responseToSend);
         }
     });
@@ -155,6 +158,7 @@ exports.logout = (req, res) => {
                 id: req.body.uid,
                 emailId: "",
                 photoUrl: "",
+                displayName:"",
                 message: "Successfully Logout",
                 responseAction: "info",
                 action:"logout"
