@@ -16,27 +16,32 @@ exports.googleAuth = (req, res, next) => {
 
 exports.googleAuthCallback = (req, res, next) => {
     passport.authenticate('google', (error, user_data) => {
-        //console.log(error, user_data);
         res.status(201).json(user_data);
     })(req, res, next);
 }
 
 
 
-
-exports.postEmployee = (req, res, next) => {
-    let newEmployee = new Employee(req.body.providerData[0]);
+//save the login user details in our database for the future reference
+exports.postEmployee = (profileData,done) => {
+    let newEmployee = new Employee();
     let date = new Date();
+    newEmployee.displayName = profileData.displayName;
+    newEmployee.email = profileData.emails[0].value;
+    newEmployee.photoURL = profileData.photos[0].value
+    newEmployee.uid = profileData.id;
     newEmployee.creationTime = date;
+    newEmployee.providerId =profileData.provider;
     var promise = newEmployee.save();
     promise.then((result) => {
-        setAccesstoken(req, res);
+        console.log("successfuuly created");
+        setAccesstoken(profileData,done);
     }, (error) => {
         /****  no need to save if it is duplicate.
          create a session in backend with the userid,createdDate and the access token to the access token table
         *****/
         if (error.code === 11000 || error.code === 11001) {
-            setAccesstoken(req, res);
+            setAccesstoken(profileData,done);
         } else {
             res.status(400);
             res.json(error).end();
@@ -46,66 +51,39 @@ exports.postEmployee = (req, res, next) => {
 
 
 //saving access token to database
-function setAccesstoken(req, res) {
+function setAccesstoken(profileData,done) {
     let accessToken = new access();
     let date = new Date();
-    accessToken.accessToken = req.body.stsTokenManager.refreshToken;
+    accessToken.accessToken = profileData.accessToken;
     accessToken.creationTime = date;
-    accessToken.uid = req.body.providerData[0].uid;
+    accessToken.uid = profileData.id;
     var promise = accessToken.save();
     promise.then((result) => {
         console.log("----------Created accessToken successfully----------------");
-        let responseToSend = {
-            accessToken: result.accessToken,
-            uid: result.uid,
-            email: req.body.providerData[0].email,
-            photoURL: req.body.providerData[0].photoURL
-        }
-        res.status(201);
-        res.json(responseToSend).end();
+        return true;
     }, (error) => {
         if (error.code === 11000 || error.code === 11001) {
             console.log("access token already present need to delete")
-            deleteAccessToken(req, res);
+            deleteAccessToken(profileData,done);
         } else {
-            res.status(400);
-            res.json(error).end();
+            return false;
         }
     });
 };
 
 //deleting the previous accessToken and inserting the new one
-function deleteAccessToken(req, res) {
+function deleteAccessToken(profileData) {
     access.deleteOne({
-        uid: req.body.providerData[0].uid
+        uid: profileData.id
     }, (error, result) => {
         if (error) {
-            res.status(400);
-            res.json(error).end();
+            return false;
         } else {
             console.log("-----Deleted accessToken successfully---- ");
-            setAccesstoken(req, res);
+            setAccesstoken(profileData);
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 exports.authEmployee = (req, res) => {
@@ -121,9 +99,9 @@ exports.authEmployee = (req, res) => {
             if (result.length === 1) {
                 let responseToSend = {
                     accessToken: result[0]._doc.accessToken,
-                    uid: result[0]._doc.uid,
-                    email: "",
-                    photoURL: "",
+                    id: result[0]._doc.uid,
+                    emailId: "",
+                    photoUrl: "",
                     message: "Successfully Authenticated",
                     responseAction: "info"
                 }
@@ -131,14 +109,13 @@ exports.authEmployee = (req, res) => {
             } else {
                 let responseToSend = {
                     accessToken: "",
-                    uid: "",
-                    email: "",
-                    photoURL: "",
+                    id: "",
+                    emailId: "",
+                    photoUrl: "",
                     message: "Authentication Failed",
                     responseAction: "hard"
                 }
-                res.status(201);
-                res.json(responseToSend).end();
+                res.status(201).send(responseToSend);
             }
 
         }
@@ -147,17 +124,16 @@ exports.authEmployee = (req, res) => {
 
 function findUid(responseToSend, res) {
     Employee.find({
-        uid: responseToSend.uid,
+        uid: responseToSend.id,
     }, (error, result) => {
         if (error) {
             res.status(400);
             res.json(error).end();
         } else {
             console.log("finded the user id in employee table---" + result);
-            responseToSend.email = result[0]._doc.email;
-            responseToSend.photoURL = result[0]._doc.photoURL;
-            res.status(201);
-            res.json(responseToSend).end();
+            responseToSend.emailId = result[0]._doc.email;
+            responseToSend.photoUrl = result[0]._doc.photoURL;
+            res.status(201).send(responseToSend);
         }
     });
 

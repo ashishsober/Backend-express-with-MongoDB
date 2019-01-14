@@ -2,10 +2,6 @@ var mongoose = require('mongoose');
 //var bcrypt = require('bcrypt');
 
 var employeeSchema = new mongoose.Schema({
-	phoneNumber:{
-		type:Number,
-		trim:true
-	},
 	email: {
 		type: String,
 		unique: true,
