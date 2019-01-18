@@ -74,3 +74,4 @@ Important link
     
 	  * https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
 	  * https://aws.amazon.com/premiumsupport/knowledge-center/?icmpid=support_email_category
+	  https://console.developers.google.com/apis/api/plus.googleapis.com/credentials
