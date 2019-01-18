@@ -16,6 +16,7 @@ module.exports = function (app, passport) {
 
 	app.post('/application/careerVrd', careerController.postCareer);
 	app.post('/application/contactVrd', contactController.postContact);
+	app.get('/register/contact', contactController.getContact);
 	app.post('/application/auth', employeeController.authEmployee);
 	app.post('/application/logout', employeeController.logout);
 

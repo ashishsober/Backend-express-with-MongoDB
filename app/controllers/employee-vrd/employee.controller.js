@@ -14,11 +14,11 @@ exports.googleAuth = (req, res, next) => {
     })(req, res, next);
 }
 
-exports.googleAuthCallback = (req, res, next) => {
-    passport.authenticate('google', (error, user_data) => {
-        res.status(201).json(user_data);
-    })(req, res, next);
-}
+// exports.googleAuthCallback = (req, res, next) => {
+//     passport.authenticate('google', (error, user_data) => {
+//         res.status(201).json(user_data);
+//     })(req, res, next);
+// }
 
 
 
@@ -87,6 +87,16 @@ function deleteAccessToken(profileData) {
 
 
 exports.authEmployee = (req, res) => {
+    let responseToSend = {
+        accessToken: "",
+        id: "",
+        emailId: "",
+        photoUrl: "",
+        displayName: "",
+        message: "",
+        responseAction: "",
+        action: ""
+    }
     access.find({
         uid: req.body.uid,
         accessToken: req.body.accessToken
@@ -97,28 +107,18 @@ exports.authEmployee = (req, res) => {
         } else {
             console.log("-------Finded the accesToken in the database---------");
             if (result.length === 1) {
-                let responseToSend = {
-                    accessToken: result[0]._doc.accessToken,
-                    id: result[0]._doc.uid,
-                    emailId: "",
-                    photoUrl: "",
-                    displayName: "",
-                    message: "Successfully Authenticated",
-                    responseAction: "info",
-                    action: "authenticated"
-                }
+                    responseToSend.accessToken=result[0]._doc.accessToken,
+                    responseToSend.id = result[0]._doc.uid;
+                    responseToSend.message = "Successfully Authenticated";
+                    responseToSend.responseAction= "info";
+                    responseToSend.action= "authenticated";
+                
                 findUid(responseToSend, res);
             } else {
-                let responseToSend = {
-                    accessToken: "",
-                    id: "",
-                    emailId: "",
-                    photoUrl: "",
-                    displayName: "",
-                    message: "Authentication Failed",
-                    responseAction: "hard",
-                    action: "authenticated"
-                }
+                    responseToSend.message =  "Authentication Failed";
+                    responseToSend.responseAction= "hard";
+                    responseToSend.action= "authenticated";
+                
                 res.status(201).send(responseToSend);
             }
 
@@ -126,25 +126,34 @@ exports.authEmployee = (req, res) => {
     })
 };
 
-function findUid(responseToSend, res) {
+function findUid(datatoSend, res) {
     Employee.find({
-        uid: responseToSend.id,
+        uid: datatoSend.id
     }, (error, result) => {
         if (error) {
             res.status(400);
             res.json(error).end();
         } else {
             console.log("finded the user id in employee table---");
-            responseToSend.emailId = result[0]._doc.email;
-            responseToSend.photoUrl = result[0]._doc.photoURL;
-            responseToSend.displayName = result[0]._doc.displayName;
-            res.status(201).send(responseToSend);
+            datatoSend.emailId = result[0]._doc.email;
+            datatoSend.photoUrl = result[0]._doc.photoURL;
+            datatoSend.displayName = result[0]._doc.displayName;
+            res.status(201).send(datatoSend);
         }
     });
-
 };
 
 exports.logout = (req, res) => {
+    let responseToSend = {
+        accessToken: "",
+        id: "",
+        emailId: "",
+        photoUrl: "",
+        displayName: "",
+        message: "",
+        responseAction: "",
+        action: ""
+    }
     access.deleteOne({
         uid: req.body.uid
     }, (error, result) => {
@@ -153,16 +162,10 @@ exports.logout = (req, res) => {
             res.json(error).end();
         } else {
             console.log("successfully deleted the session from backend");
-            let responseToSend = {
-                accessToken: "",
-                id: req.body.uid,
-                emailId: "",
-                photoUrl: "",
-                displayName: "",
-                message: "Successfully Logout",
-                responseAction: "info",
-                action: "logout"
-            }
+                responseToSend.id = req.body.uid,
+                responseToSend.message = "Successfully Logout",
+                responseToSend.responseAction= "info",
+                responseToSend.action= "logout"
             res.status(201);
             res.json(responseToSend).end();
         }
