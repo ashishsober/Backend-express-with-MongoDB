@@ -37,3 +37,10 @@ exports.postContact = (req, res, next) => {
         res.json(myObj).end();
     });
 };
+
+exports.getContact = function (req, res) {
+    Contact.find(function (err, results) {
+        res.set('Content-Type', 'application/json');
+        res.send(results);
+    })
+};
