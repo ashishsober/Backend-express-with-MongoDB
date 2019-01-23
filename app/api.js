@@ -2,6 +2,7 @@ var myServices = require('./controllers/myServices.Controller.js');
 var contactController = require('./controllers/contact-vrd/contact.controller');
 var careerController = require('./controllers/career-vrd/career.controller');
 var employeeController = require('./controllers/employee-vrd/employee.controller');
+var managementController = require('./controllers/management-vrd/Management.controller');
 /**
  * Routes
  */
@@ -34,4 +35,7 @@ module.exports = function (app, passport) {
 				res.status(200).send(responseHTML);
 			}
 		);
+
+
+	app.post('/application/managementVrd', managementController.postManagement);
 }
