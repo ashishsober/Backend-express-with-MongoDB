@@ -38,4 +38,5 @@ module.exports = function (app, passport) {
 
 
 	app.post('/application/managementVrd', managementController.postManagement);
+	app.get('/application/managementVrd', managementController.getManagement);
 }

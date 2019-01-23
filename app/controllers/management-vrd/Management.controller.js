@@ -12,13 +12,6 @@ let myObj = {
 
 exports.postManagement = (req, res, next) => {
     var ManagementNew = new Management(req.body);
-     //Management.name = req.body.name;
-    // Management.email = req.body.email;
-    // Management.phone_no = req.body.phone_no;
-    // Management.service = req.body.service;
-    // Management.other = req.body.other;
-    // Management.comment = req.body.comment;
-    
     var promise = ManagementNew.save();
     promise.then((response) => {
         myObj.applicants = response._doc;
@@ -37,7 +30,12 @@ exports.postManagement = (req, res, next) => {
     });
 };
 
-
+exports.getManagement = function (req, res) {
+    Management.find(function (err, results) {
+        res.set('Content-Type', 'application/json');
+        res.send(results);
+    })
+};
 
 
 
