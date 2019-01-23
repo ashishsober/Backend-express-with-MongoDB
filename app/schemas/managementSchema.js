@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var managementSchema = new mongoose.Schema({
 	emailid: {
 		type: String,
-		required: true,
 		trim: true
     },
     profileImage: {

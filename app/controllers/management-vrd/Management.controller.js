@@ -11,7 +11,22 @@ let myObj = {
 };
 
 exports.postManagement = (req, res, next) => {
-    var ManagementNew = new Management(req.body);
+    if (req.body._id === "" || req.body._id === null) {
+        saveData(req, res, next);
+
+    } else {
+        updateDataCall(req, res, next);
+    }
+
+};
+
+function saveData(req, res, next) {
+    var ManagementNew = new Management();
+    ManagementNew.name = req.body.name;
+    ManagementNew.emailid = req.body.emailid;
+    ManagementNew.profileImage = req.body.profileImage;
+    ManagementNew.position = req.body.position;
+    ManagementNew.discription = req.body.discription;
     var promise = ManagementNew.save();
     promise.then((response) => {
         myObj.applicants = response._doc;
@@ -21,42 +36,23 @@ exports.postManagement = (req, res, next) => {
         res.status(201);
         res.json(myObj).end();
         //contactMail.sendMessage(response);
-    },(error) => {
+    }, (error) => {
         myObj.application.message = error.message;
         myObj.application.response_type = "hard";
         myObj.application.response_action = "stop";
         res.status(400);
         res.json(myObj).end();
     });
-};
-
-exports.getManagement = function (req, res) {
-    Management.find(function (err, results) {
-        res.set('Content-Type', 'application/json');
-        res.send(results);
-    })
-};
-
-exports.deleteManagement = function(req,res) {
-    Management.deleteOne({
-        _id: req.params['id']
-    }, (error, result) => {
-        if (error) {
-            res.set('Content-Type', 'application/json');
-            res.send(error);
-        } else {
-            res.set('Content-Type', 'application/json');
-            res.send(result);
-        }
-    });
 }
 
-
-
-function updateDataCall(myObj,req,res){
-    var myquery = {vrd_ref_number:myObj.applicants.vrd_ref_number};
-    Career.updateOne(myquery,{ $set: myObj.applicants },function(error,result){
-        if(error){
+function updateDataCall(req, res, next) {
+    var myquery = {
+        _id: req.body._id
+    };
+    Management.updateOne(myquery, {
+        $set: req.body
+    }, function (error, result) {
+        if (error) {
             myObj.application.message = error.message;
             myObj.application.response_type = "hard";
             myObj.application.response_action = "stop";
@@ -69,6 +65,27 @@ function updateDataCall(myObj,req,res){
             myObj.application.response_action = "continue";
             res.status(201);
             res.json(myObj).end();
+        }
+    });
+}
+
+exports.getManagement = function (req, res) {
+    Management.find(function (err, results) {
+        res.set('Content-Type', 'application/json');
+        res.send(results);
+    })
+};
+
+exports.deleteManagement = function (req, res) {
+    Management.deleteOne({
+        _id: req.params['id']
+    }, (error, result) => {
+        if (error) {
+            res.set('Content-Type', 'application/json');
+            res.send(error);
+        } else {
+            res.set('Content-Type', 'application/json');
+            res.send(result);
         }
     });
 }
