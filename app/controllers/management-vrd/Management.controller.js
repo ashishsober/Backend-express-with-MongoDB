@@ -20,7 +20,7 @@ exports.postManagement = (req, res, next) => {
         myObj.application.response_action = "continue";
         res.status(201);
         res.json(myObj).end();
-        contactMail.sendMessage(response);
+        //contactMail.sendMessage(response);
     },(error) => {
         myObj.application.message = error.message;
         myObj.application.response_type = "hard";
@@ -36,6 +36,20 @@ exports.getManagement = function (req, res) {
         res.send(results);
     })
 };
+
+exports.deleteManagement = function(req,res) {
+    Management.deleteOne({
+        _id: req.params['id']
+    }, (error, result) => {
+        if (error) {
+            res.set('Content-Type', 'application/json');
+            res.send(error);
+        } else {
+            res.set('Content-Type', 'application/json');
+            res.send(result);
+        }
+    });
+}
 
 
 

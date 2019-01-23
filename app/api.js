@@ -39,4 +39,5 @@ module.exports = function (app, passport) {
 
 	app.post('/application/managementVrd', managementController.postManagement);
 	app.get('/application/managementVrd', managementController.getManagement);
+	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);
 }
