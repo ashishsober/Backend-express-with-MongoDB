@@ -33,7 +33,7 @@ exports.sendMessage = (data) => {
         var htmlToSend = template(replacements);
         let mailOptions = {
             from: 'director@vrdnetwork.com',
-            to: 'ashish.work16@gmail.com',
+            to: 'director@vrdnetwork.com',
             subject: 'Notification from VRD-Network contact page',
             html: htmlToSend
         };
