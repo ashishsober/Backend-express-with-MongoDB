@@ -6,7 +6,9 @@ var aws = require('aws-sdk');
 
 
 exports.sendMessage = (data) => {
-    aws.config.loadFromPath(__dirname + '/../../../config.json');
+    var configPath = __dirname + '/../../../../config.json';
+    console.log("My Config path--"+configPath);
+    aws.config.loadFromPath(configPath);
     let transporter = nodemailer.createTransport({
         SES: new aws.SES({
             apiVersion: '2010-12-01'
