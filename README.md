@@ -5,7 +5,7 @@
 
 ## API's Created and deployed in AWS environment
 
-1) GET Api of trip summary http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/truck/tripSummary
+<!-- 1) GET Api of trip summary http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/truck/tripSummary
 2) POST Api of trip summary ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/truck/tripSummary
     * schema to use or sent the data:
 
@@ -30,11 +30,11 @@
 
 	Headers :
 
-	      content-type: application/json 	
+	      content-type: application/json 	 -->
    
-3) GET Api to get All user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
-4) POST Api of user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
-5) GET http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/users/count
+1) GET Api to get All user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
+2) POST Api of user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
+3) GET http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/users/count
    	
 ## Steps to be followed while giving build in AWS environment.
 
