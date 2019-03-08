@@ -86,6 +86,8 @@ function deleteAccessToken(profileData) {
 }
 
 
+
+//find the user is present or not in the access token table
 exports.authEmployee = (req, res) => {
     let responseToSend = {
         accessToken: "",
@@ -112,19 +114,17 @@ exports.authEmployee = (req, res) => {
                     responseToSend.message = "Successfully Authenticated";
                     responseToSend.responseAction= "info";
                     responseToSend.action= "authenticated";
-                
-                findUid(responseToSend, res);
+                    findUid(responseToSend, res);
             } else {
                     responseToSend.message =  "Authentication Failed";
                     responseToSend.responseAction= "hard";
                     responseToSend.action= "authenticated";
-                
-                res.status(201).send(responseToSend);
+                    res.status(201).send(responseToSend);
             }
-
         }
     })
 };
+
 
 function findUid(datatoSend, res) {
     Employee.find({
@@ -142,6 +142,8 @@ function findUid(datatoSend, res) {
         }
     });
 };
+
+
 
 exports.logout = (req, res) => {
     let responseToSend = {
