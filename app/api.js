@@ -37,7 +37,7 @@ module.exports = function (app, passport) {
 		);
 
 
-	app.post('/application/managementVrd', managementController.postManagement);
+	app.post('/application/managementVrd', managementController.postManagement); //should be authenticate before posting
 	app.get('/application/managementVrd', managementController.getManagement);
-	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);
+	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);//should be authenticate before deleting
 }
