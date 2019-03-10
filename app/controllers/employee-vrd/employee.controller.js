@@ -88,57 +88,59 @@ function deleteAccessToken(profileData) {
 
 
 //find the user is present or not in the access token table
-exports.authEmployee = (req, res) => {
-    let responseToSend = {
-        accessToken: "",
-        id: "",
-        emailId: "",
-        photoUrl: "",
-        displayName: "",
-        message: "",
-        responseAction: "",
-        action: ""
-    }
-    access.find({
-        uid: req.body.uid,
-        accessToken: req.body.accessToken
-    }, (error, result) => {
-        if (error) {
-            res.status(400);
-            res.json(error).end();
-        } else {
-            console.log("-------Finded the accesToken in the database---------");
-            if (result.length === 1) {
-                    responseToSend.accessToken=result[0]._doc.accessToken,
-                    responseToSend.id = result[0]._doc.uid;
-                    responseToSend.message = "Successfully Authenticated";
-                    responseToSend.responseAction= "info";
-                    responseToSend.action= "authenticated";
-                    findUid(responseToSend, res);
-            } else {
-                    responseToSend.message =  "Authentication Failed";
-                    responseToSend.responseAction= "hard";
-                    responseToSend.action= "authenticated";
-                    res.status(201).send(responseToSend);
-            }
-        }
-    })
-};
+// exports.authEmployee = (req, res) => {
+//     let responseToSend = {
+//         accessToken: "",
+//         id: "",
+//         emailId: "",
+//         photoUrl: "",
+//         displayName: "",
+//         message: "",
+//         responseAction: "",
+//         action: ""
+//     }
+//     access.find({
+//         uid: req.body.uid,
+//         accessToken: req.body.accessToken
+//     }, (error, result) => {
+//         if (error) {
+//             res.status(400);
+//             res.json(error).end();
+//         } else {
+//             console.log("-------Finded the accesToken in the database---------");
+//             if (result.length === 1) {
+//                     responseToSend.accessToken=result[0]._doc.accessToken,
+//                     responseToSend.id = result[0]._doc.uid;
+//                     responseToSend.message = "Successfully Authenticated";
+//                     responseToSend.responseAction= "info";
+//                     responseToSend.action= "authenticated";
+//                     findUid(responseToSend, res);
+//             } else {
+//                     responseToSend.message =  "Authentication Failed";
+//                     responseToSend.responseAction= "hard";
+//                     responseToSend.action= "authenticated";
+//                     res.status(201).send(responseToSend);
+//             }
+//         }
+//     })
+// };
 
 
-function findUid(datatoSend, res) {
+exports.findUid = (req, res) => {
     Employee.find({
-        uid: datatoSend.id
+        uid: req.body.client.uid
     }, (error, result) => {
         if (error) {
             res.status(400);
             res.json(error).end();
         } else {
             console.log("finded the user id in employee table---");
-            datatoSend.emailId = result[0]._doc.email;
-            datatoSend.photoUrl = result[0]._doc.photoURL;
-            datatoSend.displayName = result[0]._doc.displayName;
-            res.status(201).send(datatoSend);
+            res.req.body.application.message = "Successfully Authenticated";
+            res.req.body.application.response_action= "continue";
+            res.req.body.client.emailId = result[0]._doc.email;
+            res.req.body.client.photoUrl = result[0]._doc.photoURL;
+            res.req.body.client.displayName = result[0]._doc.displayName;
+            res.status(201).send(res.req.body);
         }
     });
 };
