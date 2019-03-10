@@ -29,41 +29,38 @@ function saveData(req, res, next) {
     ManagementNew.discription = req.body.applicants.discription;
     var promise = ManagementNew.save();
     promise.then((response) => {
-        myObj.applicants = response._doc;
-        myObj.application.message = "Successfully Saved";
-        myObj.application.response_action = "continue";
+        res.req.body.applicants = response._doc;
+        res.req.body.application.message = "Successfully Saved";
+        res.req.body.application.response_action = "continue";
         res.status(201);
-        res.json(myObj).end();
+        res.json(res.req.body).end();
         //contactMail.sendMessage(response);
     }, (error) => {
-        myObj.application.message = error.message;
-        myObj.application.response_type = "hard";
-        myObj.application.response_action = "stop";
+        res.req.body.application.message = error.message;
+        res.req.body.application.response_action = "hard";
         res.status(400);
-        res.json(myObj).end();
+        res.json(res.req.body).end();
     });
 }
 
 function updateDataCall(req, res, next) {
     var myquery = {
-        _id: req.body._id
+        _id: req.body.applicants._id
     };
     Management.updateOne(myquery, {
-        $set: req.body
+        $set: req.body.applicants
     }, function (error, result) {
         if (error) {
-            myObj.application.message = error.message;
-            myObj.application.response_type = "hard";
-            myObj.application.response_action = "stop";
+            res.req.body.application.message = error.message;
+            res.req.body.application.response_action = "hard";
             res.status(400);
-            res.json(myObj).end();
+            res.json(res.req.body).end();
         } else {
             console.log(result.nModified + " document(s) updated");
-            myObj.application.message = "Successfully Saved";
-            myObj.application.response_type = "info";
-            myObj.application.response_action = "continue";
+            res.req.body.application.message = "Successfully Saved";
+            res.req.body.application.response_action = "continue";
             res.status(201);
-            res.json(myObj).end();
+            res.json(res.req.body).end();
         }
     });
 }
