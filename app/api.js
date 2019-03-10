@@ -3,6 +3,7 @@ var contactController = require('./controllers/contact-vrd/contact.controller');
 var careerController = require('./controllers/career-vrd/career.controller');
 var employeeController = require('./controllers/employee-vrd/employee.controller');
 var managementController = require('./controllers/management-vrd/Management.controller');
+var middleware = require('./controllers/middleware.controller');
 /**
  * Routes
  */
@@ -37,7 +38,7 @@ module.exports = function (app, passport) {
 		);
 
 
-	app.post('/application/managementVrd', managementController.postManagement); //should be authenticate before posting
+	app.post('/application/managementVrd',middleware.lookupAccessToken, managementController.postManagement); //should be authenticate before posting
 	app.get('/application/managementVrd', managementController.getManagement);
 	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);//should be authenticate before deleting
 }

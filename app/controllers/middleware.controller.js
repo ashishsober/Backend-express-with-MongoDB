@@ -1,0 +1,25 @@
+const access = require('../schemas/accessToken');
+
+
+exports.lookupAccessToken =  function(req,res,next){
+access.find({
+    uid: req.body.client.uid,
+    accessToken: req.body.client.accessToken
+}, (error, result) => {
+    if (error) {
+        res.status(400);
+        res.json(error).end();
+    } else {
+        console.log("-------Successfully authenticated---------");
+        if (result.length === 1) {
+                next();
+                //findUid(responseToSend, res);
+        } else {
+            res.req.body.application.message =  "Authentication Failed";
+            res.req.body.application.response_action= "hard";
+            res.status(201).send(res.req.body);
+        }
+    }
+})
+   
+}
