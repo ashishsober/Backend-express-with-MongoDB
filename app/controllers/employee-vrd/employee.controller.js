@@ -155,23 +155,21 @@ exports.logout = (req, res) => {
         photoUrl: "",
         displayName: "",
         message: "",
-        responseAction: "",
+        response_action: "",
         action: ""
     }
     access.deleteOne({
-        uid: req.body.uid
+        uid: req.body.client.uid
     }, (error, result) => {
         if (error) {
             res.status(400);
             res.json(error).end();
         } else {
             console.log("successfully deleted the session from backend");
-                responseToSend.id = req.body.uid,
-                responseToSend.message = "Successfully Logout",
-                responseToSend.responseAction= "info",
-                responseToSend.action= "logout"
+                res.req.body.application.message = "Successfully Logout",
+                res.req.body.application.response_action = "logout",
             res.status(201);
-            res.json(responseToSend).end();
+            res.json(res.req.body).end();
         }
     });
 };
