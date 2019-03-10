@@ -1,15 +1,6 @@
 'use strict';
 const Management = require('../../schemas/managementSchema');
 
-let myObj = {
-    applicants: {},
-    application: {
-        "message": "",
-        "response_action": ""
-    },
-    client:{}
-};
-
 exports.postManagement = (req, res, next) => {
     if (req.body.applicants._id === "" || req.body.applicants._id === null) {
         saveData(req, res, next);
