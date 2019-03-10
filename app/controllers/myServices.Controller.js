@@ -82,6 +82,8 @@ exports.postUser = function (req, res) {
         newUser.email = req.body.email;
         newUser.mobile = req.body.mobile;
         newUser.pan_no = req.body.pan_no;
+        newUser.gender = req.body.gender;
+        newUser.date_of_birth = req.body.date_of_birth;
 
 
         newUser.save(function (error, result) {

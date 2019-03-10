@@ -40,6 +40,7 @@
 
 	In cmd prompt,steps to be followed
 		*ssh -i /Users/ashishgupta/Desktop/Vivek\ Sir/vrdNetworkKeyPair.pem ubuntu@ec2-3-17-146-125.us-east-2.compute.amazonaws.com
+		* sudo su
 		* cd /home/ubuntu/Backend-express-with-mongo
 		* git pull to get the latest
 		* ps -ef to check the running port
