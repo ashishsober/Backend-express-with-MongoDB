@@ -1,6 +1,7 @@
 const access = require('../schemas/accessToken');
 
 exports.lookupAccessToken =  function(req,res,next){
+    console.log("------------------------inside lookupAccessToken access token"+req.body.client.uid);
 access.find({
     uid: req.body.client.uid,
     accessToken: req.body.client.accessToken

@@ -1,7 +1,7 @@
 const googleConfig = {
   clientId: '103586939904-gv4s08qapffhkjfoh568jsuveern85u2.apps.googleusercontent.com',
   clientSecret: 'bo4y8hHxESvUcdLVKz8JQTuZ',
-  redirect: 'http://www.vrdnetwork.com:1337/auth/google/callback'
+  redirect: 'http://localhost:1337/auth/google/callback'
 };
 const defaultScope = [
   'https://www.googleapis.com/auth/plus.me',
@@ -16,6 +16,8 @@ exports.auth = {
 //http://www.vrdnetwork.com:1337/auth/google/callback
 //for local development
 //http://localhost:1337/auth/google/callback
+
+
 //mongo db urls
 //configuration
 exports.db_urls = {
