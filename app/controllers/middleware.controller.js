@@ -1,9 +1,8 @@
 const access = require('../schemas/accessToken');
 
 exports.lookupAccessToken =  function(req,res,next){
-    console.log("------------------------inside lookupAccessToken access token"+req.body.client.uid);
+    console.log("------------------------inside lookupAccessToken access token"+req.body.client.accessToken);
 access.find({
-    uid: req.body.client.uid,
     accessToken: req.body.client.accessToken
 }, (error, result) => {
     if (error) {
@@ -12,6 +11,7 @@ access.find({
     } else {
         if (result.length === 1) {
                 console.log("-------Successfully authenticated---------");
+                req.body.client.uid = result[0].uid;
                 next();
                 //findUid(responseToSend, res);
         } else {
