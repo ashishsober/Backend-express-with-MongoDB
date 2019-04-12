@@ -22,7 +22,7 @@ exports.postEmployee = (profileData, done) => {
     newEmployee.displayName = profileData.displayName;
     newEmployee.email = profileData.emails[0].value;
     newEmployee.photoURL = profileData.photos[0].value
-    newEmployee.id = profileData.id;
+    newEmployee.uid = profileData.id;
     newEmployee.creationTime = date;
     newEmployee.providerId = profileData.provider;
     var promise = newEmployee.save();
@@ -81,7 +81,7 @@ function deleteAccessToken(profileData) {
 
 exports.findUid = (req, res) => {
     Employee.find({
-        id: req.body.client.id
+        uid: req.body.client.id
     }, (error, result) => {
         if (error) {
             res.status(400);
