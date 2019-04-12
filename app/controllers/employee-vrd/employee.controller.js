@@ -22,7 +22,7 @@ exports.postEmployee = (profileData, done) => {
     newEmployee.displayName = profileData.displayName;
     newEmployee.email = profileData.emails[0].value;
     newEmployee.photoURL = profileData.photos[0].value
-    newEmployee.uid = profileData.id;
+    newEmployee.id = profileData.id;
     newEmployee.creationTime = date;
     newEmployee.providerId = profileData.provider;
     var promise = newEmployee.save();
@@ -49,7 +49,7 @@ function setAccesstoken(profileData, done) {
     let date = new Date();
     accessToken.accessToken = profileData.accessToken;
     accessToken.creationTime = date;
-    accessToken.uid = profileData.id;
+    accessToken.id = profileData.id;
     var promise = accessToken.save();
     promise.then((result) => {
         console.log("----------Created accessToken successfully----------------");
@@ -67,7 +67,7 @@ function setAccesstoken(profileData, done) {
 //deleting the previous accessToken and inserting the new one
 function deleteAccessToken(profileData) {
     access.deleteOne({
-        uid: profileData.id
+        id: profileData.id
     }, (error, result) => {
         if (error) {
             return false;
@@ -81,7 +81,7 @@ function deleteAccessToken(profileData) {
 
 exports.findUid = (req, res) => {
     Employee.find({
-        uid: req.body.client.uid
+        id: req.body.client.id
     }, (error, result) => {
         if (error) {
             res.status(400);

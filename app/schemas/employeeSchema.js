@@ -20,7 +20,7 @@ var employeeSchema = new mongoose.Schema({
         type: String,
 		trim: true
     },
-    uid :{
+    id :{
         type: String,
 		trim: true
     },

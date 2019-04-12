@@ -6,7 +6,7 @@ var accessTokenSchema = new mongoose.Schema({
 		type: String,
 		trim: true
     },
-    uid :{
+    id :{
         type: String,
         unique: true,
         required: true,

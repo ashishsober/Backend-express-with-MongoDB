@@ -11,7 +11,7 @@ access.find({
     } else {
         if (result.length === 1) {
                 console.log("-------Successfully authenticated---------");
-                req.body.client.uid = result[0].uid;
+                req.body.client.id = result[0].id;
                 next();
                 //findUid(responseToSend, res);
         } else {
