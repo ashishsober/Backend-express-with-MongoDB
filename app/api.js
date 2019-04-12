@@ -23,7 +23,6 @@ module.exports = function (app, passport) {
 	app.post('/application/logout', employeeController.logout);
 
 	app.get('/auth/google', employeeController.googleAuth);
-	//app.get('/auth/google/callback', employeeController.googleAuthCallback);
 	app.get('/auth/google/callback',
 		passport.authenticate('google', {
 			failureRedirect: '/auth/fail'

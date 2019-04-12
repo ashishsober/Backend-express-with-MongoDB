@@ -102,7 +102,7 @@ exports.findUid = (req, res) => {
 
 exports.logout = (req, res) => {
     access.deleteOne({
-        uid: req.body.client.uid
+        accessToken: req.body.client.accessToken
     }, (error, result) => {
         if (error) {
             res.status(400);
