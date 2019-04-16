@@ -2,16 +2,6 @@
 const Management = require('../../schemas/managementSchema');
 
 exports.postManagement = (req, res, next) => {
-    if (req.body.applicants._id === "" || req.body.applicants._id === null) {
-        saveData(req, res, next);
-
-    } else {
-        updateDataCall(req, res, next);
-    }
-
-};
-
-function saveData(req, res, next) {
     var ManagementNew = new Management();
     ManagementNew.name = req.body.applicants.name;
     ManagementNew.emailid = req.body.applicants.emailid;
@@ -32,9 +22,10 @@ function saveData(req, res, next) {
         res.status(400);
         res.json(res.req.body).end();
     });
-}
+};
 
-function updateDataCall(req, res, next) {
+exports.putManagement = (req, res, next) => {
+    console.log("inside put method");
     var myquery = {
         _id: req.body.applicants._id
     };
@@ -55,6 +46,7 @@ function updateDataCall(req, res, next) {
         }
     });
 }
+
 
 exports.getManagement = function (req, res) {
     Management.find(function (err, results) {
