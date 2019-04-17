@@ -44,4 +44,5 @@ module.exports = function (app, passport) {
 	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);//should be authenticate before deleting
 
 	app.post('/application/jobVrd',jobController.postJob); //should be authenticate before posting
+	app.get('/application/jobVrd',jobController.getJob);
 }

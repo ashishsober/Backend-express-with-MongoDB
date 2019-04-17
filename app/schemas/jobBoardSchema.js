@@ -15,14 +15,13 @@ var jobBoardSchema = new mongoose.Schema({
     },
     jobId: {
         type: String,
-        trim: true,
-        unique: true
+        trim: true
     },
     experience: {
         type: String,
         trim: true
     },
-    requirement: {
+    requirements: {
         type: Array
     }
 }, {

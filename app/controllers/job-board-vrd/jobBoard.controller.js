@@ -17,7 +17,7 @@ function saveData(req, res, next) {
     jobBoard.jobType = req.body.jobType;
     jobBoard.jobId = req.body.jobId;
     jobBoard.experience = req.body.experience;
-   // jobBoard.requirement = req.body.applicants.requirement;
+    jobBoard.requirements = req.body.requirements;
     var promise = jobBoard.save();
     promise.then((response) => {
         res.req.body = response._doc;
@@ -36,3 +36,10 @@ function saveData(req, res, next) {
 function updateDataCall(req,res,next){
     console.log("data to update")
 }
+
+exports.getJob = function (req, res) {
+    jobBoardModel.find(function (err, results) {
+        res.set('Content-Type', 'application/json');
+        res.send(results);
+    })
+};
