@@ -41,9 +41,9 @@ module.exports = function (app, passport) {
 	app.post('/application/managementVrd',middleware.lookupAccessToken, managementController.postManagement); //should be authenticate before posting
 	app.put('/application/managementVrd',middleware.lookupAccessToken, managementController.putManagement);//should be authenticate before posting
 	app.get('/application/managementVrd', managementController.getManagement);
-	app.get('/application/managementVrd/delete/:id', managementController.deleteManagement);//should be authenticate before deleting
+	app.get('/application/managementVrd/delete/:id', middleware.lookupAccessToken, managementController.deleteManagement);//should be authenticate before deleting
 
 	app.post('/application/jobVrd',middleware.lookupAccessToken,jobController.postJob); //should be authenticate before posting
 	app.get('/application/jobVrd',jobController.getJob);
-	app.get('/application/jobVrd/delete/:id', jobController.deleteJob);//should be authenticate before deleting
+	app.get('/application/jobVrd/delete/:id', middleware.lookupAccessToken,jobController.deleteJob);//should be authenticate before deleting
 }
