@@ -46,4 +46,5 @@ module.exports = function (app, passport) {
 	app.post('/application/jobVrd',middleware.lookupAccessToken,jobController.postJob); //should be authenticate before posting
 	app.get('/application/jobVrd',jobController.getJob);
 	app.delete('/application/jobVrd/delete/:id', middleware.lookupAccessToken,jobController.deleteJob);//should be authenticate before deleting
+	app.put('/application/jobVrd',middleware.lookupAccessToken,jobController.putJob);//should be authenticate before posting
 }

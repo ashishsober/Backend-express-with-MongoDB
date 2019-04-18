@@ -57,3 +57,20 @@ exports.deleteJob= function (req, res) {
         }
     });
 }
+
+exports.putJob = (req, res, next) => {
+    var myquery = {
+        _id: req.body._id
+    };
+    jobBoardModel.updateOne(myquery, {
+        $set: req.body
+    }, function (error, result) {
+        if (error) {
+            res.status(400);
+            res.json(res.req.body).end();
+        } else {
+            res.status(201);
+            res.json(res.req.body).end();
+        }
+    });
+}
