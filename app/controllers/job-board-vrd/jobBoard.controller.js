@@ -43,3 +43,17 @@ exports.getJob = function (req, res) {
         res.send(results);
     })
 };
+
+exports.deleteJob= function (req, res) {
+    jobBoardModel.deleteOne({
+        _id: req.params['id']
+    }, (error, result) => {
+        if (error) {
+            res.set('Content-Type', 'application/json');
+            res.send(error);
+        } else {
+            res.set('Content-Type', 'application/json');
+            res.send(result);
+        }
+    });
+}
