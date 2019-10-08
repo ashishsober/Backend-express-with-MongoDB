@@ -14,22 +14,22 @@
   "license": "ISC",
   "nyc": {
     "extension": [
-        ".ts"
+      ".ts"
     ],
     "exclude": [
-        "**/*.d.ts",
-        "**/*.js",
-        "test/**/*.ts",
-        "src/config/**/*.ts",
-        "src/api/model/**/*.ts",
-        "src/api/router/**/*.ts",
-        "src/api/schema/**/*.ts"
+      "**/*.d.ts",
+      "**/*.js",
+      "test/**/*.ts",
+      "src/config/**/*.ts",
+      "src/api/model/**/*.ts",
+      "src/api/router/**/*.ts",
+      "src/api/schema/**/*.ts"
     ],
     "reporter": [
-        "html"
+      "html"
     ],
     "all": true
-   },
+  },
   "dependencies": {
     "@types/compression": "^1.0.1",
     "@types/dotenv": "^6.1.1",
