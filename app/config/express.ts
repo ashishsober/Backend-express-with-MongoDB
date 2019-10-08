@@ -7,7 +7,7 @@ import * as compression from 'compression';
 //import Logger from "./logger";
 import * as helmet from "helmet";
 import * as passport from "passport";
-import ConnectionHandler from "./db";
+import ConnectionHandler from "./connectionHandler";
 
 export default class Express {
 
