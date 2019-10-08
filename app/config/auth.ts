@@ -8,7 +8,7 @@ const defaultScope = [
   'https://www.googleapis.com/auth/userinfo.email',
 ];
 
-exports.auth = {
+export const auth = {
   'googleAuth' : googleConfig,
   'defaultScope':defaultScope
 };
@@ -20,10 +20,10 @@ exports.auth = {
 
 //mongo db urls
 //configuration
-exports.db_urls = {
-	'url' : 'mongodb://localhost:27017/data',
-	'prod_url':'mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12'
-};
+export enum DBURL {
+	URL = "mongodb://localhost:27017/data",
+	PROD_URL = "mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12"
+}
 
 
 // "mongodb": {
