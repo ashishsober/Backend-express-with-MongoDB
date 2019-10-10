@@ -1,12 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
-//import * as swaggerUi from 'swagger-ui-express';
 import { MyServicesController } from '../controllers/myServices.controller';
-// var contactController = require('../controllers/contact-vrd/contact.controller');
-// var careerController = require('../controllers/career-vrd/career.controller');
-// var employeeController = require('../controllers/employee-vrd/employee.controller');
-// var managementController = require('../controllers/management-vrd/Management.controller');
-// var middleware = require('../controllers/middleware.controller');
-// var jobController = require('../controllers/job-board-vrd/jobBoard.controller');
+import { UserController } from '../controllers/user-public/user.controller';
 
 export default class Routes {
 
@@ -35,9 +29,8 @@ export default class Routes {
      */
     setAllRoutes() {      
         /*-------- Create Router and export its configured Express.Router ------*/
-        //const fileUploadRouter = new FileUploadRouter().router;
-        //const enrollmentConfigRouter = new EnrollmentConfigRouter().router;
         const myServicesControllerRouter = new MyServicesController().router;
+        const userController = new UserController().router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -52,10 +45,8 @@ export default class Routes {
 
         this.app.use(this.passport.initialize());
         this.app.use(this.passport.session())
-        console.log("inside set all routes");
         this.app.use("/truck/tripSummary", myServicesControllerRouter);
-        //this.app.post('/truck/tripSummary', myServices.postTripSummary);
-       // this.router.get('/truck/tripSummary', this.myServicesController.getTripSummary);
+        this.app.use("/register",userController)
         //this.app.get('/register/user', this.myServicesController.getUser);
         //this.app.post('/register/user', myServices.postUser);
         //this.app.get('/register/users/count', myServices.getUsersCount);

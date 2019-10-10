@@ -1,7 +1,8 @@
 import * as mongoose from "mongoose";
 import tripSchema from "../schemas/tripSchema";
+import userSchema from "../schemas/userSchema"
 
-export default class ConnectionHandler{
+export default class ConnectionHandler {
 
     connection;
     constructor() {
@@ -15,7 +16,7 @@ export default class ConnectionHandler{
      */
     private initializeConnectionManager() {
         this.connectToDb();
-        global["custom"]["connection"] = new Map();  
+        global["custom"]["connection"] = new Map();
     }
 
     /* 
@@ -23,8 +24,8 @@ export default class ConnectionHandler{
         New Tenant details should be added here
     */
     private connectToDb() {
-        const options = { useNewUrlParser: true, autoReconnect: true, reconnectTries : 30, useFindAndModify: false,useUnifiedTopology: true};
-        this.connection = mongoose.createConnection('mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12',options);
+        const options = { useNewUrlParser: true, autoReconnect: true, reconnectTries: 30, useFindAndModify: false, useUnifiedTopology: true };
+        this.connection = mongoose.createConnection('mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12', options);
         this.connectionHandler(this.connection);
     }
 
@@ -41,14 +42,12 @@ export default class ConnectionHandler{
         connection.once('open', callback => {
             console.log(`connection established successfully`);
             global["custom"]["connection"].set("VRD", connection);
-
-            //console.log("my global object",global["custom"]["connection"].get("VRD"));
             //serialize model on connection
             this.serializeModels(connection);
         });
 
         connection.on('reconnected', () => {
-           console.log(`connection is reconnected`);
+            console.log(`connection is reconnected`);
         });
 
         connection.on('disconnected', (err) => {
@@ -58,6 +57,7 @@ export default class ConnectionHandler{
     }
 
     private serializeModels(connection) {
-        connection.model(tripSchema.name,tripSchema.schema);
+        connection.model(tripSchema.name, tripSchema.schema);
+        connection.model(userSchema.name, userSchema.schema)
     }
 }

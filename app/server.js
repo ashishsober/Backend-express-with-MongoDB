@@ -8,7 +8,6 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-var dbobj = require('./config/db'); //u can see the database connection here
 var passport =require('passport');
 
 var passAuth = require('./config/passport');//dont remove this line important one

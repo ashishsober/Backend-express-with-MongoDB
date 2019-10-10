@@ -13,7 +13,7 @@ export class Server {
         this.initializeServer();
     }
 
-    initializeServer() {  
+    initializeServer() {
         const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
         this.port = this.normalizePort(process.env.PORT || '1337');
         this.startServer();
@@ -65,16 +65,16 @@ export class Server {
     }
 
 
-    private startServer(){
-         //initialize Express app
-         const expressApp = new Express().app;
-         expressApp.set('port', this.port);
+    private startServer() {
+        //initialize Express app
+        const expressApp = new Express().app;
+        expressApp.set('port', this.port);
 
-         //create server
-         this.server = http.createServer(expressApp);
-         this.server.listen(this.port);
-         this.server.on('error', this.onError.bind(this));
-         this.server.on('listening', this.onListening.bind(this));
+        //create server
+        this.server = http.createServer(expressApp);
+        this.server.listen(this.port);
+        this.server.on('error', this.onError.bind(this));
+        this.server.on('listening', this.onListening.bind(this));
     }
 
 }

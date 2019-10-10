@@ -29,7 +29,7 @@ export default class Express {
 
         // Routes
         this.setRoutes();
-        
+
     }
 
 
@@ -42,23 +42,23 @@ export default class Express {
         this.app.use(cors());
 
         // Add body parser
-        this.app.use(bodyParser.json({limit: '50mb'}));
+        this.app.use(bodyParser.json({ limit: '50mb' }));
         this.app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
         this.app.use(compression());
         this.app.use(helmet());
         this.app.use(this.requestInterceptor(this));
 
-        this.passport.serializeUser(function(user, done) {
+        this.passport.serializeUser(function (user, done) {
             done(null, user);
-          });
-          
-        passport.deserializeUser(function(obj, done) {
+        });
+
+        passport.deserializeUser(function (obj, done) {
             done(null, obj);
         });
     }
 
-    private requestInterceptor(vm){
-        return  (req, res, next) => {
+    private requestInterceptor(vm) {
+        return (req, res, next) => {
             res["locals"]["db"] = global["custom"]["connection"].get("VRD");
             next();
         }
@@ -71,7 +71,7 @@ export default class Express {
      */
     setRoutes() {
         // Create Routes, and export its configured Express.Router
-        new Routes(this.app,this.passport);
+        new Routes(this.app, this.passport);
     }
 
 }
