@@ -46,7 +46,7 @@ export default class Express {
         this.app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
         this.app.use(compression());
         this.app.use(helmet());
-        //this.app.use(this.requestInterceptor(this));
+        this.app.use(this.requestInterceptor(this));
 
         this.passport.serializeUser(function(user, done) {
             done(null, user);
@@ -60,6 +60,7 @@ export default class Express {
     private requestInterceptor(vm){
         return  (req, res, next) => {
             res["locals"]["db"] = global["custom"]["connection"].get("VRD");
+            next();
         }
     }
 

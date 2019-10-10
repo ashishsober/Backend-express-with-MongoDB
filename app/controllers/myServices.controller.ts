@@ -18,7 +18,8 @@ export class MyServicesController {
 
 
     getTripSummary = async(req:Request, res:Response)=> {
-        const collection = global["custom"]["connection"].get("VRD").model(Trip.name); //SHOULD GET MOVED TO EXPRESS
+        const schema = Trip.name;
+        const collection = res.locals.db.model(schema);//SHOULD GET MOVED TO EXPRESS 
         collection.find(function (err, results) {
             res.set('Content-Type', 'application/json');
             res.send(results);

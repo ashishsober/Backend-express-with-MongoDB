@@ -15,7 +15,7 @@ export class Server {
 
     initializeServer() {  
         const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
-        this.port = this.normalizePort(process.env.PORT || '8080');
+        this.port = this.normalizePort(process.env.PORT || '1337');
         this.startServer();
         //const decypt: Decryption = new Decryption();
         //decypt.key = env.parsed[CloudEnvironment.KEY];
