@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { MyServicesController } from '../controllers/myServices.controller';
 import { UserController } from '../controllers/user-public/user.controller';
+import { ExpressResponse, messageToSent } from '../model/express-response';
+import { CareerController } from '../controllers/career-vrd/career.controller';
 
 export default class Routes {
 
@@ -30,7 +32,8 @@ export default class Routes {
     setAllRoutes() {      
         /*-------- Create Router and export its configured Express.Router ------*/
         const myServicesControllerRouter = new MyServicesController().router;
-        const userController = new UserController().router;
+        const userControllerRouter = new UserController().router;
+        const careerControllerRouter = new CareerController().router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -46,12 +49,12 @@ export default class Routes {
         this.app.use(this.passport.initialize());
         this.app.use(this.passport.session())
         this.app.use("/truck/tripSummary", myServicesControllerRouter);
-        this.app.use("/register",userController)
+        this.app.use("/register",userControllerRouter)
         //this.app.get('/register/user', this.myServicesController.getUser);
         //this.app.post('/register/user', myServices.postUser);
         //this.app.get('/register/users/count', myServices.getUsersCount);
 
-        // this.app.post('/application/careerVrd', careerController.postCareer);
+        this.app.post('/application/careerVrd', careerControllerRouter);
         // this.app.post('/application/contactVrd', contactController.postContact);
         // this.app.get('/register/contact', contactController.getContact);
         // this.app.post('/application/auth', middleware.lookupAccessToken ,employeeController.findUid);
@@ -104,22 +107,9 @@ export default class Routes {
      */
     private index(req: Request, res: Response, next: NextFunction) {
         // Error response
-        const response = new ExpressResponse("Requested API not exist", 500);
+        const message = new messageToSent("Requested API not exist","hard","stop");
+        const response = new ExpressResponse(message, 500);
         res.status(response.status).json(response);
     }
 
-}
-
-
-export class ExpressResponse {
-
-    constructor(message:string,status:number,payload?:any) {
-        this.message = message ? message : undefined;
-        this.status = status ? status : undefined;
-        this.payload = payload ? Object.keys(payload).length ? payload:undefined : undefined;
-    }
-
-    message;
-    status;
-    payload;
 }

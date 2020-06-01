@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { ExpressResponse } from '../../config/routes';
 import userSchema from '../../schemas/userSchema';
+import { ExpressResponse } from '../../model/express-response';
 
 
 export class UserController {

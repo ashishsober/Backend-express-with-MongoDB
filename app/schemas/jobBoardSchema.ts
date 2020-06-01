@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+import { Schema } from "mongoose";
 
-var jobBoardSchema = new mongoose.Schema({
+var jobBoardSchema = new Schema({
     title: {
         type: String,
         trim: true
@@ -25,8 +25,13 @@ var jobBoardSchema = new mongoose.Schema({
         type: Array
     }
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
-});
+        collection: "jobBoard",
+        minimize: false,
+        versionKey: false // You should be aware of the outcome after set to false
+    });
 
-var jobBoardModel = mongoose.model('jobBoard', jobBoardSchema);
-module.exports = jobBoardModel;
+
+export default {
+    name: "jobBoardSchema",
+    schema: jobBoardSchema
+}

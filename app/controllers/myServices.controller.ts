@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { ExpressResponse } from '../config/routes';
+import { ExpressResponse } from '../model/express-response';
 import Trip from '../schemas/tripSchema';
 
 export class MyServicesController {
@@ -35,7 +35,6 @@ export class MyServicesController {
             res.json({
                 message: 'Saved to database successfully'
             });
-
-        })
+        });
     };
 }

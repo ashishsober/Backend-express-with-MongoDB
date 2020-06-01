@@ -54,11 +54,8 @@ const tripSchema = new Schema({
 }, {
 	collection: "tripsummaries",
     minimize: false,
-	versionKey: false // You should be aware of the outcome after set to false
+	versionKey: false
 });
-
-//var Trip = mongoose.model('tripsummaries', tripSchema);
-//module.exports = Trip;
 
 export default {
 	name: "tripSchema",

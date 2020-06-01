@@ -57,10 +57,10 @@ var userSchema = new Schema({
 		trim: true
 	}
 }, {
-	collection: "users",
-	minimize: false,
-	versionKey: false // You should be aware of the outcome after set to false
-});
+		collection: "users",
+		minimize: false,
+		versionKey: false
+	});
 
 export default {
 	name: "userSchema",
