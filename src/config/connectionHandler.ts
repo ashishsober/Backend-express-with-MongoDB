@@ -29,7 +29,14 @@ export default class ConnectionHandler {
         New Tenant details should be added here
     */
     private connectToDb() {
-        const options = { useNewUrlParser: true, autoReconnect: true, reconnectTries: 30, useFindAndModify: false, useUnifiedTopology: true };
+        const options = { 
+            useNewUrlParser: true, 
+            autoReconnect: true, 
+            reconnectTries: 30, 
+            useFindAndModify: false, 
+            useUnifiedTopology: true,
+            useCreateIndex: true
+        };
         this.connection = mongoose.createConnection('mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12', options);
         this.connectionHandler(this.connection);
     }

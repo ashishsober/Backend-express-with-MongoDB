@@ -1,4 +1,4 @@
-const googleConfig = {
+export const googleConfig = {
   clientId: '103586939904-gv4s08qapffhkjfoh568jsuveern85u2.apps.googleusercontent.com',
   clientSecret: 'bo4y8hHxESvUcdLVKz8JQTuZ',
   redirect: 'http://www.vrdnetwork.com:1337/auth/google/callback'

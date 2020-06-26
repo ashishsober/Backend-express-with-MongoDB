@@ -26,7 +26,7 @@ var contactSchema = new Schema({
         trim: true
     }
 }, {
-        collection: "contact",
+        collection: "contacts",
         minimize: false,
         versionKey: false
     });

@@ -1,10 +1,11 @@
 import { Request, Response, Router } from 'express';
 import userSchema from '../../schemas/userSchema';
 import { ExpressResponse } from '../../model/express-response';
+import { MongoRepository } from '../../repository/mongo.repository';
 
 
 export class UserController {
-    resposnse: ExpressResponse;
+    repository: MongoRepository;
     router: Router;
     myObj = {
         applicants: "",
@@ -17,18 +18,22 @@ export class UserController {
 
     constructor() {
         this.router = Router();
+        this.repository = new MongoRepository();
         this.router.get('/user', this.getUser);
         this.router.post('/user',this.postUser);
-        this.router.get('/users/count',this.getUsersCount)
+        this.router.get('/users/count',this.getUsersCount);
     }
 
     getUser = async (req: Request, res: Response) => {
         const schema = userSchema.name;
-        const collection = res.locals.db.model(schema);
-        collection.find((err:any, results:any) =>{
-            res.set('Content-Type', 'application/json');
-            res.send(results);
-        });
+        console.log("my getUser data ****",schema);
+        const response = await this.repository.find(res,schema);
+        if(response instanceof Error){
+            throw response;
+        }
+        else {
+            res.send(response);
+        }
     };
 
     postUser = async (req: Request, res: Response) => {

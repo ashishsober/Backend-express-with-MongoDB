@@ -4,6 +4,7 @@ import accessTokenSchema from "../schemas/accessToken";
 
 export class MiddlewareController {
     constructor(){ }
+    
     lookupAccessToken = async(req:Request,res:Response,next:NextFunction )=> {
         const schema = accessTokenSchema.name;
         const collection = res.locals.db.model(schema);

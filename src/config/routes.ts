@@ -33,7 +33,7 @@ export default class Routes {
         /*-------- Create Router and export its configured Express.Router ------*/
         const myServicesControllerRouter = new MyServicesController().router;
         const userControllerRouter = new UserController().router;
-        const careerControllerRouter = new CareerController().router;
+        const careerControllerRouter = new CareerController(this.passport).router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -50,29 +50,10 @@ export default class Routes {
         this.app.use(this.passport.session())
         this.app.use("/truck/tripSummary", myServicesControllerRouter);
         this.app.use("/register",userControllerRouter)
-        //this.app.get('/register/user', this.myServicesController.getUser);
-        //this.app.post('/register/user', myServices.postUser);
-        //this.app.get('/register/users/count', myServices.getUsersCount);
 
-        this.app.post('/application/careerVrd', careerControllerRouter);
-        // this.app.post('/application/contactVrd', contactController.postContact);
-        // this.app.get('/register/contact', contactController.getContact);
-        // this.app.post('/application/auth', middleware.lookupAccessToken ,employeeController.findUid);
-        // this.app.post('/application/logout', employeeController.logout);
+        this.app.use('/application', careerControllerRouter);
+        this.app.use('/auth', careerControllerRouter);
 
-        // this.app.get('/auth/google', employeeController.googleAuth);
-        // this.app.get('/auth/google/callback',
-        // this.passport.authenticate('google', {
-        //     failureRedirect: '/auth/fail'
-        // }),
-        //     function (req, res) {
-        //         var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
-        //         responseHTML = responseHTML.replace('%value%', JSON.stringify({
-        //             user: req.user
-        //         }));
-        //         res.status(200).send(responseHTML);
-        //     }
-        // );
 
 
         // this.app.post('/application/managementVrd',middleware.lookupAccessToken, managementController.postManagement); //should be authenticate before posting
@@ -89,7 +70,7 @@ export default class Routes {
         //this.app.use('/swagger-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
         // Set main route for any other route found
-        this.setMainRoute();
+        // this.setMainRoute();
     }
 
     /**
