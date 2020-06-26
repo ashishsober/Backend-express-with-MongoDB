@@ -21,19 +21,20 @@ export class CareerController {
             "response_action": ""
         }
     };
-    constructor(passportIns) {
+    constructor(passportIns:any) {
         this.router = Router();
         this.passportInstance = passportIns;
         this.contactMail = new contactMailController();
         this.repository = new MongoRepository();
-
+        // console.log("My Passpost instance", passportIns);
         this.router.post('/careerVrd',this.postCareer);
         this.router.post('/contactVrd', this.postContact);
         this.router.get('/contact', this.getContact);
         this.router.post('/auth', new MiddlewareController().lookupAccessToken ,this.findUid);
         this.router.post('/logout', this.logout);
+        
         this.router.get('/google', this.googleAuth);
-         this.router.get('/google/callback',this.passportInstance.authenticate('google', {
+        this.router.get('/google/callback',this.passportInstance.authenticate('google', {
             failureRedirect: '/auth/fail'
           }),(req, res) =>{
                 var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
@@ -50,10 +51,9 @@ export class CareerController {
         const schema = careerSchema.name;
         const collection = res.locals.db.model(schema);
         if (myObj.application.stage === 'bd' && myObj.applicants.vrd_ref_number === '') {
-            collection.find().count(function (err, results) {
-                console.log("my total count" + results);
-                this.saveDataCall(results, req, res, myObj);
-            });
+            const response = await this.repository.find(res,schema);
+            console.log("my total count" + response);
+            this.saveDataCall(response, req, res, myObj);
         } else if (myObj.application.stage === 'ad' && myObj.applicants.vrd_ref_number !== '') {
             this.updateDataCall(myObj, req, res);
         } else {
@@ -63,29 +63,25 @@ export class CareerController {
 
     };
 
-    postContact = (req, res, next) => {
+    postContact = async (req, res, next) => {
         const schema = contactSchema.name;
-        const collection = res.locals.db.model(schema);
-        const collectionData = new collection(req.body);
-        collectionData.save((error:any, response:any) => {
-            if (error) {
-                this.myObj.application.message = error.message;
-                this.myObj.application.response_type = "hard";
-                this.myObj.application.response_action = "stop";
-                res.status(400);
-                res.json(this.myObj).end();
-            } else {
-                this.myObj.applicants = response._doc;
-                this.myObj.application.message = "Successfully Saved";
-                this.myObj.application.response_type = "info";
-                this.myObj.application.response_action = "continue";
-                res.status(201);
-                res.json(this.myObj).end();
-                this.contactMail.sendMessage(response);
-            }
-        });
-
-        
+        // const collectionData = new collection(req.body);
+        const response = await this.repository.save(res,schema,req.body);
+        if(response instanceof Error){
+            this.myObj.application.message = response.message;
+            this.myObj.application.response_type = "hard";
+            this.myObj.application.response_action = "stop";
+            res.status(400);
+            res.json(this.myObj).end();
+        } else {
+            this.myObj.applicants = response._doc;
+            this.myObj.application.message = "Successfully Saved";
+            this.myObj.application.response_type = "info";
+            this.myObj.application.response_action = "continue";
+            res.status(201);
+            res.json(this.myObj).end();
+            this.contactMail.sendMessage(response);
+        }
     };
 
     getContact = async (req, res) =>{
@@ -101,7 +97,7 @@ export class CareerController {
     };
 
 
-    saveDataCall(count, req: Request, res: Response, myObj) {
+    saveDataCall = (count, req: Request, res: Response, myObj) =>{
         const schema = careerSchema.name;
         const collection = res.locals.db.model(schema);
         //let newCareer = new Career(req.body.applicants);
@@ -203,6 +199,7 @@ export class CareerController {
     };
 
     googleAuth = (req, res, next) => {
+        console.log("At google auth method")
         passport.authenticate('google', {
             access_type: 'offline',
             prompt: 'consent',
