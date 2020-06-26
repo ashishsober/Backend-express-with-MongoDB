@@ -3,12 +3,14 @@ import { MyServicesController } from '../controllers/myServices.controller';
 import { UserController } from '../controllers/user-public/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
 import { CareerController } from '../controllers/career-vrd/career.controller';
-
+import { EmployeeController } from '../controllers/employee-vrd/employee.controller';
+var passport12 =require('passport');
 export default class Routes {
 
     public router: Router;
     app;
     passport;
+    EmployeeController:any;
     /*--------  Constructor  --------*/
 
 
@@ -18,7 +20,7 @@ export default class Routes {
         // Set app
         this.app = app;
         this.passport = passport;
-
+        this.EmployeeController = new EmployeeController();
         // Set all routes
         this.setAllRoutes();
     }
@@ -52,10 +54,22 @@ export default class Routes {
         this.app.use("/register",userControllerRouter)
 
         this.app.use('/application', careerControllerRouter);
-        this.app.use('/auth', careerControllerRouter);
 
-
-
+        this.app.use(this.router.get('/auth/google', this.EmployeeController.googleAuth));
+        this.app.use(this.router.get('/auth/google/callback',
+                                        this.passport.authenticate('google', {
+                                            failureRedirect: '/auth/fail'
+                                        }),
+                                        (req, res) =>{
+                                            console.log("hello *****")
+                                            var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
+                                            responseHTML = responseHTML.replace('%value%', JSON.stringify({
+                                                user: req.user
+                                            }));
+                                            res.status(200).send(responseHTML);
+            }
+            )
+        )
         // this.app.post('/application/managementVrd',middleware.lookupAccessToken, managementController.postManagement); //should be authenticate before posting
         // this.app.put('/application/managementVrd',middleware.lookupAccessToken, managementController.putManagement);//should be authenticate before posting
         // this.app.get('/application/managementVrd', managementController.getManagement);
@@ -72,7 +86,7 @@ export default class Routes {
         // Set main route for any other route found
         // this.setMainRoute();
     }
-
+    
     /**
      * Set main route
      * this route will be used for all other routes not found before

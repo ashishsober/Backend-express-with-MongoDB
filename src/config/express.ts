@@ -6,8 +6,12 @@ import Routes from "./routes";
 import * as compression from 'compression';
 //import Logger from "./logger";
 import * as helmet from "helmet";
-import * as passport from "passport";
+var passport =require('passport');
 import ConnectionHandler from "./connectionHandler";
+import { googleConfig } from './auth';
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+import { EmployeeController } from '../controllers/employee-vrd/employee.controller';
+// import * as passportConfig from "../config/passport";
 
 export default class Express {
 
@@ -15,13 +19,14 @@ export default class Express {
     //log = new Logger('express');
     app: express.Express;
     passport: any;
+    EmployeeController:any;
 
     constructor() {
         //console.log(this.dotenv);
         // Start App
         this.app = express();
         this.passport = passport;
-
+        this.EmployeeController = new EmployeeController();
         // Middleware
         this.setMiddleware();
 
@@ -52,9 +57,21 @@ export default class Express {
             done(null, user);
         });
 
-        passport.deserializeUser(function (obj, done) {
+        this.passport.deserializeUser(function (obj, done) {
             done(null, obj);
         });
+
+        this.passport.use(new GoogleStrategy({
+            clientID        : googleConfig.clientId,
+            clientSecret    : googleConfig.clientSecret,
+            callbackURL     : googleConfig.redirect
+            },(token, refreshToken, profile, done) => {
+                console.log("my token data-----------"+token);
+                profile.accessToken = token;
+                this.EmployeeController.postEmployee(profile,done);
+                return done(null,profile);
+            }
+        ));
     }
 
     private requestInterceptor(vm) {

@@ -33,16 +33,16 @@ export class CareerController {
         this.router.post('/auth', new MiddlewareController().lookupAccessToken ,this.findUid);
         this.router.post('/logout', this.logout);
 
-        this.router.get('/google', this.googleAuth);
-        this.router.get('/google/callback',this.passportInstance.authenticate('google', {
-            failureRedirect: '/auth/fail'
-          }),(req, res) =>{
-                var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
-                responseHTML = responseHTML.replace('%value%', JSON.stringify({
-                    user: req.user
-                }));
-                res.status(200).send(responseHTML);
-          });
+        // this.router.get('/google', this.googleAuth);
+        // this.router.get('/google/callback',this.passportInstance.authenticate('google', {
+        //     failureRedirect: '/auth/fail'
+        //   }),(req, res) =>{
+        //         var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
+        //         responseHTML = responseHTML.replace('%value%', JSON.stringify({
+        //             user: req.user
+        //         }));
+        //         res.status(200).send(responseHTML);
+        //   });
     }
 
 
@@ -197,14 +197,4 @@ export class CareerController {
             }
         });
     };
-
-    googleAuth = (req, res, next) => {
-        console.log("At google auth method")
-        passport.authenticate('google', {
-            access_type: 'offline',
-            prompt: 'consent',
-            session: false,
-            scope: ['profile', 'email']
-        })(req, res, next);
-    }
 }
