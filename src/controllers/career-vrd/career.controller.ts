@@ -6,11 +6,9 @@ import accessTokenSchema from '../../schemas/accessToken';
 import { MiddlewareController } from '../middleware.controller';
 import { contactMailController } from '../contact-vrd/contact-mail.controller';
 import { MongoRepository } from '../../repository/mongo.repository';
-var passport = require('passport');
 
 export class CareerController {
     router: Router;
-    passportInstance:any;
     contactMail;
     repository:MongoRepository;
     myObj = {
@@ -21,28 +19,16 @@ export class CareerController {
             "response_action": ""
         }
     };
-    constructor(passportIns:any) {
+    constructor() {
         this.router = Router();
-        this.passportInstance = passportIns;
         this.contactMail = new contactMailController();
         this.repository = new MongoRepository();
-        // console.log("My Passpost instance", passportIns);
         this.router.post('/careerVrd',this.postCareer);
         this.router.post('/contactVrd', this.postContact);
         this.router.get('/contact', this.getContact);
         this.router.post('/auth', new MiddlewareController().lookupAccessToken ,this.findUid);
         this.router.post('/logout', this.logout);
-
-        // this.router.get('/google', this.googleAuth);
-        // this.router.get('/google/callback',this.passportInstance.authenticate('google', {
-        //     failureRedirect: '/auth/fail'
-        //   }),(req, res) =>{
-        //         var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
-        //         responseHTML = responseHTML.replace('%value%', JSON.stringify({
-        //             user: req.user
-        //         }));
-        //         res.status(200).send(responseHTML);
-        //   });
+       
     }
 
 
