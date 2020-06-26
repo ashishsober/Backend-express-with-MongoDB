@@ -32,7 +32,7 @@ export class CareerController {
         this.router.get('/contact', this.getContact);
         this.router.post('/auth', new MiddlewareController().lookupAccessToken ,this.findUid);
         this.router.post('/logout', this.logout);
-        
+
         this.router.get('/google', this.googleAuth);
         this.router.get('/google/callback',this.passportInstance.authenticate('google', {
             failureRedirect: '/auth/fail'
@@ -80,7 +80,7 @@ export class CareerController {
             this.myObj.application.response_action = "continue";
             res.status(201);
             res.json(this.myObj).end();
-            this.contactMail.sendMessage(response);
+            // this.contactMail.sendMessage(response);
         }
     };
 
