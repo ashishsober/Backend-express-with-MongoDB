@@ -3,14 +3,11 @@ import { MyServicesController } from '../controllers/myServices.controller';
 import { UserController } from '../controllers/user-public/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
 import { CareerController } from '../controllers/career-vrd/career.controller';
-import { EmployeeController } from '../controllers/employee-vrd/employee.controller';
-var passport12 =require('passport');
 export default class Routes {
 
     public router: Router;
     app;
     passport;
-    EmployeeController:any;
     /*--------  Constructor  --------*/
 
 
@@ -20,7 +17,6 @@ export default class Routes {
         // Set app
         this.app = app;
         this.passport = passport;
-        this.EmployeeController = new EmployeeController();
         // Set all routes
         this.setAllRoutes();
     }
@@ -35,7 +31,7 @@ export default class Routes {
         /*-------- Create Router and export its configured Express.Router ------*/
         const myServicesControllerRouter = new MyServicesController().router;
         const userControllerRouter = new UserController().router;
-        const careerControllerRouter = new CareerController(this.passport).router;
+        const careerControllerRouter = new CareerController().router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -55,13 +51,12 @@ export default class Routes {
 
         this.app.use('/application', careerControllerRouter);
 
-        this.app.use(this.router.get('/auth/google', this.EmployeeController.googleAuth));
+        this.app.use(this.router.get('/auth/google', this.googleAuth));
         this.app.use(this.router.get('/auth/google/callback',
                                         this.passport.authenticate('google', {
                                             failureRedirect: '/auth/fail'
                                         }),
                                         (req, res) =>{
-                                            console.log("hello *****")
                                             var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'
                                             responseHTML = responseHTML.replace('%value%', JSON.stringify({
                                                 user: req.user
@@ -85,6 +80,16 @@ export default class Routes {
 
         // Set main route for any other route found
         // this.setMainRoute();
+    }
+
+    googleAuth = (req, res, next) => {
+        console.log("at google auth");
+        this.passport.authenticate('google', {
+            access_type: 'offline',
+            prompt: 'consent',
+            session: false,
+            scope: ['profile', 'email']
+        })(req, res, next);
     }
     
     /**
