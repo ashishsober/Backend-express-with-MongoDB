@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bootstrap.js",
   "scripts": {
-    "start-nodemon": "NODE_ENV=localhost nodemon dist/bootstrap.js",
+    "start-nodemon-p": "NODE_ENV=localhost nodemon dist/bootstrap.js",
     "tsc": "tsc -p src",
     "test": "nyc --reporter=html --reporter=text mocha -r ts-node/register test/*.spec.ts",
     "coverage": "nyc --reporter=html --reporter=text-lcov > coverage.lcov mocha -r ts-node/register test/*.spec.ts",
@@ -14,8 +14,8 @@
     "webpack:local": "NODE_ENV=localhost webpack",
     "webpack:prod": "NODE_ENV=prod webpack",
     "start:prod": "node provider-enrollment/bundle.js",
-    "start": "concurrently --kill-others \"npm run watch-ts\"",
-    "watch-ts": "tsc-watch -w -p src --onSuccess \"npm run start-nodemon\"",
+    "start": "concurrently --kill-others \"npm run watch-ts-p\"",
+    "watch-ts-p": "tsc-watch -w -p src --onSuccess \"npm run start-nodemon-p\"",
     "debug": "nodemon --inspect ./bin/www"
   },
   "author": "Anandharajan",
