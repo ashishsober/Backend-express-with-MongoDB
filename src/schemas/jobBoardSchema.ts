@@ -25,7 +25,7 @@ var jobBoardSchema = new Schema({
         type: Array
     }
 }, {
-        collection: "jobBoard",
+        collection: "jobboards",
         minimize: false,
         versionKey: false // You should be aware of the outcome after set to false
     });

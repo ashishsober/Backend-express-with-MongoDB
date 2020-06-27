@@ -3,7 +3,7 @@ import careerSchema from "../../schemas/careerSchema";
 import contactSchema from "../../schemas/contactSchema";
 import employeeSchema from "../../schemas/employeeSchema";
 import accessTokenSchema from '../../schemas/accessToken';
-import { MiddlewareController } from '../middleware.controller';
+import { MiddlewareController } from './middleware.controller';
 import { contactMailController } from '../contact-vrd/contact-mail.controller';
 import { MongoRepository } from '../../repository/mongo.repository';
 

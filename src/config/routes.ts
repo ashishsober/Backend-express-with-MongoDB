@@ -3,7 +3,8 @@ import { MyServicesController } from '../controllers/myServices.controller';
 import { UserController } from '../controllers/user-public/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
 import { CareerController } from '../controllers/career-vrd/career.controller';
-import { ManagementController } from '../controllers/management-vrd/Management.controller';
+import { ManagementController } from '../controllers/career-vrd/Management.controller';
+import { JobBoardController } from '../controllers/career-vrd/jobBoard.controller';
 export default class Routes {
 
     public router: Router;
@@ -34,6 +35,7 @@ export default class Routes {
         const userControllerRouter = new UserController().router;
         const careerControllerRouter = new CareerController().router;
         const managementControllerRouter = new ManagementController().router;
+        const JobBoardControllerRouter = new JobBoardController().router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -50,9 +52,7 @@ export default class Routes {
         this.app.use(this.passport.session())
         this.app.use("/truck/tripSummary", myServicesControllerRouter);
         this.app.use("/register",userControllerRouter)
-
         this.app.use('/application', careerControllerRouter);
-
         this.app.use(this.router.get('/auth/google', this.googleAuth));
         this.app.use(this.router.get('/auth/google/callback',
                                         this.passport.authenticate('google', {
@@ -69,13 +69,11 @@ export default class Routes {
         )
         this.app.use('/application',managementControllerRouter); //should be authenticate before posting
 
-        // this.app.post('/application/jobVrd',middleware.lookupAccessToken,jobController.postJob); //should be authenticate before posting
+        this.app.use('/application',JobBoardControllerRouter); //should be authenticate before posting
         // this.app.get('/application/jobVrd',jobController.getJob);
         // this.app.delete('/application/jobVrd/delete/:id', middleware.lookupAccessToken,jobController.deleteJob);//should be authenticate before deleting
         // this.app.put('/application/jobVrd',middleware.lookupAccessToken,jobController.putJob);//should be authenticate before posting
 
-        /*--------  Main routes  --------*/
-        //this.app.use('/swagger-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
         // Set main route for any other route found
         // this.setMainRoute();

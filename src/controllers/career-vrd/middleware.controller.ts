@@ -1,5 +1,5 @@
 import { NextFunction, Response, Request } from "express";
-import accessTokenSchema from "../schemas/accessToken";
+import accessTokenSchema from "../../schemas/accessToken";
 
 
 export class MiddlewareController {

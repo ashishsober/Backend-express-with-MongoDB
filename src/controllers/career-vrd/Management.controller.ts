@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import managementSchema from '../../schemas/managementSchema';
 import { ExpressResponse } from '../../model/express-response';
 import { MongoRepository } from '../../repository/mongo.repository';
-import { MiddlewareController } from '../middleware.controller';
+import { MiddlewareController } from './middleware.controller';
 
 export class ManagementController {
     repository: MongoRepository;
@@ -75,8 +75,7 @@ export class ManagementController {
         const response = await this.repository.findOneAndDelete(res, schema, filter);
         if (response instanceof Error) {
             res.send(response);
-        }
-        else {
+        } else {
             res.send(response);
         }
     }
