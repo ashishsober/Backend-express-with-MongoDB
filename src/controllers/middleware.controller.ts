@@ -26,7 +26,7 @@ export class MiddlewareController {
                 } else {
                     res.req.body.application.message =  "Authentication Failed";
                     res.req.body.application.response_action= "hard";
-                    res.status(201).send(res.req.body);
+                    res.status(401).send(res.req.body);
                 }
             }
         });

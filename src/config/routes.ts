@@ -3,6 +3,7 @@ import { MyServicesController } from '../controllers/myServices.controller';
 import { UserController } from '../controllers/user-public/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
 import { CareerController } from '../controllers/career-vrd/career.controller';
+import { ManagementController } from '../controllers/management-vrd/Management.controller';
 export default class Routes {
 
     public router: Router;
@@ -32,6 +33,7 @@ export default class Routes {
         const myServicesControllerRouter = new MyServicesController().router;
         const userControllerRouter = new UserController().router;
         const careerControllerRouter = new CareerController().router;
+        const managementControllerRouter = new ManagementController().router;
         /*--------  Set all custom routes here  --------*/
 
 
@@ -65,10 +67,7 @@ export default class Routes {
             }
             )
         )
-        // this.app.post('/application/managementVrd',middleware.lookupAccessToken, managementController.postManagement); //should be authenticate before posting
-        // this.app.put('/application/managementVrd',middleware.lookupAccessToken, managementController.putManagement);//should be authenticate before posting
-        // this.app.get('/application/managementVrd', managementController.getManagement);
-        // this.app.delete('/application/managementVrd/delete/:id', middleware.lookupAccessToken, managementController.deleteManagement);//should be authenticate before deleting
+        this.app.use('/application',managementControllerRouter); //should be authenticate before posting
 
         // this.app.post('/application/jobVrd',middleware.lookupAccessToken,jobController.postJob); //should be authenticate before posting
         // this.app.get('/application/jobVrd',jobController.getJob);

@@ -27,7 +27,7 @@ var managementSchema = new Schema({
         trim: true
     }
 }, {
-        collection: "users",
+        collection: "managements",
         minimize: false,
         versionKey: false
     });
