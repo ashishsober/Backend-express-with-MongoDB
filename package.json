@@ -2,9 +2,9 @@
   "name": "backend-express-with-mongodb",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/bootstrap.js",
   "scripts": {
-    "start-nodemon": "NODE_ENV=localhost nodemon dist/server.js",
+    "start-nodemon": "NODE_ENV=localhost nodemon dist/bootstrap.js",
     "tsc": "tsc -p src",
     "test": "nyc --reporter=html --reporter=text mocha -r ts-node/register test/*.spec.ts",
     "coverage": "nyc --reporter=html --reporter=text-lcov > coverage.lcov mocha -r ts-node/register test/*.spec.ts",

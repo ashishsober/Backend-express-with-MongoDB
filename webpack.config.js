@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './dist/server.js',
+  entry: './dist/bootstrap.js',
   output: {
     path: path.resolve(__dirname, 'provider-enrollment'),
     filename: 'bundle.js'
