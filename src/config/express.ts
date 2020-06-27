@@ -6,9 +6,7 @@ import Routes from "./routes";
 import * as compression from 'compression';
 //import Logger from "./logger";
 import * as helmet from "helmet";
-var passport =require('passport');
 import ConnectionHandler from "./connectionHandler";
-import { googleConfig } from './auth';
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 export default class Express {
@@ -16,13 +14,11 @@ export default class Express {
     //dotenv = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
     //log = new Logger('express');
     app: express.Express;
-    passport: any;
 
     constructor() {
         //console.log(this.dotenv);
         // Start App
         this.app = express();
-        this.passport = passport;
         // Middleware
         this.setMiddleware();
 
@@ -48,26 +44,6 @@ export default class Express {
         this.app.use(compression());
         this.app.use(helmet());
         this.app.use(this.requestInterceptor(this));
-
-        this.passport.serializeUser(function (user, done) {
-            done(null, user);
-        });
-
-        this.passport.deserializeUser(function (obj, done) {
-            done(null, obj);
-        });
-
-        this.passport.use(new GoogleStrategy({
-            clientID        : googleConfig.clientId,
-            clientSecret    : googleConfig.clientSecret,
-            callbackURL     : googleConfig.redirect
-            },(token, refreshToken, profile, done) => {
-                console.log("my token data-----------"+token);
-                profile.accessToken = token;
-                //EmployeeController.postEmployee(profile,done);
-                return done(null,profile);
-            }
-        ));
     }
 
     private requestInterceptor(vm) {
@@ -84,7 +60,7 @@ export default class Express {
      */
     setRoutes() {
         // Create Routes, and export its configured Express.Router
-        new Routes(this.app, this.passport);
+        new Routes(this.app);
     }
 
 }

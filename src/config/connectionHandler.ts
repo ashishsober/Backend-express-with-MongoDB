@@ -1,12 +1,5 @@
 import * as mongoose from "mongoose";
-import tripSchema from "../schemas/tripSchema";
 import userSchema from "../schemas/userSchema";
-import accessTokenSchema from "../schemas/accessToken";
-import careerSchema from "../schemas/careerSchema";
-import contactSchema from "../schemas/contactSchema";
-import employeeSchema from "../schemas/employeeSchema";
-import jobBoardSchema from "../schemas/jobBoardSchema";
-import managementSchema from "../schemas/managementSchema";
 export default class ConnectionHandler {
 
     connection;
@@ -69,13 +62,6 @@ export default class ConnectionHandler {
     }
 
     private serializeModels(connection) {
-        connection.model(tripSchema.name, tripSchema.schema);
         connection.model(userSchema.name, userSchema.schema);
-        connection.model(accessTokenSchema.name,accessTokenSchema.schema);
-        connection.model(careerSchema.name,careerSchema.schema);
-        connection.model(contactSchema.name,contactSchema.schema);
-        connection.model(employeeSchema.name,employeeSchema.schema);
-        connection.model(jobBoardSchema.name,jobBoardSchema.schema);
-        connection.model(managementSchema.name,managementSchema.schema);
     }
 }
