@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import { UserController } from '../controllers/user-public/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
 import { CareerController } from '../controllers/career-vrd/career.controller';
 import { ManagementController } from '../controllers/career-vrd/Management.controller';
@@ -31,7 +30,6 @@ export default class Routes {
      */
     setAllRoutes() {      
         /*-------- Create Router and export its configured Express.Router ------*/
-        const userControllerRouter = new UserController().router;
         const careerControllerRouter = new CareerController().router;
         const managementControllerRouter = new ManagementController().router;
         const JobBoardControllerRouter = new JobBoardController().router;
@@ -40,7 +38,6 @@ export default class Routes {
 
         this.app.use(this.passport.initialize());
         this.app.use(this.passport.session())
-        this.app.use("/register",userControllerRouter)
         this.app.use('/application', careerControllerRouter);
         this.app.use(this.router.get('/auth/google', this.googleAuth));
         this.app.use(this.router.get('/auth/google/callback',
