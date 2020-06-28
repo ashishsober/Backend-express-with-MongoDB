@@ -7,7 +7,6 @@ import * as compression from 'compression';
 //import Logger from "./logger";
 import * as helmet from "helmet";
 import ConnectionHandler from "./connectionHandler";
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 export default class Express {
 

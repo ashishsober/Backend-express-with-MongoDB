@@ -30,7 +30,8 @@ export default class ConnectionHandler {
             useUnifiedTopology: true,
             useCreateIndex: true
         };
-        this.connection = mongoose.createConnection('mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12', options);
+        // mongodb://test:test@ds131747.mlab.com:31747/truckbypass
+        this.connection = mongoose.createConnection('mongodb://test:test123@ds131747.mlab.com:31747/truckbypass', options);
         this.connectionHandler(this.connection);
     }
 

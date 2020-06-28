@@ -18,7 +18,7 @@
     "watch-ts-p": "tsc-watch -w -p src --onSuccess \"npm run start-nodemon-p\"",
     "debug": "nodemon --inspect ./bin/www"
   },
-  "author": "Anandharajan",
+  "author": "Ashish",
   "license": "ISC",
   "nyc": {
     "extension": [
@@ -72,8 +72,6 @@
     "googleapis": "^36.0.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.19.3",
-    "passport": "^0.4.0",
-    "passport-google-oauth": "^1.0.0",
     "tsc-watch": "^4.0.0",
     "tslint": "^5.10.0",
     "typescript": "3.5.1",
