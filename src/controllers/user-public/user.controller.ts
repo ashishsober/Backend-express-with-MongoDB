@@ -39,30 +39,23 @@ export class UserController {
     postUser = async (req: Request, res: Response) => {
         const schema = userSchema.name;
         const collection = res.locals.db.model(schema);
-
-        if (req.body.first_name &&
-            req.body.email &&
-            req.body.mobile
-        ) {
-            const collectionData = new collection(req.body);
-            collectionData.save((error:any, result:any) => {
-                if (error) {
-                    this.myObj.application.message = error.message;
-                    this.myObj.application.response_type = "hard";
-                    this.myObj.application.response_action = "stop";
-                    res.status(200);
-                    res.json(this.myObj);
-                } else {
-                    this.myObj.applicants = result._doc;
-                    this.myObj.application.message = "Successfully Saved";
-                    this.myObj.application.response_type = "info";
-                    this.myObj.application.response_action = "continue";
-                    res.status(202);
-                    res.json(this.myObj);
-                }
-            });
-
-        }
+        const collectionData = new collection(req.body);
+        collectionData.save((error:any, result:any) => {
+            if (error) {
+                this.myObj.application.message = error.message;
+                this.myObj.application.response_type = "hard";
+                this.myObj.application.response_action = "stop";
+                res.status(200);
+                res.json(this.myObj);
+            } else {
+                this.myObj.applicants = result._doc;
+                this.myObj.application.message = "Successfully Saved";
+                this.myObj.application.response_type = "info";
+                this.myObj.application.response_action = "continue";
+                res.status(202);
+                res.json(this.myObj);
+            }
+        });
     };
 
     getUsersCount = async (req:Request, res:Response) =>{

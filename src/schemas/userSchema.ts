@@ -1,68 +1,44 @@
-import {
-	Schema
-} from 'mongoose';
+import { Schema } from "mongoose";
+
 
 var userSchema = new Schema({
-	full_name: {
-		type: String,
-		trim: true
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true
+    },
+    photoURL: {
+        type: String,
+        trim: true
+    },
+    displayName: {
+        type: String,
+        trim: true
+    },
+    providerId: {
+        type: String,
+        trim: true
+    },
+    uid: {
+        type: String,
+        trim: true
 	},
-	title: {
-		type: String,
-		trim: true
+	notificationToken:{
+		type:String,
+		trim:true
 	},
-	first_name: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	last_name: {
-		type: String,
-		trim: true
-	},
-	aka_name: {
-		type: String,
-		trim: true
-	},
-	date_of_birth: {
-		type: Date,
-		trim: true
-	},
-	gender: {
-		type: String,
-		trim: true
-	},
-	nationality: {
-		type: String,
-		trim: true
-	},
-	mobile: {
-		type: Number,
-		required: true,
-		trim: true
-	},
-	email: {
-		type: String,
-		unique: true,
-		required: true,
-		trim: true
-	},
-	aadhaar_no: {
-		type: Number,
-		trim: true
-	},
-	pan_no: {
-		type: String,
-		unique: true,
-		trim: true
-	}
+    updatedTime: {
+        type: Date,
+        trim: true
+    }
 }, {
-		collection: "users",
-		minimize: false,
-		versionKey: false
-	});
+        collection: "user",
+        minimize: false,
+        versionKey: false
+    });
 
 export default {
-	name: "userSchema",
-	schema: userSchema
+    name: "userSchema",
+    schema: userSchema
 }
