@@ -4,9 +4,9 @@ import { Schema } from "mongoose";
 var userSchema = new Schema({
     email: {
         type: String,
-        unique: true,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     photoURL: {
         type: String,
@@ -24,14 +24,26 @@ var userSchema = new Schema({
         type: String,
         trim: true
 	},
+	createdDate: { type: Date, default: Date.now },
+	updatedDate: {
+        type: Date,
+        trim: true
+    },
+    signInStatus :{
+        type:String,
+        trim:true
+    },
+	type:{
+		type:String,
+		trim:true
+	},
 	notificationToken:{
 		type:String,
 		trim:true
 	},
-    updatedTime: {
-        type: Date,
-        trim: true
-    }
+	ownerOf:{
+		type:new Array,
+	}
 }, {
         collection: "user",
         minimize: false,
