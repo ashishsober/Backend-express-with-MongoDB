@@ -33,12 +33,16 @@ var userSchema = new Schema({
         type:String,
         trim:true
     },
+    notificationToken:{
+        type:String,
+        trim:true
+    },
+    notificationPermission:{
+        type:String,
+        trim:true
+    },
 	type:{
-		type:String,
-		trim:true
-	},
-	notificationToken:{
-		type:String,
+		type:String, //owner or driver,when user add the truch
 		trim:true
 	},
 	ownerOf:{
