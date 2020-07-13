@@ -8,7 +8,7 @@ var truckSchema = new Schema({
         unique: true
     },
     truck_purchase_Date: {
-        type: Date,
+        type: String,
         trim: true
     },
     avg_km: {
@@ -32,13 +32,17 @@ var truckSchema = new Schema({
         trim: true
     },
     ins_valid_from: {
-        type: Date,
+        type: String,
         trim: true
     },
     ins_valid_upto: {
-        type: Date,
+        type: String,
         trim: true
-    }
+    },
+    uid: {
+        type: String,
+        trim: true
+	},
 }, {
         collection: "truck",
         minimize: false,

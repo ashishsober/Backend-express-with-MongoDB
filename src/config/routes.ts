@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { UserController } from '../controllers/user.controller';
 import { ExpressResponse, messageToSent } from '../model/express-response';
+import { TruckController } from '../controllers/truck.controller';
 
 export default class Routes {
 
@@ -27,10 +28,12 @@ export default class Routes {
     setAllRoutes() {      
         /*-------- Create Router and export its configured Express.Router ------*/
         const userControllerRouter = new UserController().router;
+        const truckController = new TruckController().router
         /*--------  Set all custom routes here  --------*/
 
 
         this.app.use("/register",userControllerRouter)
+        this.app.use("/api",truckController)
         
 
         // Set main route for any other route found

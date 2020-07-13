@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
+import { MongoRepository } from '../repository/mongo.repository';
 import userSchema from '../schemas/userSchema';
 import { ExpressResponse } from '../model/express-response';
-import { MongoRepository } from '../repository/mongo.repository';
 
 
 export class UserController {

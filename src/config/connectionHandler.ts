@@ -1,5 +1,6 @@
 import * as mongoose from "mongoose";
 import userSchema from "../schemas/userSchema";
+import truckSchema from "../schemas/truckSchema";
 export default class ConnectionHandler {
 
     connection;
@@ -64,5 +65,6 @@ export default class ConnectionHandler {
 
     private serializeModels(connection) {
         connection.model(userSchema.name, userSchema.schema);
+        connection.model(truckSchema.name, truckSchema.schema);
     }
 }
