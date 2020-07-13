@@ -40,14 +40,14 @@ export class TruckController {
         const filter = {
             "uid":truckData.uid
         }
-        const data = {
-            ownerOf : [
-                {
-                    truck_id:truckData._id,
-                    truck_no:truckData.truck_no
-                }
-            ]
+        const data = { $push: { "ownerOf": {
+                truck_id:truckData._id,
+                truck_no:truckData.truck_no
+            }
+         } 
         }
+        
+
         const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
         if(response instanceof Error){
             throw response;
