@@ -19,6 +19,7 @@ export class TruckController {
         this.router = Router();
         this.repository = new MongoRepository();
         this.router.post('/truck', this.postTruck);
+        this.router.post('/listOfTruck', this.listOfTruck);
     }
 
     postTruck = async (req: Request, res: Response) =>{
@@ -49,6 +50,20 @@ export class TruckController {
         
 
         const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
+        if(response instanceof Error){
+            throw response;
+        }
+        else {
+            res.send(response);
+        }
+    }
+
+    listOfTruck = async (req: Request, res: Response) =>{
+        const schema = truckSchema.name;
+        const filter = {
+            "uid":req.body.uid
+        }
+        const response = await this.repository.find(res,schema,filter);
         if(response instanceof Error){
             throw response;
         }
