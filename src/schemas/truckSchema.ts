@@ -15,6 +15,10 @@ var truckSchema = new Schema({
         type: Number,
         trim: true
     },
+    driver_name: {
+        type: String,
+        trim: true,
+    },
     driver_emailId: {
         type: String,
         trim: true,
@@ -42,7 +46,19 @@ var truckSchema = new Schema({
     uid: {
         type: String,
         trim: true
-	},
+    },
+    total_trips: {
+        type: Number,
+        trim: true
+    },
+    total_profit: {
+        type: Number,
+        trim: true
+    },
+    petrol_remaining: {
+        type: Number,
+        trim: true
+    },
 }, {
         collection: "truck",
         minimize: false,
