@@ -43,7 +43,9 @@ export class TruckController {
         }
         const data = { $push: { "ownerOf": {
                 truck_id:truckData._id,
-                truck_no:truckData.truck_no
+                truck_no:truckData.truck_no,
+                driver_name:truckData.driver_name,
+                driver_emailId:truckData.driver_emailId,
             }
          } 
         }
