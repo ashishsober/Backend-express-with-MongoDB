@@ -32,31 +32,31 @@ export class TruckController {
             throw response;
         }
         else {
-            this.updateUser(req, res,response);
-        }
-    }
-
-    updateUser = async (req: Request, res: Response,truckData:any) =>{
-        const schema = userSchema.name;
-        const filter = {
-            "uid":truckData.uid
-        }
-        const data = { $push: { "ownerOf": {
-                truck_id:truckData._id,
-                truck_no:truckData.truck_no
-            }
-         } 
-        }
-        
-
-        const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
-        if(response instanceof Error){
-            throw response;
-        }
-        else {
             res.send(response);
         }
     }
+
+    // updateUser = async (req: Request, res: Response,truckData:any) =>{
+    //     const schema = userSchema.name;
+    //     const filter = {
+    //         "uid":truckData.uid
+    //     }
+    //     const data = { $push: { "ownerOf": {
+    //             truck_id:truckData._id,
+    //             truck_no:truckData.truck_no
+    //         }
+    //      } 
+    //     }
+        
+
+    //     const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
+    //     if(response instanceof Error){
+    //         throw response;
+    //     }
+    //     else {
+    //         res.send(response);
+    //     }
+    // }
 
     listOfTruck = async (req: Request, res: Response) =>{
         const schema = truckSchema.name;
