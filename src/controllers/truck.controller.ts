@@ -61,7 +61,7 @@ export class TruckController {
     listOfTruck = async (req: Request, res: Response) =>{
         const schema = truckSchema.name;
         const filter = {
-            "uid":req.body.uid
+            "owner_uid":req.body.uid
         }
         const response = await this.repository.find(res,schema,filter);
         if(response instanceof Error){
