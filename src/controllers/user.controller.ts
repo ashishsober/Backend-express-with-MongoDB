@@ -23,11 +23,11 @@ export class UserController {
         this.router.get('/users/count',this.getUsersCount);
         this.router.post('/user',this.postUser);
         this.router.post('/user/loginStatusCheck',this.loginStatusCheck);
+        this.router.post('/user/findUser',this.findUser);
     }
 
     getUser = async (req: Request, res: Response) => {
         const schema = userSchema.name;
-        console.log("my getUser data ****",schema);
         const response = await this.repository.find(res,schema);
         if(response instanceof Error){
             throw response;
@@ -45,8 +45,8 @@ export class UserController {
         collectionData.save((error:any, result:any) => {
             if (error) {
                 if(error.code === 11000){
-                 this.updateSignStatus(req,res);
-                }else {
+                  this.updateSignStatus(req,res);
+                } else {
                     this.myObj.application.message = error.message;
                     this.myObj.application.response_type = "hard";
                     this.myObj.application.response_action = "stop";
@@ -101,6 +101,20 @@ export class UserController {
             updatedDate : new Date().toISOString()
         }
         const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
+        if(response instanceof Error){
+            throw response;
+        }
+        else {
+            res.send(response);
+        }
+    }
+
+    findUser = async (req:Request,res:Response) =>{
+        const schema = userSchema.name;
+        const filter = {
+            "email":req.body.email
+        }
+        const response = await this.repository.findOne(res,schema,filter);
         if(response instanceof Error){
             throw response;
         }

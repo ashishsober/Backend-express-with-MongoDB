@@ -22,7 +22,8 @@ var userSchema = new Schema({
     },
     uid: {
         type: String,
-        trim: true
+        trim: true,
+        unique: true
 	},
 	createdDate: { type: Date, default: Date.now },
 	updatedDate: {
@@ -47,7 +48,10 @@ var userSchema = new Schema({
 	},
 	ownerOf:{
 		type:new Array,
-	}
+    },
+    driverOf:{
+        type:String
+    }
 }, {
         collection: "user",
         minimize: false,
