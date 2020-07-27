@@ -43,7 +43,7 @@ var truckSchema = new Schema({
         type: String,
         trim: true
     },
-    uid: {
+    owner_uid: {
         type: String,
         trim: true
     },
