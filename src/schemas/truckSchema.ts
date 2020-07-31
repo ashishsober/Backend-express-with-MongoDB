@@ -59,6 +59,10 @@ var truckSchema = new Schema({
         type: Number,
         trim: true
     },
+    truck_current_status:{
+        type:String,
+        trim:true
+    }
 }, {
         collection: "truck",
         minimize: false,

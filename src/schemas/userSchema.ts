@@ -46,11 +46,11 @@ var userSchema = new Schema({
 		type:String, //owner or driver,when user add the truch
 		trim:true
 	},
-	ownerOf:{
-		type:new Array,
-    },
+	// ownerOf:{
+	// 	type:new Array,
+    // },
     driverOf:{
-        type:String
+        type:Object
     }
 }, {
         collection: "user",
