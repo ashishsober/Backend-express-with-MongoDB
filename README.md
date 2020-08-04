@@ -83,3 +83,20 @@ Important link
 
 * https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
 * [micro service ] (https://medium.com/@tkssharma/building-microservices-containers-node-js-b74f4e232ec0)
+
+
+ashish token "notificationToken" : "ExponentPushToken[UjAuyhFogdaUOcCFPYf4Tx]",
+
+{
+    "_id" : ObjectId("5f294b294552726c419342f1"),
+    "displayName" : "Anmol Gupta",
+    "email" : "anmolguptawaiting@gmail.com",
+    "photoURL" : "https://lh3.googleusercontent.com/a-/AOh14Ght9cSAd0L9yelNCLmeuDhQZjaM7_UmnE24I7Sr",
+    "providerId" : "google.com",
+    "uid" : "107165585218292641791",
+    "signInStatus" : "active",
+    "notificationToken" : "ExponentPushToken[WVdt9-Dqij_CcZEOiMMSCW]",
+    "notificationPermission" : "granted",
+    "createdDate" : ISODate("2020-08-04T11:48:57.916Z"),
+    "updatedDate" : ISODate("2020-08-04T12:07:48.850Z")
+}
