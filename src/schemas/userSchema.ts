@@ -51,6 +51,10 @@ var userSchema = new Schema({
     // },
     driverOf:{
         type:Object
+    },
+    locationPermission:{
+        type:String,
+        trim:true
     }
 }, {
         collection: "user",
