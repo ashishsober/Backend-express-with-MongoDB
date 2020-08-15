@@ -25,7 +25,7 @@ export class MongoRepository {
     findOneAndUpdate = async(res:Response, schema:string, filter: any, data:any,columns = {}) => {
         try {
             const collection = res.locals.db.model(schema);
-            const option = { new: true }
+            const option = { new: true, upsert: true }
             return await collection.findOneAndUpdate(filter, data, option).select(columns);
         } 
         catch (err) {
