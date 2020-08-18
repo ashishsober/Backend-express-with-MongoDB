@@ -33,6 +33,17 @@ export class MongoRepository {
         }
     }
 
+    findOneAndUpdateWithoutUpsert = async(res:Response, schema:string, filter: any, data:any,columns = {}) => {
+        try {
+            const collection = res.locals.db.model(schema);
+            const option = { new: true }
+            return await collection.findOneAndUpdate(filter, data, option).select(columns);
+        } 
+        catch (err) {
+            return err;
+        }
+    }
+
     aggregate = async(res:Response, schema:string, filter:any) => {
         try {
             const collection = res.locals.db.model(schema);

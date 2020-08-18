@@ -70,7 +70,7 @@ export class UserController {
         const data = {
             updatedDate : new Date().toISOString()
         }
-        const response = await this.repository.findOneAndUpdate(res,schema,filter,data);
+        const response = await this.repository.findOneAndUpdateWithoutUpsert(res,schema,filter,data);
         if(response instanceof Error){
             throw response;
         }
