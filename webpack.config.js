@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './dist/bootstrap.js',
@@ -7,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'provider-enrollment'),
     filename: 'bundle.js'
   },
-  'mode':'production',
+  'mode':'development',
   target: 'node',
   node: {
     fs: 'empty',
@@ -15,6 +16,16 @@ module.exports = {
   },
   stats: {
     warnings: false
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        exclude: /\.controller\.ts/i,
+        include: /\.ts($|\?)/i,
+        parallel: true,
+        sourceMap: false
+      })
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
