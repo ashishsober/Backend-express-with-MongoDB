@@ -35,7 +35,7 @@ export default class ConnectionHandler {
             useUnifiedTopology: true,
             useCreateIndex: true
         };
-        this.connection = mongoose.createConnection('mongodb://test:test@ds145128.mlab.com:45128/myappdatabase12', options);
+        this.connection = mongoose.createConnection('mongodb+srv://test:test@myappdatabase12.tmhxb.mongodb.net/myappdatabase12?retryWrites=true&w=majority', options);
         this.connectionHandler(this.connection);
     }
 
