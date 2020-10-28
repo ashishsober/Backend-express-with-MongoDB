@@ -34,9 +34,7 @@
 
 	      content-type: application/json 	 -->
    
-1) GET Api to get All user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
-2) POST Api of user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/user
-3) GET http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/register/users/count
+1) GET Api to get All user http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1200/register/user
    	
 ## Steps to be followed while giving build in AWS environment.
 
