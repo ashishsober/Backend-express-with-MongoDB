@@ -45,8 +45,8 @@
 		* git pull to get the latest
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
-		* sudo nohup node app/server.js 80 &(to run in backgroud)
-		* sudo nohup node app/server.js & (to rum in the mentioned port 1337)
+		* sudo nohup node app/bootstrap.js & 80 &(to run in backgroud)
+		* sudo nohup node app/bootstrap.js & (to rum in the mentioned port 1337)
 		* For typescript project npm run start &
 		* https://github.com/andrewpuch/aws-ses-node-js-examples
 
