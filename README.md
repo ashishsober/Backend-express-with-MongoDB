@@ -44,6 +44,7 @@
 		* cd /home/ubuntu/Backend-express-with-mongo
 		* git pull to get the latest
 		* ps -ef to check the running port
+		* chmod 400 vrdNetworkKeyPair.pem
 		* sudo kill 10234 [port number if server is running anyway]
 		* sudo nohup node dist/bootstrap.js & 80 &(to run in backgroud)
 		* sudo nohup node dist/bootstrap.js & (to rum in the mentioned port 1200)
