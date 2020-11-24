@@ -39,13 +39,14 @@
 ## Steps to be followed while giving build in AWS environment.
 
 	In cmd prompt,steps to be followed
-		*ssh -i /Users/ashishgupta/Desktop/Vivek\ Sir/vrdNetworkKeyPair.pem ubuntu@ec2-3-17-146-125.us-east-2.compute.amazonaws.com
+		* ssh -v -i "vrdNetworkKeyPair.pem" ubuntu@ec2-3-138-199-39.us-east-2.compute.amazonaws.com
 		* sudo su
 		* cd /home/ubuntu/Backend-express-with-mongo
 		* git pull to get the latest
 		* ps -ef to check the running port
+		* chmod 400 vrdNetworkKeyPair.pem
 		* sudo kill 10234 [port number if server is running anyway]
-		* sudo nohup node app/server.js 80 &(to run in backgroud)
+		* sudo nohup node dist/server.js 80 &(to run in backgroud)
 		* sudo nohup node dist/server.js & (to rum in the mentioned port 1337)
 		* For typescript project npm run start &
 		* https://github.com/andrewpuch/aws-ses-node-js-examples
