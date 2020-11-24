@@ -39,15 +39,14 @@
 ## Steps to be followed while giving build in AWS environment.
 
 	In cmd prompt,steps to be followed
-		* ssh -i /Users/agupt255/Downloads/vrdNetworkKeyPair.pem  ubuntu@ec2-3-17-146-125.us-east-2.compute.amazonaws.com
+		* ssh -v -i "vrdNetworkKeyPair.pem" ubuntu@ec2-3-138-199-39.us-east-2.compute.amazonaws.com
 		* sudo su
 		* cd /home/ubuntu/Backend-express-with-mongo
 		* git pull to get the latest
 		* ps -ef to check the running port
 		* sudo kill 10234 [port number if server is running anyway]
-		* sudo nohup node app/bootstrap.js & 80 &(to run in backgroud)
-		* sudo nohup node app/bootstrap.js & (to rum in the mentioned port 1337)
-		* For typescript project npm run start &
+		* sudo nohup node dist/bootstrap.js & 80 &(to run in backgroud)
+		* sudo nohup node dist/bootstrap.js & (to rum in the mentioned port 1200)
 		* https://github.com/andrewpuch/aws-ses-node-js-examples
 
 * check in db.js file ,db should point to the mLab database as a prod_url
