@@ -25,7 +25,6 @@ export default class ConnectionHandler {
     private connectToDb() {
         const options = { 
             useNewUrlParser: true, 
-            autoReconnect: true, 
             reconnectTries: 30, 
             useFindAndModify: false, 
             useUnifiedTopology: true,
