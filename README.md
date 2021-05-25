@@ -1,3 +1,7 @@
+#API covering in this project :
+
+	http://localhost:1200/register/user    (working as expected)
+
 # Using Express-with-MongoDB #
 
    https://mlab.com/login/
@@ -6,33 +10,6 @@
 ### Deployed in AWS environment and using Mlab to store the MongoDB data
 
 ## API's Created and deployed in AWS environment
-
-<!-- 1) GET Api of trip summary http://ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/truck/tripSummary
-2) POST Api of trip summary ec2-3-17-146-125.us-east-2.compute.amazonaws.com:1337/truck/tripSummary
-    * schema to use or sent the data:
-
-    Mock data ,set in body section :   
-	    
-			{
-				"truckNo": "UP78-1190",
-				"status": "Completed",
-				"tripDetails": {
-					"from": "Bangalore",
-					"to": "Kanpur",
-					"startDate": "26-12-2018",
-					"endDate": "29-12-2018"
-				},
-				"partyDetails": {
-					"soldToParty": "Laxmi Enterprises",
-					"contactDetails": 9900543957,
-					"amount": 420,
-					"paid": "unPaid"
-				}
-			}
-
-	Headers :
-
-	      content-type: application/json 	 -->
    
 1) GET Api to get All user http://ec2-3-129-205-249.us-east-2.compute.amazonaws.com:1200/register/user
    	
