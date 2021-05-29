@@ -1,7 +1,7 @@
-#API covering in this project :
+
+# API covering in this project :
 
 	http://localhost:1200/register/user    (working as expected)
-
 # Using Express-with-MongoDB #
 
    https://mlab.com/login/

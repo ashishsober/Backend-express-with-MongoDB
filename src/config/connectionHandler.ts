@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 import userSchema from "../schemas/userSchema";
 import truckSchema from "../schemas/truckSchema";
+import { DBURL } from "./auth";
 export default class ConnectionHandler {
 
     connection;
@@ -30,7 +31,7 @@ export default class ConnectionHandler {
             useUnifiedTopology: true,
             useCreateIndex: true
         };
-        this.connection = mongoose.createConnection('mongodb+srv://test:test123@truckbypass.g6x5m.mongodb.net/truckbypass?retryWrites=true&w=majority', options);
+        this.connection = mongoose.createConnection(DBURL.PROD_URL, options);
         this.connectionHandler(this.connection);
     }
 
