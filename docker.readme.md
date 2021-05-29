@@ -12,8 +12,9 @@
     # To run the conatiner for the image
         docker run redis
         docker run redis:4.0
-        docker run -d -p 80:80(container port) --name getting-started docker/getting-started
+        docker run -d -p 80(host):80(container port) --name getting-started docker/getting-started
         docker run -d redis (it will give the id with conatiner running)
+        docker run -p 27017:27107 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network-ash mongo
     # container stop/start-
         docker stop 47837847
         docker start 47837847
@@ -29,6 +30,9 @@
     # to go inside the container
         docker exec -it 47837847id /bin/bash
         root@fa1bbd63de78:/#  $ env (to list down the environment variables)
+    # To list the docker network and to create
+        docker network ls
+        docker network create mongo-network-ash 
 
 
 
