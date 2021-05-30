@@ -35,7 +35,7 @@ export default class Express {
     private setMiddleware() {
 
         // cors
-        this.app.use(cors());
+        //this.app.use(cors());
 
         // Add body parser
         this.app.use(bodyParser.json({ limit: '50mb' }));
