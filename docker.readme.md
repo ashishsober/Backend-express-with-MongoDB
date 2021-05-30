@@ -37,7 +37,8 @@
         docker network create mongo-network-ash 
     # To run all at once,create a yaml file
        docker-compose -f mongo.yaml up
-       docker-compose -f mongo.yaml down    
+       docker-compose -f mongo.yaml down 
+    # Docker volumes for data persistence  
 
 
 
