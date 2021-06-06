@@ -15,7 +15,9 @@
     docker run redis:4.0
     docker run -d -p 80(host):80(container port) --name getting-started docker/getting-started
     docker run -d redis (it will give the id with conatiner running)
-    docker run -p 49155:27107 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network-ash mongo
+    docker run -p 27017:27107 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network-ash mongo
+    docker run -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password -e ME_CONFIG_MONGODB_SERVER=mongodb --net mongo-network-ash -p 8081:8081 mongo-express
+    docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 # container stop/start-
     docker stop 47837847
     docker start 47837847
