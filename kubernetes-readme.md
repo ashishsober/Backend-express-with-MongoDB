@@ -16,7 +16,10 @@
     kubectl get pod -o wide (for more information)
     kubectl get services
     kubectl get secret
+    kubectl get namespace
+    kubectl get ingress
     kubectl delete deployment nginx-del (replicaset and the pod will gone)
+    minikube service mongodb-exp-service (to execute the app)
 
 # If the pod is not coming up
     kubectl describe pod pod_name
