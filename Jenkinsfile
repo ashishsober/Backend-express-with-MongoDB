@@ -5,7 +5,6 @@ pipeline {
     agent any
     environment {
         NEW_VERSION = '1.3.0'
-        SERVER_CREDENTIALS = credentials('system')
     }
     
     stages {
@@ -30,8 +29,6 @@ pipeline {
             }
             steps {
                 echo 'testing the application...'
-                echo " my server credentials ${SERVER_CREDENTIALS}"
-                sh "${SERVER_CREDENTIALS}"
             }
         }
 
