@@ -8,7 +8,7 @@
     -----------
 # Create a POD
     kubectl create deployment nginx-del --image=nginx    
-    kubectl edit deployment nginx-del
+    kubectl edit deployment nginx-del (you can see the .yaml file and edit that fie accordingly)
     kubectl get deployment
     kubectl get deployment nginx-del -o yaml > (i will get the updated configuration of my deplyment ,which reside at etcd[brain])
     kubectl get replicaset
@@ -21,6 +21,8 @@
     kubectl delete deployment nginx-del (replicaset and the pod will gone)
     minikube service mongodb-exp-service (to execute the app)
 
+# to run any component like (deployment , services, secret, ConfigMap, Ingress)
+    kubectl apply -f file_name.yaml
 # If the pod is not coming up
     kubectl describe pod pod_name
     kubectl describe service service_name
