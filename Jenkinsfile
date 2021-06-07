@@ -10,7 +10,7 @@ pipeline {
     
     stages {
 
-        stage("build") {
+        stage("Build") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage("sonar") {
+        stage("Sonar") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
@@ -44,7 +44,7 @@ pipeline {
             }
         }
 
-        stage("deployment") {
+        stage("Deployment") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
