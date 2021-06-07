@@ -33,6 +33,17 @@ pipeline {
             }
         }
 
+        stage("Docker Build") {
+            when {
+                expression {
+                    BRANCH_NAME == 'truckByPass'
+                }
+            }
+            steps {
+                echo 'sonar the application...'
+            }
+        }
+
         stage("deployment") {
             when {
                 expression {
