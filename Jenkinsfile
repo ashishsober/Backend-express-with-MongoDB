@@ -5,6 +5,7 @@ pipeline {
     agent any
     environment {
         NEW_VERSION = '1.3.0'
+        SERVER_CREDENTIALS = credentials('global')
     }
     
     stages {
@@ -21,14 +22,14 @@ pipeline {
             }
         }
 
-        stage("test") {
+        stage("sonar") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
                 }
             }
             steps {
-                echo 'testing the application...'
+                echo 'sonar the application...'
             }
         }
 
@@ -45,6 +46,8 @@ pipeline {
     }
 }
 
+
+// SERVER_CREDENTIALS = credentials('global')
 // post {
 //         always {
 
