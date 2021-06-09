@@ -16,9 +16,20 @@
     docker run -d -p 80(host):80(container port) --name getting-started docker/getting-started
     docker run -d redis (it will give the id with conatiner running)
     
-    docker run -p 27017:27107 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network-ash mongo
-    docker run -d -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password -e ME_CONFIG_MONGODB_SERVER=mongodb --net mongo-network-ash -p 8081:8081 mongo-express
-    docker run -d -p 1200:1200 --net mongo-network-ash backend-app-with-esp:v-5.0
+    docker run -d \
+    -p 27017:27107 \
+    -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=password \
+    --name mongodb \
+    --net mongo-network-ash mongo
+    docker run -d \
+    -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+    -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+    -e ME_CONFIG_MONGODB_SERVER=mongodb \
+    --net mongo-network-ash \
+    -p 8081:8081 mongo-express
+
+    docker run -d -p 1200:1200 --net mongo-network-ash backend-app-with-esp:latest
     
     docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
     ocker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins
@@ -39,7 +50,7 @@
     docker logs fa1bbd63de78 |tail
     docker logs 075237d61841 -f
 # to go inside the container
-    docker exec -it 47837847id /bin/bash
+    docker exec -it 9bc9b00b2008 /bin/bash
     root@fa1bbd63de78:/#  $ env (to list down the environment variables)
 # To list the docker network and to create
     docker network ls
@@ -49,7 +60,7 @@
     docker-compose -f mongo.yaml down 
 # Docker volumes for data persistence  
 # To build the docker image
-    docker build -t backend-app-with-esp:version-1.0 .
+    docker build -t backend-app-with-esp:latest .
 
 
 

@@ -13,10 +13,13 @@
     "build": "npm run tsc",
     "webpack:local": "NODE_ENV=localhost webpack",
     "webpack:prod": "NODE_ENV=prod webpack",
-    "start:prod": "node provider-enrollment/bundle.js",
+    "startBundle:prod": "node provider-enrollment/bundle.js",
     "start": "concurrently --kill-others \"npm run watch-ts-p\"",
     "watch-ts-p": "tsc-watch -w -p src --onSuccess \"npm run start-nodemon-p\"",
-    "debug": "nodemon --inspect ./bin/www"
+    "debug": "nodemon --inspect ./bin/www",
+    "start:prod": "concurrently --async-stack-traces --kill-others \"npm run watch-ts:prod\"",
+    "watch-ts:prod": "tsc-watch -w -p src --onSuccess \"npm run nodemon:prod\"",
+    "nodemon:prod": "NODE_ENV=prod nodemon dist/bootstrap.js"
   },
   "author": "Ashish",
   "license": "ISC",
