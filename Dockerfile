@@ -18,8 +18,8 @@ RUN chmod 755 /www/procfile
 # install deps
 RUN cd /www
 RUN npm install
-RUN npm run express
-RUN npm install -g webpack-cli
+# RUN npm run express
+# RUN npm install -g webpack-cli
 
 RUN ls -l
 
