@@ -22,7 +22,7 @@
     -e MONGO_INITDB_ROOT_PASSWORD=password \
     --name mongodb \
     --net mongo-network-ash mongo
-    
+
     docker run -d \
     -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
     -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
@@ -63,6 +63,14 @@
 # To build the docker image
     docker build -t backend-app-with-esp:latest .
 
+# To push image to container registry
+    az login
+    az acr login --name testingpush.azurecr.io
+    docker login myregistry.azurecr.io (username and password get it from access keys)
+    # Tag the image from local to host
+    docker tag backend-app-with-esp:latest testingpush.azurecr.io/backend-app-with-esp:latest
+    docker images
+    docker push testingpush.azurecr.io/backend-app-with-esp:latest
 
 
 # What is container
