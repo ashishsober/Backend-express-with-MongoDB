@@ -26,4 +26,7 @@
 # If the pod is not coming up
     kubectl describe pod pod_name
     kubectl describe service service_name
+
+# What is whitelist
+# What is namespace    
     

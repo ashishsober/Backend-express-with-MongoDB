@@ -1,3 +1,4 @@
+//Here can be seen all the JENKINS ENVIORNMANT VARIABLE,WHICH CAN BE BINDED OVER TO THIS FILE
 // http://localhost:8080/env-vars.html/
 // groovy
 
