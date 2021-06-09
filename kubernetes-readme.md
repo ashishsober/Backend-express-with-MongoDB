@@ -28,5 +28,6 @@
     kubectl describe service service_name
 
 # What is whitelist
+    could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted.
 # What is namespace    
     

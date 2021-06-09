@@ -8,30 +8,21 @@ export default class ConnectionHandler {
     constructor() {
         //this.log = new Logger('Connection Handler');
         //this.cloudConfig = configurations;
-        this.initializeConnectionManager();
-    }
-
-    /**
-     * Connect to mongo
-     */
-    private initializeConnectionManager() {
         this.connectToDb();
         global["custom"]["connection"] = new Map();
     }
-
-    /* 
-        Define connections here
-        New Tenant details should be added here
+    
+   /**
+    * Connect to mongo
     */
-    private connectToDb() {
+    private async connectToDb() {
         const options = { 
-            useNewUrlParser: true, 
-            reconnectTries: 30, 
-            useFindAndModify: false, 
+            useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex:true
         };
-        this.connection = mongoose.createConnection(DBURL.PROD_URL, options);
+        console.log("*** Going to make DB connection ***");
+        this.connection =  mongoose.createConnection(DBURL.PROD_URL, options);
         this.connectionHandler(this.connection);
     }
 
@@ -40,6 +31,8 @@ export default class ConnectionHandler {
         Add any connection related promise event here
     */
     private connectionHandler(connection) {
+        //global["custom"]["connection"].set("VRD", connection);
+        //this.serializeModels(connection);
         connection.on('error', (err) => {
             console.log("unable to connect");
             if (err) throw err;
