@@ -22,6 +22,7 @@
     -e MONGO_INITDB_ROOT_PASSWORD=password \
     --name mongodb \
     --net mongo-network-ash mongo
+    
     docker run -d \
     -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
     -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
