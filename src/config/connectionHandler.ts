@@ -11,7 +11,7 @@ export default class ConnectionHandler {
         this.connectToDb();
         global["custom"]["connection"] = new Map();
     }
-    
+
    /**
     * Connect to mongo
     */
@@ -22,37 +22,14 @@ export default class ConnectionHandler {
             useCreateIndex:true
         };
         console.log("*** Going to make DB connection ***");
-        this.connection =  mongoose.createConnection(DBURL.PROD_URL, options);
-        this.connectionHandler(this.connection);
-    }
-
-    /*
-        Handles and logs different stages of connections
-        Add any connection related promise event here
-    */
-    private connectionHandler(connection) {
-        //global["custom"]["connection"].set("VRD", connection);
-        //this.serializeModels(connection);
-        connection.on('error', (err) => {
-            console.log("unable to connect");
-            if (err) throw err;
-        });
-
-        connection.once('open', callback => {
+        try {
+            this.connection =  await mongoose.connect(DBURL.PROD_URL, options);
             console.log(`connection established successfully`);
-            global["custom"]["connection"].set("VRD", connection);
-            //serialize model on connection
-            this.serializeModels(connection);
-        });
-
-        connection.on('reconnected', () => {
-            console.log(`connection is reconnected`);
-        });
-
-        connection.on('disconnected', (err) => {
-            connection.close();
-            process.exit(0);
-        });
+            global["custom"]["connection"].set("VRD", this.connection);
+            this.serializeModels(this.connection);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     private serializeModels(connection) {
