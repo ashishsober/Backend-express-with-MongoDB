@@ -30,7 +30,7 @@
     --net mongo-network-ash \
     -p 8081:8081 mongo-express
 
-    docker run -d -p 1200:1200 --net mongo-network-ash backend-app-with-esp:latest
+    docker run -d -p 1200:1200 --net mongo-network-ash btestingpush.azurecr.io/backend-app-with-esp:latest
     
     docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
     docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins
@@ -66,7 +66,7 @@
 # To push image to container registry
     az login
     az acr login --name testingpush.azurecr.io
-    docker login myregistry.azurecr.io (username and password get it from access keys)
+    docker login testingpush.azurecr.io (username and password get it from access keys)
     # Tag the image from local to host
     docker tag backend-app-with-esp:latest testingpush.azurecr.io/backend-app-with-esp:latest
     docker images
