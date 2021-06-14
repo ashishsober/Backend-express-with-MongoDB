@@ -33,11 +33,16 @@
     docker run -d -p 1200:1200 --net mongo-network-ash btestingpush.azurecr.io/backend-app-with-esp:latest
     
     docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
-    
+
     docker run -d \
     -p 8080:8080 \
     -p 50000:50000 \
     -v jenkins_home:/var/jenkins_home jenkins/jenkins
+
+    docker run -d \
+    -p 9000:9000 \
+    sonarqube:latest
+
 # container stop/start-
     docker stop 47837847
     docker start 47837847
