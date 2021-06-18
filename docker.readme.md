@@ -42,6 +42,7 @@
     docker run -d \
     -p 9000:9000 \
     sonarqube:latest
+    * http://localhost:9000/dashboard?id=1234abcd
 
 # container stop/start-
     docker stop 47837847
