@@ -23,7 +23,7 @@ export default class ConnectionHandler {
         };
         console.log("*** Going to make DB connection ***");
         try {
-            this.connection =  await mongoose.connect(DBURL.dockerMongoExpress, options);
+            this.connection =  await mongoose.connect(DBURL.PROD_URL, options);
             console.log(`connection established successfully`);
             global["custom"]["connection"].set("VRD", this.connection);
             this.serializeModels(this.connection);
