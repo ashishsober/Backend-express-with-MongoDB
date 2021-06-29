@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-exp-api
+  labels:
+    app: backend-exp-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-exp-api
+  template:
+    metadata:
+      labels:
+        app: backend-exp-api
+    spec:
+      containers:
+      - name: backend-exp-api
+        image: laxmi.azurecr.io/backend-app-with-esp:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1200
+          protocol: TCP  
+      dnsPolicy: ClusterFirst
+---
+
