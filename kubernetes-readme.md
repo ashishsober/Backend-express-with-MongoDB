@@ -1,5 +1,7 @@
 # Kubernetes toturial
     https://www.youtube.com/watch?v=X48VuDVv0do&t=323s
+    ### Applicationn running at :
+    http://52.158.211.99:1200/register/user
     brew update
     brew install hyperkit
     brew install minikube (minikube has kubectl has dependency)
@@ -9,12 +11,12 @@
 # Create a master node
     Go to azure portal and create a cluster  
     az acr list --resource-group omms-pep-weekly --output table  
-    az aks get-credentials --resource-group omms-pep-weekly --name aks-cluster-dev-weekly
+    az aks get-credentials --resource-group eco-friendly-resource --name aks-cluster-dev-eco
     kubectl config set-context --current --namespace=omms-pep-dev
 
 # For AKS, there are two ways to get permission to pull the image from the Azure Container Registry.
      az aks show
-     az aks update -n aks-cluster-dev-weekly -g omms-pep-weekly --attach-acr testingpush
+     az aks update -n aks-cluster-dev-weekly -g omms-pep-weekly --attach-acr laxmi
      * One is that grant the permission to the service principal which AKS cluster used. You can get the details in Grant AKS access to ACR. In this way, you just need only one service principal.
 # Create a POD
     kubectl create deployment nginx-del --image=nginx    

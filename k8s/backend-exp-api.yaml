@@ -23,4 +23,19 @@ spec:
           protocol: TCP  
       dnsPolicy: ClusterFirst
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-exp-service
+  labels:
+    app: backend-exp-service
+spec:
+  selector:
+    app: backend-exp-api
+  type: LoadBalancer  
+  ports:
+  - port: 1200
+    protocol: TCP
+    targetPort: 1200
+    nodePort: 30000
 
