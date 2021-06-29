@@ -6,6 +6,16 @@
     minikube start --vm-driver=hyperkit
 
     -----------
+# Create a master node
+    Go to azure portal and create a cluster  
+    az acr list --resource-group omms-pep-weekly --output table  
+    az aks get-credentials --resource-group omms-pep-weekly --name aks-cluster-dev-weekly
+    kubectl config set-context --current --namespace=omms-pep-dev
+
+# For AKS, there are two ways to get permission to pull the image from the Azure Container Registry.
+     az aks show
+     az aks update -n aks-cluster-dev-weekly -g omms-pep-weekly --attach-acr testingpush
+     * One is that grant the permission to the service principal which AKS cluster used. You can get the details in Grant AKS access to ACR. In this way, you just need only one service principal.
 # Create a POD
     kubectl create deployment nginx-del --image=nginx    
     kubectl edit deployment nginx-del (you can see the .yaml file and edit that fie accordingly)
