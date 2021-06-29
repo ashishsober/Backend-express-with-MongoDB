@@ -61,6 +61,7 @@
     docker logs fa1bbd63de78 |tail
     docker logs 075237d61841 -f
 # to go inside the container
+    docker exec -it 7629ec9559a0 sh
     docker exec -it 9bc9b00b2008 /bin/bash
     root@fa1bbd63de78:/#  $ env (to list down the environment variables)
 # To list the docker network and to create
@@ -69,18 +70,20 @@
 # To run all at once,create a yaml file
     docker-compose -f mongo.yaml up
     docker-compose -f mongo.yaml down 
+
 # Docker volumes for data persistence  
 # To build the docker image
     docker build -t backend-app-with-esp:latest .
 
 # To push image to container registry
     az login
-    az acr login --name testingpush.azurecr.io
-    docker login testingpush.azurecr.io (username and password get it from access keys)
+    az acr login --name laxmi.azurecr.io
+    docker login laxmi.azurecr.io (username and password get it from access keys)(should be at vpn)
     # Tag the image from local to host
-    docker tag backend-app-with-esp:latest testingpush.azurecr.io/backend-app-with-esp:latest
+    docker tag backend-app-with-esp:latest laxmi.azurecr.io/backend-app-with-esp:latest
     docker images
-    docker push testingpush.azurecr.io/backend-app-with-esp:latest
+    docker push laxmi.azurecr.io/backend-app-with-esp:latest
+    az acr list --resource-group omms-pep-weekly --output table
 
 
 # What is container
