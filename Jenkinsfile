@@ -34,14 +34,25 @@ pipeline {
             }
         }
 
-        stage("Docker Build") {
+        stage("Docker Build Image") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
                 }
             }
             steps {
-                echo 'sonar the application...'
+                echo 'Building the image...'
+            }
+        }
+
+        stage("Push Image to container") {
+            when {
+                expression {
+                    BRANCH_NAME == 'truckByPass'
+                }
+            }
+            steps {
+                echo 'Pushing the image to the laxmi container in azure container registry...'
             }
         }
 
