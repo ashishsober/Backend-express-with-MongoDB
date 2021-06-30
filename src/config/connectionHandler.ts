@@ -21,7 +21,7 @@ export default class ConnectionHandler {
             useUnifiedTopology: true,
             useCreateIndex:true
         };
-        console.log("******* Going to make DB connection *******");
+        console.log("******** Going to make DB connection ********");
         try {
             this.connection =  await mongoose.connect(DBURL.PROD_URL, options);
             console.log(`connection established successfully`);
