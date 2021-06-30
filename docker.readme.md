@@ -30,10 +30,12 @@
     --net mongo-network-ash \
     -p 8081:8081 mongo-express
 
-    docker run -d -p 1200:1200 --net mongo-network-ash btestingpush.azurecr.io/backend-app-with-esp:latest
+    docker run -d -p 1200:1200 --net mongo-network-ash laxmi.azurecr.io/backend-app-with-esp:latest
+    docker run -d -p 3000:3000 --net mongo-network-ash laxmi.azurecr.io/eco-ui:latest
     
     docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 
+    username:admin ,password:admin
     docker run -d \
     -p 8080:8080 \
     -p 50000:50000 \
@@ -60,7 +62,7 @@
 # To debugg conatiner
     docker logs fa1bbd63de78 |tail
     docker logs 075237d61841 -f
-# to go inside the container
+# To go inside the container
     docker exec -it 7629ec9559a0 sh
     docker exec -it 9bc9b00b2008 /bin/bash
     root@fa1bbd63de78:/#  $ env (to list down the environment variables)
@@ -80,7 +82,7 @@
     az acr login --name laxmi.azurecr.io
     docker login laxmi.azurecr.io (username and password get it from access keys)(should be at vpn)
     # Tag the image from local to host
-    docker tag backend-app-with-esp:latest laxmi.azurecr.io/backend-app-with-esp:latest
+    docker tag backend-app-with-esp:latest laxmi.azurecr.io/jenkins/jenkins:latest
     docker images
     docker push laxmi.azurecr.io/backend-app-with-esp:latest
     az acr list --resource-group omms-pep-weekly --output table

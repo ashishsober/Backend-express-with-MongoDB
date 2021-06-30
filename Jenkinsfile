@@ -41,7 +41,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'Building the image...'
+                echo 'Building the image... docker build -t backend-app-with-esp:latest .'
             }
         }
 
