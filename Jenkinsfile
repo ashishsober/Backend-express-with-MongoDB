@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'building the application here...'
+                echo 'building the application here to test...'
                 echo "building with version ${NEW_VERSION}"
             }
         }
