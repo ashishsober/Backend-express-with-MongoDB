@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jenkins-app
-        image: laxmi.azurecr.io/jenkins/jenkins:latest
+        image: jenkins/jenkins:latest
         imagePullPolicy: Always
         ports:
         - name: http-port
