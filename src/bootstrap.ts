@@ -1,7 +1,7 @@
 import * as http from 'http';
 import Express from './config/express';
 import * as dotenv from "dotenv";
-
+import * as child from 'child_process';
 /*--------  Start App  --------*/
 export class Server {
     server;
@@ -17,6 +17,7 @@ export class Server {
         const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
         this.port = this.normalizePort(process.env.PORT || '1200');
         this.startServer();
+        console.log("mongoodb username ***",child.execSync(`echo $MONGO_DB_USERNAME`).toString().trim())
         //const decypt: Decryption = new Decryption();
         //decypt.key = env.parsed[CloudEnvironment.KEY];
     }
