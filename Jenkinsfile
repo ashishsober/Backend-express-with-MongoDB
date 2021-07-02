@@ -38,7 +38,7 @@ pipeline {
         stage("Build") {
             when {
                 expression {
-                    BRANCH_NAME == 'truckByPass' | ~ /^(PR-.*$)/
+                    BRANCH_NAME == 'truckByPass'
                 }
             }
             steps {
