@@ -28,12 +28,9 @@ export default class ConnectionHandler {
     */
     private connectToDb() {
         const options = { 
-            useNewUrlParser: true, 
-            autoReconnect: true, 
-            reconnectTries: 30, 
-            useFindAndModify: false, 
+            useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex:true
         };
         this.connection = mongoose.createConnection('mongodb+srv://test:test@myappdatabase12.tmhxb.mongodb.net/myappdatabase12?retryWrites=true&w=majority', options);
         this.connectionHandler(this.connection);
