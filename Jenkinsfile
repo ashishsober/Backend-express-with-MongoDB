@@ -10,35 +10,35 @@ pipeline {
     }
     stages {
         
-        stage('Execute Smoke Automation Suite') {
-            options {
-                timeout(time: 15, unit: 'MINUTES')   // timeout on this stage
-            }		
-            when {
-                expression {
-                    env.BRANCH_NAME =~ /^(PR-.*$)/
-                }
-            }
-            steps {
-                echo "i will run some of the steps here"
-            }
-            post {
-                always {
-                    echo "I will execute myself always"
-                }
-                success {
-                    echo "I will run ,if it is success"
-                }
-                failure {
-                    echo "I will run,If it is failure"
-                }
-            }		
-        }
+        // stage('Execute Smoke Automation Suite') {
+        //     options {
+        //         timeout(time: 15, unit: 'MINUTES')   // timeout on this stage
+        //     }		
+        //     when {
+        //         expression {
+        //             env.BRANCH_NAME =~ /^(PR-.*$)/
+        //         }
+        //     }
+        //     steps {
+        //         echo "i will run some of the steps here"
+        //     }
+        //     post {
+        //         always {
+        //             echo "I will execute myself always"
+        //         }
+        //         success {
+        //             echo "I will run ,if it is success"
+        //         }
+        //         failure {
+        //             echo "I will run,If it is failure"
+        //         }
+        //     }		
+        // }
 
         stage("Build") {
             when {
                 expression {
-                    BRANCH_NAME == 'truckByPass'
+                    BRANCH_NAME == 'truckByPass' | ~ /^(PR-.*$)/
                 }
             }
             steps {
