@@ -14,6 +14,7 @@ COPY . /www
 
 #give permissions to procfile
 RUN chmod 755 /www/procfile
+RUN chmod 777 /var/run/docker.sock
 
 # install deps
 RUN cd /www

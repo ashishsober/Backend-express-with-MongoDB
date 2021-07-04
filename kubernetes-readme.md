@@ -42,6 +42,7 @@
     kubectl delete pv jenkins-pv-volume
     kubectl apply -f k8s/jenkins-deployment.yaml
     docker volume ls
+    chmod 777 /var/run/docker.sock
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
     kubectl apply -f file_name.yaml
 # If the pod is not coming up
