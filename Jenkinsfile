@@ -69,3 +69,17 @@ pipeline {
 
 //         }
 //     }
+
+// post {
+//                 always {
+//                     allure report: 'allure-reports', results: [[path: 'allure-results']]
+//                 }
+//                 success {
+//                     mail to: "hemant.rathore@optum.com, sumitranjan@optum.com", subject: "SUCCESS: Smoke Automation Suite!!! Build Time: $BUILD_TIMESTAMP",
+//                             body: "Pls see the Allure Reports. \n\n ${env.JOB_URL}${env.BUILD_NUMBER}/artifact"
+//                 }
+//                 failure {
+//                     mail to: "hemant.rathore@optum.com, sumitranjan@optum.com", subject: "FAILURE: Smoke Automation Suite!!! Build Time: $BUILD_TIMESTAMP",
+//                             body: "Pls check the Automation Report and take necessary actions. \n\n ${env.JOB_URL}${env.BUILD_NUMBER}/artifact"
+//                 }
+//             }
