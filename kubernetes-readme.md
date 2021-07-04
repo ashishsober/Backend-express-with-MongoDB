@@ -34,7 +34,11 @@
     minikube service mongodb-exp-service (to execute the app)
 
 # Persistence volume 
+    https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
     kubectl get pv jenkins-pv
+    kubectl get pvc task-pv-claim
+    kubectl delete pvc jenkins-pv-claim
+    kubectl delete pv jenkins-pv-volume
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
     kubectl apply -f file_name.yaml
 # If the pod is not coming up
