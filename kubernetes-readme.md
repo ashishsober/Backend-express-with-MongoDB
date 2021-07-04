@@ -33,6 +33,8 @@
     kubectl delete deployment nginx-del (replicaset and the pod will gone)
     minikube service mongodb-exp-service (to execute the app)
 
+# Persistence volume 
+    kubectl get pv jenkins-pv
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
     kubectl apply -f file_name.yaml
 # If the pod is not coming up
