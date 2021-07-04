@@ -19,10 +19,10 @@
      az aks update -n aks-cluster-dev-weekly -g omms-pep-weekly --attach-acr laxmi
      * One is that grant the permission to the service principal which AKS cluster used. You can get the details in Grant AKS access to ACR. In this way, you just need only one service principal.
 # Create a POD
-    kubectl create deployment nginx-del --image=nginx    
+    kubectl create deployment ashish-custom --image=nginx    
     kubectl edit deployment nginx-del (you can see the .yaml file and edit that fie accordingly)
-    kubectl get deployment
-    kubectl get deployment nginx-del -o yaml > (i will get the updated configuration of my deplyment ,which reside at etcd[brain])
+    kubectl edit deployment
+    kubectl get deployment ashish-custom -o yaml > (i will get the updated configuration of my deplyment ,which reside at etcd[brain])
     kubectl get replicaset
     kubectl get pod
     kubectl get pod -o wide (for more information)
@@ -30,7 +30,7 @@
     kubectl get secret
     kubectl get namespace
     kubectl get ingress
-    kubectl delete deployment nginx-del (replicaset and the pod will gone)
+    kubectl delete deployment ashish-custom (replicaset and the pod will gone)
     minikube service mongodb-exp-service (to execute the app)
 
 # Persistence volume 
