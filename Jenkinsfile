@@ -15,12 +15,30 @@ pipeline {
     stages {
 
         stage("Initialize") {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
+            when {
+                expression {
+                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
+                }
+            }
+            steps {
+                script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
         }
 
         stage("Checkout'") {
-            checkout scm
+            when {
+                expression {
+                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
+                }
+            }
+            steps {
+                script {
+                    checkout scm
+                }
+            }
         }
 
         stage("Sonar") {
