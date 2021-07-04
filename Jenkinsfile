@@ -10,18 +10,6 @@ pipeline {
     }
     stages {
 
-        stage("Build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'truckByPass'
-                }
-            }
-            steps {
-                echo 'building the application here to test...'
-                echo "building with version ${NEW_VERSION}"
-            }
-        }
-
         stage("Sonar") {
             when {
                 expression {
@@ -33,7 +21,7 @@ pipeline {
             }
         }
 
-        stage("Docker Build Image") {
+        stage("Build Docker Image") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
