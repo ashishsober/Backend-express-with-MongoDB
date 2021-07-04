@@ -3,12 +3,7 @@
 // groovy
 
 pipeline {
-    agent docker {
-          // Set both label and image
-          label 'docker'
-          image 'node:7-alpine'
-          args '--name docker-node' // list any args
-        }
+    agent any
     environment {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
