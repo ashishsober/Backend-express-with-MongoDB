@@ -37,6 +37,8 @@ pipeline {
                     // dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     echo "Building the image completed ... ${dockerHome}"
                     echo "my path... ${env.PATH}"
+
+                    docker -v
                 }
             }
         }
