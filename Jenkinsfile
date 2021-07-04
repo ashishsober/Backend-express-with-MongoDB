@@ -27,7 +27,7 @@ pipeline {
         stage("Build Docker Image") {
             when {
                 expression {
-                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/
+                    BRANCH_NAME == 'truckByPass'
                 }
             }
             steps {
