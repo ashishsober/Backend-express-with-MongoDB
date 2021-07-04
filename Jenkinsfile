@@ -8,6 +8,7 @@ pipeline {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
         registry = "laxmi/backend-app-with-esp" 
+        registry_url = "laxmi.azurecr.io"
         registryCredential = 'dockerhub_id'
         dockerImage = '' 
     }
@@ -32,13 +33,9 @@ pipeline {
             }
             steps {
                 script {
-                    // sh "sudo chmod 777 /var/run/docker.sock"
-                    
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    echo "Building the image completed ${dockerHome}"
-                    echo "my path... ${env.PATH}"
+            
                 }
             }
         }
