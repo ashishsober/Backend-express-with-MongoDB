@@ -32,6 +32,7 @@ pipeline {
             }
             steps {
                 script {
+                    sh "chmod 777 /var/run/docker.sock"
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
