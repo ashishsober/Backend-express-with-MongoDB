@@ -40,7 +40,9 @@
     -p 8080:8080 \
     -p 50000:50000 \
     -v jenkins_home:/var/jenkins_home jenkins/jenkins
-
+    
+    docker run --rm -d -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/jenkins_home:/var/jenkins_home jenkins/jenkins
+    
     docker run -d \
     -p 9000:9000 \
     sonarqube:latest
@@ -76,6 +78,7 @@
 # Docker volumes for data persistence  
 # To build the docker image
     docker build -t backend-app-with-esp:latest .
+    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
 
 # To push image to container registry
     az login

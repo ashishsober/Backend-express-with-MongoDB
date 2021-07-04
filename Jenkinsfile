@@ -7,27 +7,16 @@ pipeline {
     environment {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
+        registry = "laxmi.azurecr.io/backend-app-with-esp" 
+        registryCredential = 'dockerhub_id'
+        dockerImage = '' 
     }
     stages {
-        stage("Build") {
-            options {
-                timeout(time: 15, unit: 'MINUTES')   // timeout on this stage
-            }
-            when {
-                expression {
-                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
-                }
-            }
-            steps {
-                echo 'building the application here to test...'
-                echo "building with version ${NEW_VERSION}"
-            }
-        }
 
         stage("Sonar") {
             when {
                 expression {
-                    BRANCH_NAME == 'truckByPass'
+                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
                 }
             }
             steps {
@@ -35,14 +24,20 @@ pipeline {
             }
         }
 
-        stage("Docker Build Image") {
+        stage("Build Docker Image") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
                 }
             }
             steps {
-                echo 'Building the image... docker build -t backend-app-with-esp:latest .'
+                script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    echo "Building the image completed ${dockerHome}"
+                    echo "my path... ${env.PATH}"
+                }
             }
         }
 
