@@ -34,11 +34,9 @@ pipeline {
                 script {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     echo "Building the image completed ... ${dockerHome}"
                     echo "my path... ${env.PATH}"
-
-                    docker -v
                 }
             }
         }
