@@ -12,7 +12,7 @@ pipeline {
         registryCredential = 'ACR'
         dockerImage = '' 
     }
-        stages {
+    stages {
 
         stage("Initialize") {
             def dockerHome = tool 'myDocker'
