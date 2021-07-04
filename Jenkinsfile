@@ -8,7 +8,7 @@ pipeline {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
         registry = "laxmi.azurecr.io/backend-app-with-esp" 
-        registryCredential = 'laxmi.azurecr.io'
+        registryCredential = 'dockerhub_id'
         dockerImage = '' 
     }
     stages {
@@ -32,6 +32,7 @@ pipeline {
             }
             steps {
                 script {
+                    git 'https://github.com/ashishsober/Backend-express-with-MongoDB.git'
                     dockerImage = docker.build registry
                     echo 'Building the image completed'
                 }
