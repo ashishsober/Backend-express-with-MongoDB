@@ -14,6 +14,10 @@ spec:
       labels:
         app: jenkins-app
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 1000
       containers:
       - name: jenkins-app
         image: jenkins/jenkins:latest
@@ -24,11 +28,19 @@ spec:
         - name: jnlp-port
           containerPort: 50000
         volumeMounts:
-          - name: jenkins-vol
-            mountPath: /var/jenkins_vol 
+          - name: jenkins-home
+            mountPath: /var/jenkins_home
+          - name: docker-sock
+            mountPath: /var/run/docker.sock
+        securityContext:
+            allowPrivilegeEscalation: false
       volumes:
-      - name: jenkins-vol
-        emptyDir: {}     
+      - name: jenkins-home
+        persistentVolumeClaim:
+          claimName: jenkins-pv-claim
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
       dnsPolicy: ClusterFirst
 ---
 apiVersion: v1
@@ -61,4 +73,34 @@ spec:
   - port: 50000
     protocol: TCP
     targetPort: 50000  
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-pv-volume
+  annotations:
+    pv.beta.kubernetes.io/gid: "1000"
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 6Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
 
