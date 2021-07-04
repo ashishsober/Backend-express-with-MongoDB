@@ -7,7 +7,7 @@ pipeline {
     environment {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
-        registry = "backend-app-with-esp" 
+        registry = "laxmi/backend-app-with-esp" 
         registryCredential = 'dockerhub_id'
         dockerImage = '' 
     }
