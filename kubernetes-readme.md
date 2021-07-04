@@ -37,6 +37,7 @@
     https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
     kubectl get pv jenkins-pv
     kubectl get pvc task-pv-claim
+    kubectl delete deployment jenkins-app
     kubectl delete pvc jenkins-pv-claim
     kubectl delete pv jenkins-pv-volume
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
