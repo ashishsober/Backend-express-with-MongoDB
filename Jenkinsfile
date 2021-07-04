@@ -12,7 +12,15 @@ pipeline {
         registryCredential = 'ACR'
         dockerImage = '' 
     }
-    stages {
+        stages {
+            stage('Initialize'){
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
+        stage('Checkout') {
+            checkout scm
+        }
 
         stage("Sonar") {
             when {
@@ -33,9 +41,6 @@ pipeline {
             }
             steps {
                 script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    sh "grep docker /etc/group"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
