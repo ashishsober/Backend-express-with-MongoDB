@@ -17,7 +17,7 @@ spec:
       securityContext:
         runAsUser: 1000
         runAsGroup: 3000
-        fsGroup: 1000
+        fsGroup: 1234
       containers:
       - name: jenkins-app
         image: jenkins/jenkins:latest
@@ -90,7 +90,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/var/data"
+    path: "/var/jenkins_home"
 
 ---
 apiVersion: v1
