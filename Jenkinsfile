@@ -7,13 +7,16 @@ pipeline {
     environment {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
+        registry = "laxmi.azurecr.io/backend-app-with-esp" 
+        registryCredential = 'laxmi.azurecr.io'
+        dockerImage = '' 
     }
     stages {
 
         stage("Sonar") {
             when {
                 expression {
-                    BRANCH_NAME == 'truckByPass'
+                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
                 }
             }
             steps {
@@ -28,7 +31,9 @@ pipeline {
                 }
             }
             steps {
-                echo 'Building the image... docker build -t backend-app-with-esp:latest .'
+                //docker build -t backend-app-with-esp:latest .
+                dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                echo 'Building the image completed'
             }
         }
 
