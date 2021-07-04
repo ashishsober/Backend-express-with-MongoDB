@@ -40,6 +40,8 @@
     kubectl delete deployment jenkins-app
     kubectl delete pvc jenkins-pv-claim
     kubectl delete pv jenkins-pv-volume
+    kubectl apply -f k8s/jenkins-deployment.yaml
+    docker volume ls
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
     kubectl apply -f file_name.yaml
 # If the pod is not coming up
