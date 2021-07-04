@@ -29,7 +29,8 @@ spec:
           containerPort: 50000
         volumeMounts:
           - name: jenkins-home
-            mountPath: /var/jenkins_home
+            mountPath: /var
+            subPath: jenkins_home
           - name: docker-sock
             mountPath: /var/run/docker.sock
         securityContext:
