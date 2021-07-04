@@ -14,33 +14,6 @@ pipeline {
     }
     stages {
 
-        stage("Initialize") {
-            when {
-                expression {
-                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
-                }
-            }
-            steps {
-                script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-            }
-        }
-
-        stage("Checkout'") {
-            when {
-                expression {
-                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
-                }
-            }
-            steps {
-                script {
-                    checkout scm
-                }
-            }
-        }
-
         stage("Sonar") {
             when {
                 expression {
@@ -60,6 +33,8 @@ pipeline {
             }
             steps {
                 script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
