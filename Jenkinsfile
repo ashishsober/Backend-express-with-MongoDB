@@ -32,8 +32,10 @@ pipeline {
             }
             steps {
                 script {
-                dockerImage = docker.build registry
-                echo 'Building the image completed'
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    dockerImage = docker.build registry
+                    echo 'Building the image completed'
                 }
             }
         }
