@@ -76,6 +76,7 @@
 # Docker volumes for data persistence  
 # To build the docker image
     docker build -t backend-app-with-esp:latest .
+    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
 
 # To push image to container registry
     az login

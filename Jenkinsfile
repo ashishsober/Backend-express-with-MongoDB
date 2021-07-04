@@ -32,9 +32,7 @@ pipeline {
             }
             steps {
                 script {
-                //docker build -t backend-app-with-esp:latest .
                 dockerImage = docker.build registry
-                // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 echo 'Building the image completed'
                 }
             }
