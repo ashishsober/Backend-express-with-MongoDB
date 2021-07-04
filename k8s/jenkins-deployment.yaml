@@ -25,10 +25,15 @@ spec:
           containerPort: 50000
         volumeMounts:
           - name: jenkins-vol
-            mountPath: /var/jenkins_vol 
+            mountPath: /var/jenkins_vol
+          - name: docker-sock
+            mountPath: /var/run/docker.sock
       volumes:
       - name: jenkins-vol
-        emptyDir: {}     
+        emptyDir: {}
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
       dnsPolicy: ClusterFirst
 ---
 apiVersion: v1
