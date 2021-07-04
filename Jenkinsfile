@@ -32,8 +32,7 @@ pipeline {
             }
             steps {
                 script {
-                    git 'https://github.com/ashishsober/Backend-express-with-MongoDB.git'
-                    dockerImage = docker.build registry
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     echo 'Building the image completed'
                 }
             }
