@@ -9,7 +9,7 @@ pipeline {
         // SERVER_CREDENTIALS = credentials('global')
         registry = "laxmi/backend-app-with-esp" 
         registry_url = "laxmi.azurecr.io"
-        registryCredential = 'dockerhub_id'
+        registryCredential = 'ACR'
         dockerImage = '' 
     }
     stages {
@@ -35,7 +35,7 @@ pipeline {
                 script {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
-            
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'Pushing the image to the laxmi container in azure container registry...'
+                echo 'Push the image here'
             }
         }
 
