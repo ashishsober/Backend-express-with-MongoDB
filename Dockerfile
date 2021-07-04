@@ -14,8 +14,7 @@ COPY . /www
 
 #give permissions to procfile
 RUN chmod 755 /www/procfile
-RUN useradd -r -u 1000 -g appuser appuser
-USER appuser
+
 # install deps
 RUN cd /www
 RUN npm install
