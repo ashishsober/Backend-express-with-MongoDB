@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage("Build Docker Image") {
+        stage("Build latest Docker Image") {
             when {
                 expression {
                     BRANCH_NAME == 'truckByPass'
