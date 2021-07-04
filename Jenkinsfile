@@ -32,7 +32,7 @@ pipeline {
             }
             steps {
                 script {
-                    def dockerHome = tool 'MyDocker'
+                    def dockerHome = tool 'myDocker'
                     // dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     echo 'Building the image completed ... ${dockerHome}'
                 }
