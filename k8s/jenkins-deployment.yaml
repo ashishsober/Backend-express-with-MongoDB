@@ -27,6 +27,9 @@ spec:
           containerPort: 8080
         - name: jnlp-port
           containerPort: 50000
+        env:
+        - name: "USER"
+          value: "ashishsober"  
         volumeMounts:
           - name: jenkins-home
             mountPath: /var
