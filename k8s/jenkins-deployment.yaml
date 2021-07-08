@@ -15,9 +15,7 @@ spec:
         app: jenkins-app
     spec:
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 3000
-        fsGroup: 1234
+        runAsUser: 0
       containers:
       - name: jenkins-app
         image: jenkins/jenkins:latest
