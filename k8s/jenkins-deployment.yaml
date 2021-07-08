@@ -33,6 +33,8 @@ spec:
             subPath: jenkins_home
           - name: docker-sock
             mountPath: /var/run/docker.sock
+        command: ["/bin/sh"]
+        args: ["-c", "usermod -aG docker $USER"]
         securityContext:
             allowPrivilegeEscalation: false
       volumes:
