@@ -40,8 +40,7 @@ spec:
             allowPrivilegeEscalation: false
       volumes:
       - name: jenkins-home
-        persistentVolumeClaim:
-          claimName: jenkins-pv-claim
+        emptyDir: {}
       - name: docker-sock
         hostPath:
           path: /var/run/docker.sock
@@ -78,33 +77,33 @@ spec:
     protocol: TCP
     targetPort: 50000  
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: jenkins-pv-volume
-  annotations:
-    pv.beta.kubernetes.io/gid: "1234"
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 6Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/var/jenkins_home"
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: jenkins-pv-volume
+#   annotations:
+#     pv.beta.kubernetes.io/gid: "1234"
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 6Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/var/jenkins_home"
 
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jenkins-pv-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 3Gi
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: jenkins-pv-claim
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 3Gi
 
