@@ -1,27 +1,18 @@
-FROM node:13.12.0-alpine
-
-# EXPOSE  8080
-
+FROM jenkins/jenkins:lts
+MAINTAINER ashish.work16@gmail.com
 USER root
 
-# Set env variables for node app
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PASSWORD=password
-
-# Define working directory and copy source files in
-WORKDIR /www
-COPY . /www
-
-#give permissions to procfile
-RUN chmod 755 /www/procfile
-
-# install deps
-RUN cd /www
-RUN npm install
-# RUN npm run express
-# RUN npm install -g webpack-cli
-
-RUN ls -l
-
-RUN chmod -R a+rw /www
-CMD /www/procfile
+# Install the latest Docker CE binaries
+RUN apt-get update && \
+    apt-get -y install apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg2 \
+      software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+      $(lsb_release -cs) \
+      stable" && \
+   apt-get update && \
+   apt-get -y install docker-ce

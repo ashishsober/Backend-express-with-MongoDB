@@ -18,7 +18,7 @@ spec:
         runAsUser: 0
       containers:
       - name: jenkins-app
-        image: jenkins/jenkins:latest
+        image: laxmi.azurecr.io/ashish/jenkins-docker:latest
         imagePullPolicy: Always
         ports:
         - name: http-port
@@ -26,8 +26,8 @@ spec:
         - name: jnlp-port
           containerPort: 50000
         env:
-        - name: "USER"
-          value: "ashishsober"  
+        - name: JAVA_OPTS
+          value: -Djenkins.install.runSetupWizard=false
         volumeMounts:
           - name: jenkins-home
             mountPath: /var
