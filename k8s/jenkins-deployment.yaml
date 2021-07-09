@@ -18,16 +18,13 @@ spec:
         runAsUser: 0
       containers:
       - name: jenkins-app
-        image: jenkins/jenkins:latest
+        image: jenkins/jenkins:lts-jdk11
         imagePullPolicy: Always
         ports:
         - name: http-port
           containerPort: 8080
         - name: jnlp-port
           containerPort: 50000
-        env:
-        - name: "USER"
-          value: "ashishsober"  
         volumeMounts:
           - name: jenkins-home
             mountPath: /var
