@@ -18,7 +18,7 @@ spec:
         runAsUser: 0
       containers:
       - name: jenkins-app
-        image: laxmi.azurecr.io/ashish/jenkins-docker:latest
+        image: axmi.azurecr.io/ash-jenkins-docker:latest
         imagePullPolicy: Always
         ports:
         - name: http-port

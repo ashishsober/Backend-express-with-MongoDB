@@ -94,7 +94,7 @@
     # Tag the image from local to host
     docker tag ash-jenkins-docker:latest laxmi.azurecr.io/ash-jenkins-docker:latest
     docker images
-    docker push laxmi.azurecr.io/ashish/jenkins-docker:latest
+    docker push laxmi.azurecr.io/ash-jenkins-docker:latest
     az acr list --resource-group omms-pep-weekly --output table
 
 
