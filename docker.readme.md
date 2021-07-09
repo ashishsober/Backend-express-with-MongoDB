@@ -46,10 +46,9 @@
     docker run -u 0 --privileged --name jenkins -it -d -p 8080:8080 -p 50000:50000 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v $(which docker):/usr/bin/docker \
-    -v jenkins_home:/var/jenkins_home \
-    jenkins/jenkins:latest
+    -v $PWD/jenkins_home:/var/jenkins_home \
+    jenkins/jenkins:lts-jdk11
     
-    docker run --rm -d -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/jenkins_home:/var/jenkins_home jenkins/jenkins
     
     docker run -d \
     -p 9000:9000 \
@@ -107,4 +106,5 @@ CONTAINER is a running environment for IMAGE
 
 #
 newgrp docker
-sudo usermod -aG docker $USER    
+sudo usermod -aG docker $USER
+ps 
