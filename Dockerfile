@@ -2,12 +2,15 @@ FROM jenkins/jenkins:lts-jdk11
 LABEL maintainer changbin<changbin@guiji.ai>
 
 USER root
+
 # timezone
 # RUN apt-get update && \
 #  apt-get install -y tzdata && \
 #  ln -sf /usr/share/zoneinfo/Asia/Bangalore /etc/localtime && \
 #  echo "Asia/Bangalore" > /etc/timezone
- 
+USER root
+RUN apt-get update && \
+    apt-get install sudo
  # Install Docker client
 ENV DOCKER_BUCKET download.docker.com
 ENV DOCKER_VERSION 19.03.8
@@ -23,6 +26,7 @@ RUN set -x \
 # COPY kubectl ./kubectl
 # RUN chmod +x kubectl \
 #  && mv ./kubectl /usr/local/bin/kubectl
- 
+#  ENV PATH="${PATH}:/usr/local/bin/docker"
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
  #Switch user to jenkins
- USER jenkins
+USER jenkins
