@@ -22,11 +22,12 @@ RUN set -x \
  && rm docker.tgz \
  && docker -v
 
- #kubectl
+#  kubectl
 # COPY kubectl ./kubectl
+# RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
 # RUN chmod +x kubectl \
 #  && mv ./kubectl /usr/local/bin/kubectl
-#  ENV PATH="${PATH}:/usr/local/bin/docker"
+ENV PATH="${PATH}:/usr/local/bin/docker"
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
  #Switch user to jenkins
 USER jenkins
