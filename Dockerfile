@@ -11,17 +11,24 @@ USER root
 USER root
 RUN apt-get update && \
     apt-get install sudo
+# system preparation    
+RUN sudo apt-get -y install apt-transport-https ca-certificates software-properties-common curl
+RUN sudo apt-get update && apt-get install -y apt-transport-https
+
  # Install Docker client
 ENV DOCKER_BUCKET download.docker.com
 ENV DOCKER_VERSION 19.03.8
-RUN set -x \
- && curl -fSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
- && tar -xzvf docker.tgz \
- && mv docker/* /usr/local/bin/ \
- && rmdir docker \
- && rm docker.tgz \
- && docker -v
+RUN yes|sudo apt install docker.io
+# RUN set -x \
+#  && curl -fSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
+#  && tar -xzvf docker.tgz \
+#  && mv docker/* /usr/local/bin/ \
+#  && rmdir docker \
+#  && rm docker.tgz \
+#  && docker -v
 
+RUN sudo /etc/init.d/docker start
+# RUN sudo systemctl start docker
 #  kubectl
 # COPY kubectl ./kubectl
 # RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
