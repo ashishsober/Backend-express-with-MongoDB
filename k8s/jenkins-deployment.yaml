@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jenkins-app
-        image: laxmi.azurecr.io/ash-jenkins-docker:v99
+        image: laxmi.azurecr.io/ash-jenkins-docker:v102
         imagePullPolicy: Always
         ports:
         - name: http-port

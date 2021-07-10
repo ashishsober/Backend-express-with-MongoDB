@@ -28,7 +28,7 @@ RUN yes|sudo apt install docker.io
 #  && docker -v
 
 RUN sudo /etc/init.d/docker start
-# RUN sudo systemctl start docker
+# RUN sudo systemctl enable docker
 #  kubectl
 # COPY kubectl ./kubectl
 # RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
