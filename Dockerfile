@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts-jdk11
-LABEL maintainer changbin<changbin@guiji.ai>
+LABEL maintainer ashish<ashish@gmail.com>
 
 USER root
 
