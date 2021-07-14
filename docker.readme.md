@@ -35,20 +35,18 @@
     
     docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
 
-    username:admin ,password:admin
+    username:admin ,password:e0c6f537ae7a4ed9b2fddddc5ab6a549
     docker run -d \
     -p 8080:8080 \
     -p 50000:50000 \
-    -v jenkins_home:/var/jenkins_home \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v $(which docker):/usr/bin/docker jenkins/jenkins
+    -v $PWD/jenkins_home:/var/jenkins_home \
+    -v /var/run/docker.sock:/var/run/docker.sock ash-jenkins-docker:118
     
     docker run -u 0 --privileged --name jenkins -it -d -p 8080:8080 -p 50000:50000 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v $(which docker):/usr/bin/docker \
     -v $PWD/jenkins_home:/var/jenkins_home \
     jenkins/jenkins:lts-jdk11
-    
     
     docker run -d \
     -p 9000:9000 \
@@ -84,7 +82,7 @@
 
 # Docker volumes for data persistence  
 # To build the docker image
-    docker build -t ash-jenkins-docker:latest .
+    docker build -t ash-jenkins-docker:117 .
     // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
 
 # To push image to container registry
@@ -92,9 +90,9 @@
     az acr login --name laxmi.azurecr.io
     docker login laxmi.azurecr.io (username and password get it from access keys)(should be at vpn)
     # Tag the image from local to host
-    docker tag ash-jenkins-docker:latest laxmi.azurecr.io/ash-jenkins-docker:latest
+    docker tag ash-jenkins-docker:102 laxmi.azurecr.io/ash-jenkins-docker:v102
     docker images
-    docker push laxmi.azurecr.io/ash-jenkins-docker:latest
+    docker push laxmi.azurecr.io/ash-jenkins-docker:v102
     az acr list --resource-group omms-pep-weekly --output table
 
 
@@ -104,7 +102,39 @@ CONTAINER is a running environment for IMAGE
 # What is whitelist
     could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted.
 
-#
-newgrp docker
-sudo usermod -aG docker $USER
-ps 
+# some command to execut inside the container
+    
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    sudo /usr/sbin/usermod -aG docker jenkins
+    ps 
+    groups
+    whoami
+    PATH
+    ls -last /var/run/docker.sock  (to check the permission)
+    cat /etc/group
+    https://docs.docker.com/engine/install/linux-postinstall/
+    curl -u "admin:dc1d84de987949e2a5c416d1a0325413" 'http://52.182.215.191:8080//crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+    export DOCKER_HOST="unix:///var/run/docker.sock"
+    export DOCKER_HOST="tcp://0.0.0.0:2375"
+    sudo chmod 664 /var/run/docker.sock
+    sudo chmod 666 /var/run/docker.sock
+    sudo chmod 777 /var/run/docker.sock
+    sudo chmod g+w /var/run/docker.sock/
+    
+    ### error
+    Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+    
+    sudo systemctl start docker
+    sudo systemctl restart docker
+    whereis systemctl
+    cat /etc/os-release (will tell you the system name like ubuntu, debian)
+
+    /usr/lib/systemd
+    /usr/bin/service (not present)
+    /usr/sbin/service (present)
+    sudo /etc/init.d/docker start
+    sudo service docker status 
+    sudo service docker restart 
+    sudo service docker stop
+    kubectl version --client
