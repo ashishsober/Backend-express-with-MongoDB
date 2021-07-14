@@ -10,8 +10,8 @@ USER root
 #  echo "Asia/Bangalore" > /etc/timezone
 USER root
 RUN apt-get update && \
-    apt-get install sudo \
-    apt-get install vim
+    apt-get install sudo && \
+    yes |apt-get install vim
 # system preparation    
 RUN sudo apt-get -y install apt-transport-https ca-certificates software-properties-common curl
 RUN sudo apt-get update && apt-get install -y apt-transport-https
@@ -32,7 +32,7 @@ RUN sudo /etc/init.d/docker start
 # RUN sudo systemctl enable docker
 #  kubectl
 COPY kubectl ./kubectl
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN chmod +x kubectl \
  && mv ./kubectl /usr/local/bin/kubectl
 
