@@ -26,14 +26,6 @@ RUN apt-get update
 RUN apt-get -y install docker-ce
 RUN docker -v
 
-# RUN set -x \
-#  && curl -fSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
-#  && tar -xzvf docker.tgz \
-#  && mv docker/* /usr/local/bin/ \
-#  && rmdir docker \
-#  && rm docker.tgz \
-#  && docker -v
-
 RUN sudo /etc/init.d/docker start
 # RUN sudo systemctl enable docker
 #  kubectl
