@@ -38,5 +38,7 @@ RUN chmod +x kubectl \
 
 ENV PATH="${PATH}:/usr/local/bin/docker"
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+ 
  #Switch user to jenkins
-USER jenkins
+# USER jenkins
+
