@@ -19,7 +19,13 @@ RUN sudo apt-get update && apt-get install -y apt-transport-https
  # Install Docker client
 ENV DOCKER_BUCKET download.docker.com
 ENV DOCKER_VERSION 19.03.8
-RUN yes|sudo apt install docker.io
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+
+RUN apt-get update
+RUN apt-get -y install docker-ce
+RUN docker -v
+
 # RUN set -x \
 #  && curl -fSL "https://${DOCKER_BUCKET}/linux/static/stable/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
 #  && tar -xzvf docker.tgz \
