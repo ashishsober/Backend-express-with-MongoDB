@@ -90,9 +90,9 @@
     az acr login --name laxmi.azurecr.io
     docker login laxmi.azurecr.io (username and password get it from access keys)(should be at vpn)
     # Tag the image from local to host
-    docker tag ash-jenkins-docker:102 laxmi.azurecr.io/ash-jenkins-docker:v102
+    docker tag ash-jenkins-docker:118 laxmi.azurecr.io/ash-jenkins-docker:v118
     docker images
-    docker push laxmi.azurecr.io/ash-jenkins-docker:v102
+    docker push laxmi.azurecr.io/ash-jenkins-docker:v118
     az acr list --resource-group omms-pep-weekly --output table
 
 
