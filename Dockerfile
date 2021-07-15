@@ -38,5 +38,5 @@ RUN chmod +x kubectl \
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
  
  #Switch user to jenkins
-USER jenkins
+# USER jenkins
 
