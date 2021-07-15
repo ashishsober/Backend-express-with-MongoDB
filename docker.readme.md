@@ -82,7 +82,7 @@
 
 # Docker volumes for data persistence  
 # To build the docker image
-    docker build -t ash-jenkins-docker:117 .
+    docker build -t ash-jenkins-docker:118 .
     // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
 
 # To push image to container registry

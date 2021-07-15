@@ -16,8 +16,10 @@ spec:
     spec:
       containers:
       - name: jenkins-app
-        image: laxmi.azurecr.io/ash-jenkins-docker:v117
+        image: laxmi.azurecr.io/ash-jenkins-docker:v118
         imagePullPolicy: Always
+        securityContext:
+          privileged: true
         ports:
         - name: http-port
           containerPort: 8080

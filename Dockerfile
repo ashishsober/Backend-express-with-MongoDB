@@ -34,9 +34,9 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
 RUN chmod +x kubectl \
  && mv ./kubectl /usr/local/bin/kubectl
 
-ENV PATH="${PATH}:/usr/local/bin/docker"
+# ENV PATH="${PATH}:/usr/bin/docker"
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
  
  #Switch user to jenkins
-# USER jenkins
+USER jenkins
 
