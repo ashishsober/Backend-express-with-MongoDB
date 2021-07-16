@@ -39,8 +39,8 @@
     docker run -d \
     -p 8080:8080 \
     -p 50000:50000 \
-    -v $PWD/jenkins_home:/var/jenkins_home \
-    -v /var/run/docker.sock:/var/run/docker.sock ash-jenkins-docker:118
+    -v /var/jenkins_home:/var/jenkins_home \
+    -v /var/run/docker.sock:/var/run/docker.sock ash-jenkins-docker:120
     
     docker run -u 0 --privileged --name jenkins -it -d -p 8080:8080 -p 50000:50000 \
     -v /var/run/docker.sock:/var/run/docker.sock \
@@ -82,7 +82,7 @@
 
 # Docker volumes for data persistence  
 # To build the docker image
-    docker build -t ash-jenkins-docker:118 .
+    docker build -t ash-jenkins-docker:120 .
     // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
 
 # To push image to container registry
@@ -90,9 +90,9 @@
     az acr login --name laxmi.azurecr.io
     docker login laxmi.azurecr.io (username and password get it from access keys)(should be at vpn)
     # Tag the image from local to host
-    docker tag ash-jenkins-docker:118 laxmi.azurecr.io/ash-jenkins-docker:v118
+    docker tag ash-jenkins-docker:119 laxmi.azurecr.io/ash-jenkins-docker:v119
     docker images
-    docker push laxmi.azurecr.io/ash-jenkins-docker:v118
+    docker push laxmi.azurecr.io/ash-jenkins-docker:v119
     az acr list --resource-group omms-pep-weekly --output table
 
 

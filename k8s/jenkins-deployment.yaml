@@ -14,12 +14,12 @@ spec:
       labels:
         app: jenkins-app
     spec:
+      securityContext:
+        runAsUser: 0
       containers:
       - name: jenkins-app
-        image: laxmi.azurecr.io/ash-jenkins-docker:v118
+        image: laxmi.azurecr.io/ash-jenkins-docker:v119
         imagePullPolicy: Always
-        securityContext:
-          privileged: true
         ports:
         - name: http-port
           containerPort: 8080
@@ -27,10 +27,11 @@ spec:
           containerPort: 50000
         volumeMounts:
           - name: jenkins-home
-            mountPath: /var
-            subPath: jenkins_home
+            mountPath: /var/jenkins_home
           - name: docker-sock
             mountPath: /var/run/docker.sock
+        securityContext:
+          privileged: true
       volumes:
       - name: jenkins-home
         emptyDir: {}
