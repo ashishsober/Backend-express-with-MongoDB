@@ -1,3 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: jenkins-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 2Gi
+  storageClassName: standard  
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/jenkins/
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jenkins-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi   
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +61,8 @@ spec:
           privileged: true
       volumes:
       - name: jenkins-home
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: jenkins-claim
       - name: docker-sock
         hostPath:
           path: /var/run/docker.sock
