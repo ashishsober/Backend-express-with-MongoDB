@@ -16,6 +16,7 @@ spec:
     spec:
       securityContext:
         runAsUser: 0
+        # fsGroup: 1000
       containers:
       - name: jenkins-app
         image: laxmi.azurecr.io/ash-jenkins-docker:v119

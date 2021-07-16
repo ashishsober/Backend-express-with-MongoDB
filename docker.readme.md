@@ -114,7 +114,7 @@ CONTAINER is a running environment for IMAGE
     ls -last /var/run/docker.sock  (to check the permission)
     cat /etc/group
     https://docs.docker.com/engine/install/linux-postinstall/
-    curl -u "admin:dc1d84de987949e2a5c416d1a0325413" 'http://52.182.215.191:8080//crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+    curl -u "admin:admin" 'http://52.182.215.191:8080//crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
     export DOCKER_HOST="unix:///var/run/docker.sock"
     export DOCKER_HOST="tcp://0.0.0.0:2375"
     sudo chmod 664 /var/run/docker.sock
