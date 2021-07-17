@@ -7,7 +7,7 @@ pipeline {
     environment {
         NEW_VERSION = '1.3.0'
         // SERVER_CREDENTIALS = credentials('global')
-        registry = "laxmi/backend-app-with-esp" 
+        registry = "backend-app-with-esp" 
         registry_url = "laxmi.azurecr.io"
         registryCredential = 'ACR'
         dockerImage = '' 
@@ -33,9 +33,10 @@ pipeline {
             }
             steps {
                 script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    // def dockerHome = tool 'myDocker'
+                    // env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    docker build -t backend-app-with-esp:latest .
+                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
