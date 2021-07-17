@@ -47,6 +47,9 @@ spec:
       - name: jenkins-app
         image: laxmi.azurecr.io/ash-jenkins-docker:v119
         imagePullPolicy: Always
+        env:
+        - name: JAVA_OPTS
+          value: -Xmx2048m -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
         ports:
         - name: http-port
           containerPort: 8080
