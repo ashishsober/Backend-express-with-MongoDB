@@ -80,33 +80,40 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-app-service
+  name: jenkins
   labels:
-    app: jenkins-app-service
+    app: jenkins
 spec:
   selector:
     app: jenkins-app
   type: LoadBalancer  
   ports:
-  - port: 8080
+  - name: ui
+    port: 8080
     protocol: TCP
     targetPort: 8080
-    nodePort: 30003
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkins-jnlp-service
-  labels:
-    app: jenkins-jnlp-service
-spec:
-  selector:
-    app: jenkins-app
-  type: ClusterIP  
-  ports:
-  - port: 50000
+    nodePort: 30005
+  - name: slave
+    port: 50000
     protocol: TCP
-    targetPort: 50000  
+    targetPort: 50000
+    nodePort: 30004
+
+---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: jenkins-jnlp-service
+#   labels:
+#     app: jenkins-jnlp-service
+# spec:
+#   selector:
+#     app: jenkins-app
+#   type: LoadBalancer  
+#   ports:
+#   - port: 50000
+#     protocol: TCP
+#     targetPort: 50000  
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
