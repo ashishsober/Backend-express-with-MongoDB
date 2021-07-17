@@ -104,9 +104,12 @@ CONTAINER is a running environment for IMAGE
 
 # some command to execut inside the container
     
+    newgrp docker
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    sudo /usr/sbin/usermod -aG docker jenkins
+    sudo /usr/sbin/usermod -aG docker root
+    sudo usermod -aG docker $(whoami)
+    ps -aux | grep docker
     ps 
     groups
     whoami
@@ -127,6 +130,7 @@ CONTAINER is a running environment for IMAGE
     
     sudo systemctl start docker
     sudo systemctl restart docker
+    systemctl enable docker
     whereis systemctl
     cat /etc/os-release (will tell you the system name like ubuntu, debian)
 
@@ -138,3 +142,4 @@ CONTAINER is a running environment for IMAGE
     sudo service docker restart 
     sudo service docker stop
     kubectl version --client
+    sudo stat /var/run/docker.sock (to see all the writes)
