@@ -35,8 +35,8 @@ pipeline {
                 script {
                     // def dockerHome = tool 'myDocker'
                     // env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    docker build . -t backend-app-with-esp:latest
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    // docker build . -t backend-app-with-esp:latest
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
