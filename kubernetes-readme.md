@@ -60,4 +60,7 @@
         - hosts:
             - myapp.com
             secretName: myapp-secret-tls
+
+# How to enable RBAC (Role based access control)
     
+    kubectl cluster-info dump | grep authorization-mode

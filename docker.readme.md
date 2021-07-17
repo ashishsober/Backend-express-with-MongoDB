@@ -118,6 +118,9 @@ CONTAINER is a running environment for IMAGE
     cat /etc/group
     https://docs.docker.com/engine/install/linux-postinstall/
     curl -u "admin:admin" 'http://52.182.215.191:8080//crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+    curl -v -X GET http://52.182.215.191:8080/crumbIssuer/api/json --user admin:admin
+    curl -X POST http://52.182.215.191:8080/job/<job-name>/build --user admin:admin -H 'Jenkins-Crumb: ba5053cc05f210c5b8b5bd60d8226653bedeb7c74dbda034a46fcbc1a95cb1b8'
+    {"_class":"hudson.security.csrf.DefaultCrumbIssuer","crumb":"ba5053cc05f210c5b8b5bd60d8226653bedeb7c74dbda034a46fcbc1a95cb1b8","crumbRequestField":"Jenkins-Crumb"}
     export DOCKER_HOST="unix:///var/run/docker.sock"
     export DOCKER_HOST="tcp://0.0.0.0:2375"
     sudo chmod 664 /var/run/docker.sock
