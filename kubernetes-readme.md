@@ -38,8 +38,8 @@
     kubectl get pv jenkins-pv
     kubectl get pvc task-pv-claim
     kubectl delete deployment jenkins-app
-    kubectl delete pvc jenkins-pv-claim
-    kubectl delete pv jenkins-pv-volume
+    kubectl delete pvc jenkins-claim
+    kubectl delete pv jenkins-volume
     kubectl apply -f k8s/jenkins-deployment.yaml
     docker volume ls
     chmod 777 /var/run/docker.sock
