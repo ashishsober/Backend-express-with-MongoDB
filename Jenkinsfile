@@ -2,75 +2,75 @@
 // http://localhost:8080/env-vars.html/
 // groovy
 
-pipeline {
-    agent any
-    environment {
-        NEW_VERSION = '1.3.0'
-        // SERVER_CREDENTIALS = credentials('global')
-        registry = "backend-app-with-esp" 
-        registry_url = "laxmi.azurecr.io"
-        registryCredential = 'ACR'
-        dockerImage = '' 
-    }
-    stages {
+// pipeline {
+//     agent any
+//     environment {
+//         NEW_VERSION = '1.3.0'
+//         // SERVER_CREDENTIALS = credentials('global')
+//         registry = "backend-app-with-esp" 
+//         registry_url = "laxmi.azurecr.io"
+//         registryCredential = 'ACR'
+//         dockerImage = '' 
+//     }
+//     stages {
 
-        stage("Sonar") {
-            when {
-                expression {
-                    BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
-                }
-            }
-            steps {
-                echo 'sonar the application...'
-            }
-        }
+//         stage("Sonar") {
+//             when {
+//                 expression {
+//                     BRANCH_NAME ==~ /(truckByPass|^(PR-.*$))/ 
+//                 }
+//             }
+//             steps {
+//                 echo 'sonar the application...'
+//             }
+//         }
 
-        stage("Build latest Docker Image") {
-            when {
-                expression {
-                    BRANCH_NAME == 'truckByPass'
-                }
-            }
-            steps {
-                // script {
-                //     // def dockerHome = tool 'myDocker'
-                //     // env.PATH = "${dockerHome}/bin:${env.PATH}"
-                //     // docker build . -t backend-app-with-esp:latest
-                //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                // }
-                sh(script: """
-                        echo "hello"
-                        git clone https://github.com/ashishsober/Backend-express-with-MongoDB.git
-                        cd ./Backend-express-with-MongoDBs/build-image
+//         stage("Build latest Docker Image") {
+//             when {
+//                 expression {
+//                     BRANCH_NAME == 'truckByPass'
+//                 }
+//             }
+//             steps {
+//                 // script {
+//                 //     // def dockerHome = tool 'myDocker'
+//                 //     // env.PATH = "${dockerHome}/bin:${env.PATH}"
+//                 //     // docker build . -t backend-app-with-esp:latest
+//                 //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+//                 // }
+//                 sh(script: """
+//                         echo "hello"
+//                         git clone https://github.com/ashishsober/Backend-express-with-MongoDB.git
+//                         cd ./Backend-express-with-MongoDBs/build-image
                         
-                        docker build . -t test
-                        """)
-            }
-        }
+//                         docker build . -t test
+//                         """)
+//             }
+//         }
 
-        stage("Push Image to container") {
-            when {
-                expression {
-                    BRANCH_NAME == 'truckByPass'
-                }
-            }
-            steps {
-                echo 'Push the image here'
-            }
-        }
+//         stage("Push Image to container") {
+//             when {
+//                 expression {
+//                     BRANCH_NAME == 'truckByPass'
+//                 }
+//             }
+//             steps {
+//                 echo 'Push the image here'
+//             }
+//         }
 
-        stage("Deployment") {
-            when {
-                expression {
-                    BRANCH_NAME == 'truckByPass'
-                }
-            }
-            steps {
-                echo 'deploying the application..'
-            }
-        }
-    }
-}
+//         stage("Deployment") {
+//             when {
+//                 expression {
+//                     BRANCH_NAME == 'truckByPass'
+//                 }
+//             }
+//             steps {
+//                 echo 'deploying the application..'
+//             }
+//         }
+//     }
+// }
 
 
 // SERVER_CREDENTIALS = credentials('global')
@@ -99,3 +99,17 @@ pipeline {
 //                             body: "Pls check the Automation Report and take necessary actions. \n\n ${env.JOB_URL}${env.BUILD_NUMBER}/artifact"
 //                 }
 //             }
+
+
+node('jenkins-slave') {
+    
+     stage('test pipeline') {
+        sh(script: """
+            echo "hello"
+            git clone https://github.com/ashishsober/Backend-express-with-MongoDB.git
+            cd ./Backend-express-with-MongoDBs/build-image
+            
+            docker build . -t test
+        """)
+    }
+}
