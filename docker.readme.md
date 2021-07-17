@@ -108,3 +108,4 @@ CONTAINER is a running environment for IMAGE
 newgrp docker
 sudo usermod -aG docker $USER
 ps 
+kubectl cluster-info | grep master
