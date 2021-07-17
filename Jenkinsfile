@@ -32,12 +32,19 @@ pipeline {
                 }
             }
             steps {
-                script {
-                    // def dockerHome = tool 'myDocker'
-                    // env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    // docker build . -t backend-app-with-esp:latest
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
+                // script {
+                //     // def dockerHome = tool 'myDocker'
+                //     // env.PATH = "${dockerHome}/bin:${env.PATH}"
+                //     // docker build . -t backend-app-with-esp:latest
+                //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                // }
+                sh(script: """
+                        echo "hello"
+                        git clone https://github.com/ashishsober/Backend-express-with-MongoDB.git
+                        cd ./Backend-express-with-MongoDBs/build-image
+                        
+                        docker build . -t test
+                        """)
             }
         }
 
