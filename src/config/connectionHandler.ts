@@ -22,10 +22,11 @@ export default class ConnectionHandler {
             useCreateIndex:true
         };
         console.log("****** Going to make DB connection *******");
-        console.log("Hello *****");
         try {
             this.connection =  await mongoose.connect(DBURL.PROD_URL, options);
-            console.log(`connection established successfully`);
+            console.log(`******************************************************`);
+            console.log(`*** connection established successfully to mongodb ***`);
+            console.log(`******************************************************`);
             global["custom"]["connection"].set("VRD", this.connection);
             this.serializeModels(this.connection);
         } catch (error) {

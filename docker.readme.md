@@ -33,7 +33,7 @@
     docker run -d -p 1200:1200 --net mongo-network-ash laxmi.azurecr.io/backend-app-with-esp:latest
     docker run -d -p 3000:3000 --net mongo-network-ash laxmi.azurecr.io/eco-ui:latest
     
-    docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3-management
+    docker run -d -p 5672:15672 rabbitmq:3-management
 
     username:admin ,password:admin
     docker run -d \
