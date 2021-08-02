@@ -19,7 +19,7 @@ export class Server {
     initializeServer() {
         this.port = this.normalizePort(process.env.PORT || '1200');
         this.startServer();
-        console.log("mongoodb username ***",child.execSync(`echo $MONGO_DB_USERNAME`).toString().trim())
+        //console.log("mongoodb username ***",child.execSync(`echo $MONGO_DB_USERNAME`).toString().trim())
         //const decypt: Decryption = new Decryption();
         //decypt.key = env.parsed[CloudEnvironment.KEY];
     }
@@ -81,19 +81,19 @@ export class Server {
         this.server = http.createServer(expressApp);
         this.server.listen(this.port);
 
-        const CERT_LOC = this.getValueFromBashFile(env, "CERT_LOC", "CERT_LOC");
-        const CERT_KEY = this.getValueFromBashFile(env, "CERT_KEY", "CERT_KEY");
-        const CERT_PASS = this.getValueFromBashFile(env, "CERT_PASS", "CERT_PASS");
-        if(CERT_LOC && CERT_PASS) {
-            var certKey = CERT_LOC + CERT_KEY;
-            var certPass = CERT_LOC + CERT_PASS;
-            var privateKey = fs.readFileSync(certKey, 'utf8');
-            var certificate = fs.readFileSync(certPass, 'utf8');
-            var credentials = { key: privateKey, cert: certificate };
-            //create server
-            this.server = https.createServer(credentials, expressApp);
-            this.server.listen(8443);
-        }
+        // const CERT_LOC = this.getValueFromBashFile(env, "CERT_LOC", "CERT_LOC");
+        // const CERT_KEY = this.getValueFromBashFile(env, "CERT_KEY", "CERT_KEY");
+        // const CERT_PASS = this.getValueFromBashFile(env, "CERT_PASS", "CERT_PASS");
+        // if(CERT_LOC && CERT_PASS) {
+        //     var certKey = CERT_LOC + CERT_KEY;
+        //     var certPass = CERT_LOC + CERT_PASS;
+        //     var privateKey = fs.readFileSync(certKey, 'utf8');
+        //     var certificate = fs.readFileSync(certPass, 'utf8');
+        //     var credentials = { key: privateKey, cert: certificate };
+        //     //create server
+        //     this.server = https.createServer(credentials, expressApp);
+        //     this.server.listen(8443);
+        // }
         this.server.on('error', this.onError.bind(this));
         this.server.on('listening', this.onListening.bind(this));
     }
