@@ -1,0 +1,18 @@
+docker exec -it mongo1 mongo
+db2 = (new Mongo('mongo2:27018')).getDB('test')
+db2.setSecondaryOk()
+
+db.getCollectionNames()
+db.mycollection.insert({name : 'sample'})
+db.mycollection.find()
+
+
+db2 = (new Mongo('mongo2:27017')).getDB('test')
+db2.setSlaveOk()
+db2.mycollection.find()
+
+
+
+
+docker build -t backend-app-with-esp:replica .
+docker run -p 1200:1200 --net my-mongo-cluster backend-app-with-esp:replica

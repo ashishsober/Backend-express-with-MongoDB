@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 import * as child from 'child_process';
 import * as https from 'https';
 import * as fs from 'fs';
-const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
+// const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
 /*--------  Start App  --------*/
 export class Server {
     server;
@@ -67,15 +67,15 @@ export class Server {
         console.log(`Listening on ${bind}`);
     }
 
-    private getValueFromBashFile = (env: any, value: string, cloudConfigProp: string) => {
-        return env.parsed[cloudConfigProp] ? env.parsed[cloudConfigProp] : child.execSync(`echo $${value}`).toString().trim();
-    }
+    // private getValueFromBashFile = (env: any, value: string, cloudConfigProp: string) => {
+    //     return env.parsed[cloudConfigProp] ? env.parsed[cloudConfigProp] : child.execSync(`echo $${value}`).toString().trim();
+    // }
 
     private startServer() {
         //initialize Express app
         const expressApp = new Express().app;
         expressApp.set('port', this.port);
-        console.log("localhost env variables",env);
+        // console.log("localhost env variables",env);
 
         // read cert files
         this.server = http.createServer(expressApp);

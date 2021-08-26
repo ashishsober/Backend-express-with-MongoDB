@@ -16,14 +16,21 @@ export default class ConnectionHandler {
     * Connect to mongo
     */
     private async connectToDb() {
-        const options = { 
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex:true
+        const options:any = { 
+            useNewUrlParser: true, 
+            autoReconnect: true, 
+            reconnectTries : 30, 
+            useFindAndModify: false, 
+            useUnifiedTopology: true, 
+            readPreference: 'primaryPreferred',
+            socketTimeoutMS: 0,
+            keepAlive: true,
+            poolSize: 10,
+            ssl: false
         };
         console.log("****** Going to make DB connection *******");
         try {
-            this.connection =  await mongoose.connect(DBURL.PROD_URL, options);
+            this.connection =  await mongoose.connect(DBURL.replicaset, options);
             console.log(`******************************************************`);
             console.log(`*** connection established successfully to mongodb ***`);
             console.log(`******************************************************`);

@@ -29,6 +29,7 @@
     kubectl get pod -o wide (for more information)
     kubectl get services
     kubectl get secret
+    kubectl get configMap
     kubectl get namespace
     kubectl get ingress
     kubectl delete deployment ashish-custom (replicaset and the pod will gone)
@@ -46,6 +47,7 @@
     chmod 777 /var/run/docker.sock
 # to run any component like (deployment , services, secret, ConfigMap, Ingress)
     kubectl apply -f file_name.yaml
+    kubectl edit configMap <name of the pod>
 # If the pod is not coming up
     kubectl describe pod pod_name
     kubectl describe service service_name
