@@ -4,5 +4,5 @@ cd /www
 
 echo "You are deploying in environment"
 
-npm run build
-npm run start:prod --verbose
+# npm run build
+# npm run start:prod --verbose
