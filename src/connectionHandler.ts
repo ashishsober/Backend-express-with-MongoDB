@@ -1,15 +1,16 @@
 import * as mongoose from "mongoose";
-import accessTokenSchema from "../schemas/accessToken";
-import careerSchema from "../schemas/careerSchema";
-import contactSchema from "../schemas/contactSchema";
-import employeeSchema from "../schemas/employeeSchema";
-import jobBoardSchema from "../schemas/jobBoardSchema";
-import managementSchema from "../schemas/managementSchema";
+// import accessTokenSchema from "../schemas/accessToken";
+// import careerSchema from "../schemas/careerSchema";
+// import contactSchema from "../schemas/contactSchema";
+// import employeeSchema from "../schemas/employeeSchema";
+// import jobBoardSchema from "../schemas/jobBoardSchema";
+// import managementSchema from "../schemas/managementSchema";
+const url = "mongodb+srv://ashishwork16:5jTLG5tbkrAjpJWD@cluster0.rhut5cb.mongodb.net/khata"
 export default class ConnectionHandler {
 
     connection;
     constructor() {
-        //this.log = new Logger('Connection Handler');
+        console.log('Connection Handler');
         //this.cloudConfig = configurations;
         this.initializeConnectionManager();
     }
@@ -32,7 +33,7 @@ export default class ConnectionHandler {
             useUnifiedTopology: true,
             useCreateIndex:true
         };
-        this.connection = mongoose.createConnection('mongodb+srv://test:test@myappdatabase12.tmhxb.mongodb.net/myappdatabase12?retryWrites=true&w=majority', options);
+        this.connection = mongoose.createConnection(url);
         this.connectionHandler(this.connection);
     }
 
@@ -47,10 +48,10 @@ export default class ConnectionHandler {
         });
 
         connection.once('open', callback => {
-            console.log(`connection established successfully`);
+            console.log(`connection established successfully !!!`);
             global["custom"]["connection"].set("VRD", connection);
             //serialize model on connection
-            this.serializeModels(connection);
+            // this.serializeModels(connection);
         });
 
         connection.on('reconnected', () => {
@@ -63,12 +64,12 @@ export default class ConnectionHandler {
         });
     }
 
-    private serializeModels(connection) {
-        connection.model(accessTokenSchema.name,accessTokenSchema.schema);
-        connection.model(careerSchema.name,careerSchema.schema);
-        connection.model(contactSchema.name,contactSchema.schema);
-        connection.model(employeeSchema.name,employeeSchema.schema);
-        connection.model(jobBoardSchema.name,jobBoardSchema.schema);
-        connection.model(managementSchema.name,managementSchema.schema);
-    }
+    // private serializeModels(connection) {
+    //     connection.model(accessTokenSchema.name,accessTokenSchema.schema);
+    //     connection.model(careerSchema.name,careerSchema.schema);
+    //     connection.model(contactSchema.name,contactSchema.schema);
+    //     connection.model(employeeSchema.name,employeeSchema.schema);
+    //     connection.model(jobBoardSchema.name,jobBoardSchema.schema);
+    //     connection.model(managementSchema.name,managementSchema.schema);
+    // }
 }
