@@ -13,6 +13,7 @@ export class userDetailsController {
 
         // this.router.post('/managementVrd', new MiddlewareController().lookupAccessToken, this.postManagement); //should be authenticate before posting
         this.router.get('/userDetails', this.getUserDetails);
+        this.router.get('/userDetails/v1', this.getUserDetails);
     }
 
 

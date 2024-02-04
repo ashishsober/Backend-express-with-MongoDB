@@ -1,5 +1,5 @@
 import * as bodyParser from "body-parser";
-import * as cors from "cors";
+const cors = require('cors');
 import express, {Express, Request, Response} from 'express';
 // import Routes from "./routes";
 import * as compression from 'compression';
@@ -17,7 +17,6 @@ export default class ExpressClass {
     //log = new Logger('express');
     app: express.Express;
     passport: any;
-
     constructor() {
         //console.log(this.dotenv);
         // Start App
@@ -39,7 +38,7 @@ export default class ExpressClass {
     private setMiddleware() {
 
         // cors
-        // this.app.use(cors());
+        this.app.use(cors());
 
         // Add body parser
         this.app.use(bodyParser.json({ limit: '50mb' }));
