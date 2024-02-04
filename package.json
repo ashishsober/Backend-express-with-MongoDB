@@ -19,9 +19,10 @@
     "fix": "gts fix",
     "build": "tsc -p .",
     "gcp-build": "tsc -p .",
+    "start": "node ./dist/server.js",
     "start-local": "concurrently --kill-others \"npm run watch-ts\"",
-    "watch-ts": "tsc-watch -w -p src --onSuccess \"npm run start-nodemon\"",
-    "start-nodemon": "NODE_ENV=localhost nodemon dist/server.js"
+    "watch-ts": "tsc-watch -w -p . --onSuccess \"npm run start-nodemon\"",
+    "start-nodemon": "NODE_ENV=localhost nodemon ./dist/server.js"
   },
   "dependencies": {
     "@typescript-eslint/parser": "^6.0.0",
@@ -36,7 +37,11 @@
     "@types/node": "^18.19.8",
     "c8": "^8.0.0",
     "chai": "^4.3.7",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
     "gts": "^5.0.0",
+    "helmet": "^7.1.0",
     "mocha": "^10.2.0",
     "typescript": "^5.0.0",
     "wait-port": "^1.0.0"

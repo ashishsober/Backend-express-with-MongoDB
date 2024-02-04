@@ -1,32 +1,83 @@
-// Copyright 2018 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the 'License');
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an 'AS IS' BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+import * as http from 'http';
+// import * as dotenv from "dotenv";
+import Express from './src/config/express';
+import ExpressClass from './src/config/express';
 
-import express, {Express, Request, Response} from 'express';
-import ConnectionHandler from './src/connectionHandler';
-const PORT = process.env.PORT || 8080;
-const app: Express = express();
-global["custom"] = {};
-global["custom"]["connection"] = '00';
+/*--------  Start App  --------*/
+export class Server {
+    server;
+    port;
 
-app.get('/', (req: Request, res: Response) => {
-  console.log(`Hello TypeScript! ${PORT}`);
-  res.send(`🎉 Hello TypeScript! with Laxmi new 1234 🎉 ${global["custom"]["connection"]}`);
-});
+    constructor() {
+        global["custom"] = {};
+        global["custom"]["connection"] = '00';
+        this.initializeServer();
+    }
 
-const server = app.listen(PORT, () => {
-  new ConnectionHandler();
-  console.log(`App listening on port ${PORT}`);
-});
+    initializeServer() {
+        // const env = dotenv.config({ path: "environment/.env." + process.env.NODE_ENV });
+        this.port = this.normalizePort(process.env.PORT || '1337');
+        this.startServer();
+        //const decypt: Decryption = new Decryption();
+        //decypt.key = env.parsed[CloudEnvironment.KEY];
+    }
 
-module.exports = server;
+    /**
+     * Normalize port
+     * @param {*} val 
+     */
+    private normalizePort(val: number | string): number | string | boolean {
+        const port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
+        if (isNaN(port)) return val;
+        else if (port >= 0) return port;
+        else return false;
+    }
+
+    /**
+     * On error
+     * callback event for createServer error
+     * @param {*} error 
+     */
+    private onError(error: NodeJS.ErrnoException): void {
+        if (error.syscall !== 'listen') throw error;
+        const bind = (typeof this.port === 'string') ? 'Pipe ' + this.port : 'Port ' + this.port;
+        switch (error.code) {
+            case 'EACCES':
+                console.log(`${bind} requires elevated privileges`);
+                process.exit(1);
+                break;
+            case 'EADDRINUSE':
+                console.log(`${bind} is already in use`);
+                process.exit(1);
+                break;
+            default:
+                throw error;
+        }
+    }
+
+    /**
+     * On listening
+     * callback event for createServer listening
+     */
+    private onListening() {
+        const addr = this.server.address();
+        const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
+        console.log(`Listening on ${bind}`);
+    }
+
+
+    private startServer() {
+        //initialize Express app
+        const expressApp = new ExpressClass().app;
+        expressApp.set('port', this.port);
+
+        //create server
+        this.server = http.createServer(expressApp);
+        this.server.listen(this.port);
+        this.server.on('error', this.onError.bind(this));
+        this.server.on('listening', this.onListening.bind(this));
+    }
+
+}
+
+export default new Server();
